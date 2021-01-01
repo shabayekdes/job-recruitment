@@ -18,3 +18,10 @@ Route::get('/', function () {
 });
 
 Route::get('test', 'TestController');
+
+Route::get('jobs/login/{job}', 'JobController@showLoginForm');
+Route::post('jobs/login', 'JobController@login')->name('job.login.store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
