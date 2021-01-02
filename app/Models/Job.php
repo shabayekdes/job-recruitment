@@ -14,6 +14,13 @@ class Job extends Model
     protected $table = 'wpqs_posts';
 
     /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'ID';
+
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array

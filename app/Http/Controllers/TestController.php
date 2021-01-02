@@ -20,6 +20,7 @@ class TestController extends Controller
     public function __invoke(Request $request)
     {
 
+
         $city = "Egypt";
 
         $url = "https://neuvoo.com/services/api-new/search?ip=1.1.1.1&useragent=123asd&country=eg&contenttype=sponsored&format=json&publisher=d42894fa";
