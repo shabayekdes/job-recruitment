@@ -41,7 +41,7 @@ class JobController extends Controller
         $auth = Hash::driver('wp')->check($request->get('password'), $candidate->user_pass);
 
         if($auth){
-            $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', '_joburl')->first();
+            $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
             return redirect($application->meta_value);
         }
 
@@ -315,7 +315,7 @@ class JobController extends Controller
 
         $job->meta()->createMany($jobMeta);
 
-        $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', '_joburl')->first();
+        $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
         return redirect($application->meta_value);
     }
 

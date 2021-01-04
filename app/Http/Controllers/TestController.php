@@ -19,7 +19,28 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $jobs = Job::with(['meta' => function ($query){
+            $query->where('meta_key', '_application');
 
+        }])->where('post_type', 'job_listing')->get();
+
+        foreach ($jobs as $job) {
+
+            $data = $job->meta->first()->toArray();
+
+            $metaUrl = [
+                "meta_key" => "_joburl",
+                "meta_value" => $data['meta_value'],
+            ];
+
+            JobMeta::where('meta_id', $data['meta_id'])->update([
+                "meta_value" => url('job/login/'. $job->ID)
+            ]);
+
+
+            $job->meta()->create($metaUrl);
+
+        }
         $meta = JobMeta::where('post_id', 808)->get();
 
         dd($meta->toJson());
