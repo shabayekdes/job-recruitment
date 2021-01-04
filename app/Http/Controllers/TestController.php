@@ -20,6 +20,9 @@ class TestController extends Controller
     public function __invoke(Request $request)
     {
 
+        $meta = JobMeta::where('post_id', 808)->get();
+
+        dd($meta->toJson());
 
         $city = "Egypt";
 
@@ -318,5 +321,236 @@ class TestController extends Controller
         // dd($jobs->toArray());
 
         dd($jobs->meta->toArray() );
+
+        $data = [
+            [
+                "meta_key" => "nickname",
+                "meta_value" => $request->get('user_login'),
+            ],
+            [
+                "meta_key" => "description",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "rich_editing",
+                "meta_value" => "true",
+            ],
+            [
+                "meta_key" => "syntax_highlighting",
+                "meta_value" => "true",
+            ],
+            [
+                "meta_key" => "comment_shortcuts",
+                "meta_value" => "false",
+            ],
+            [
+                "meta_key" => "admin_color",
+                "meta_value" => "fresh",
+            ],
+            [
+                "meta_key" => "use_ssl",
+                "meta_value" => "0",
+            ],
+            [
+                "meta_key" => "show_admin_bar_front",
+                "meta_value" => "false",
+            ],
+            [
+                "meta_key" => "locale",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "wpqs_capabilities",
+                "meta_value" => 'a:1:{s:18:"jobsearch_employer";b:1;}',
+            ],
+            [
+                "meta_key" => "wpqs_user_level",
+                "meta_value" => "0",
+            ],
+            [
+                "meta_key" => "last_update",
+                "meta_value" => "1577022807",
+            ],
+            [
+                "meta_key" => "jobsearch_employer_id",
+                "meta_value" => "424",
+            ],
+            [
+                "meta_key" => "jobsearch_field_user_phone",
+                "meta_value" => $request->get('mobile'),
+            ],
+            [
+                "meta_key" => "jobsearch_field_candidate_jobtitle",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "jobsearch_field_candidate_salary",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "jobsearch_field_user_facebook_url",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "jobsearch_field_user_twitter_url",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "jobsearch_field_user_google_plus_url",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "jobsearch_field_user_linkedin_url",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "jobsearch_field_user_dribbble_url",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "jobsearch_field_location_address",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "academic-level",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "Age",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "salary",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "gender",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "industry",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "founded-since",
+                "meta_value" => "1850",
+            ],
+            [
+                "meta_key" => "wpqs_show_admin_bar_front",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "dismissed_wp_pointers",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "wc_last_active",
+                "meta_value" => "1576972800",
+            ],
+            [
+                "meta_key" => "careerfy_user_facebook",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "careerfy_user_google",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "careerfy_user_linkedin",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "careerfy_user_twitter",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_first_name",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_last_name",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_company",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_address_1",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_address_2",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_city",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_postcode",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_country",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_state",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_phone",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "billing_email",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_first_name",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_last_name",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_company",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_address_1",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_address_2",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_city",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_postcode",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_country",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_state",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "shipping_method",
+                "meta_value" => "",
+            ],
+            [
+                "meta_key" => "paying_customer",
+                "meta_value" => "",
+            ]
+        ];
     }
 }
