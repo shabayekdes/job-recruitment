@@ -13,32 +13,47 @@ class JobMetaSeeder extends Seeder
      */
     public function run()
     {
-        $jobs = Job::with(['meta' => function ($query){
-            $query->where('meta_key', '_application');
+        // $jobs = Job::with(['meta' => function ($query){
+        //     $query->where('meta_key', '_application');
 
-        }])
-        ->whereHas('meta' , function ($query){
-            $query->where('meta_key', '_application');
+        // }])
+        // ->whereHas('meta' , function ($query){
+        //     $query->where('meta_key', '_application');
 
-        })
-        ->where('post_type', 'job_listing')->get();
+        // })
+        // ->where('post_type', 'job_listing')->get();
+
+        $jobs = Job::where('post_type', 'job_listing')->get();
 
         foreach ($jobs as $job) {
 
-            $data = $job->meta->first()->toArray();
+            // $data = $job->meta->first()->toArray();
 
             $metaUrl = [
-                "meta_key" => "app_joburl",
-                "meta_value" => $data['meta_value'],
+                "meta_key" => "_application",
+                "meta_value" => "http://api.talentsmine.net/job/login/" . $job->ID,
             ];
-
-            JobMeta::where('meta_id', $data['meta_id'])->update([
-                "meta_value" => url('job/login/'. $job->ID)
-            ]);
-
 
             $job->meta()->create($metaUrl);
 
         }
+
+        // foreach ($jobs as $job) {
+
+        //     $data = $job->meta->first()->toArray();
+
+        //     $metaUrl = [
+        //         "meta_key" => "app_joburl",
+        //         "meta_value" => $data['meta_value'],
+        //     ];
+
+        //     JobMeta::where('meta_id', $data['meta_id'])->update([
+        //         "meta_value" => url('job/login/'. $job->ID)
+        //     ]);
+
+
+        //     $job->meta()->create($metaUrl);
+
+        // }
     }
 }
