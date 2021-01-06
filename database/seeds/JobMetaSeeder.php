@@ -31,7 +31,7 @@ class JobMetaSeeder extends Seeder
 
             $metaUrl = [
                 "meta_key" => "_application",
-                "meta_value" => "http://api.talentsmine.net/job/login/" . $job->ID,
+                "meta_value" => "http://api.talentsmine.net/jobs/login/" . $job->ID,
             ];
 
             $job->meta()->create($metaUrl);
