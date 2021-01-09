@@ -42,7 +42,7 @@
             alt="Recruitment Talents Mine">
         <h1 class="h3 mt-5 font-weight-normal">Please sign in</h1>
         <p class="mb-3 text-muted mt-3">
-            OR <a class="login-register-switch-link" href="#">create an account</a>
+            OR <a class="login-register-switch-link" href="{{ route('job.register.show', [$job]) }}">create an account</a>
         </p>
         @if (session('status'))
             <div class="alert alert-danger">
