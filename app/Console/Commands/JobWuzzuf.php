@@ -45,6 +45,8 @@ class JobWuzzuf extends Command
     {
         // \DB::connection()->enableQueryLog();
 
+        Log::info('date: ' . now()->format('l jS \of F Y h:i:s A'));
+
         $url = "https://wuzzuf.net/feeds/all-jobs.xml";
 
         $response = Http::get($url);
