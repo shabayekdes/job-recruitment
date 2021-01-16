@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Term;
 use GuzzleHttp\Client;
 use App\Models\JobMeta;
 use Illuminate\Support\Str;
@@ -19,18 +20,22 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $url = "https://neuvoo.com/services/api-new/search?ip=1.1.1.1&useragent=123asd&k=driver&l=&country=ca&contenttype=sponsored&format=xml&publisher=neuvoodev&cpcfloor=1&subid=10101";
+
+
+        $url = "https://wuzzuf.net/feeds/all-jobs.xml";
 
         $response = Http::get($url);
 
         $xml_string = (string) $response->body();
 
-        // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
-        $xml = simplexml_load_string($xml_string);
+        $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
+        // $xml = simplexml_load_string($xml_string);
 
         $json = json_encode($xml);
 
         $array = json_decode($json,TRUE);
+        dd($array);
+
         dd($array);
 
 
