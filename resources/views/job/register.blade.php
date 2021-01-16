@@ -56,29 +56,54 @@
         <div class="form-row">
             <div class="form-group col-md-6 text-left">
                 <label for="fname">First Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="meta[0][meta_value]" id="fname">
+                <input type="text" class="form-control @error('meta.0.meta_value') is-invalid @enderror" name="meta[0][meta_value]" value="{{ old('meta.0.meta_value') }}" id="fname">
                 <input type="hidden" value="first_name" name="meta[0][meta_key]">
+                @error('meta.0.meta_value')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group col-md-6 text-left">
                 <label for="lnam">Last Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="meta[1][meta_value]" id="lnam">
+                <input type="text" class="form-control @error('meta.1.meta_value') is-invalid @enderror" value="{{ old('meta.1.meta_value') }}" name="meta[1][meta_value]" id="lnam">
                 <input type="hidden" value="last_name" name="meta[1][meta_key]">
+                @error('meta.1.meta_value')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6 text-left">
                 <label for="user_login">Username <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="user_login" id="user_login">
+                <input type="text" class="form-control @error('user_login') is-invalid @enderror" value="{{ old('user_login') }}" name="user_login" id="user_login">
+                @error('user_login')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group col-md-6 text-left">
                 <label for="user_email">Email <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" name="user_email" id="user_email">
+                <input type="email" class="form-control @error('user_email') is-invalid @enderror" value="{{ old('user_email') }}" name="user_email" id="user_email">
+                @error('user_email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6 text-left">
                 <label for="user_pass">Password <span class="text-danger">*</span></label>
-                <input type="password" class="form-control" name="user_pass" id="user_pass">
+                <input type="password" class="form-control @error('user_pass') is-invalid @enderror" value="{{ old('user_pass') }}" name="user_pass" id="user_pass">
+                @error('user_pass')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group col-md-6 text-left">
                 <label for="password_confirmation">Confirm Password</label>
@@ -87,7 +112,7 @@
         </div>
         <div class="form-group text-left">
             <label for="sector">Select Sector</label>
-            <select class="form-control" name="sector" id="sector">
+            <select class="form-control @error('sector') is-invalid @enderror" name="sector" id="sector">
                 <option value="">select one</option>
                 <option value="36">Accounting and Auditing Services</option>
                 <option value="34">Administration</option>
@@ -199,22 +224,37 @@
                 <option value="153">Waste Management</option>
                 <option value="154">Writing and Editing</option>
             </select>
+            @error('sector')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
         <div class="form-group text-left">
             <label for="mobile">Mobile Number <span class="text-danger">*</span></label>
-            <input type="tel" class="form-control" name="mobile" id="mobile" placeholder="Mobile Number">
+            <input type="tel" class="form-control @error('mobile') is-invalid @enderror" value="{{ old('mobile') }}" name="mobile" id="mobile" placeholder="Mobile Number">
+            @error('mobile')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
         <div class="form-group text-left">
             <label for="resume">Upload Resume <span class="text-danger">*</span></label>
-            <input type="file" class="form-control-file" name="resume" id="resume">
+            <input type="file" class="form-control-file @error('resume') is-invalid @enderror" name="resume" id="resume">
             <small id="passwordHelpBlock" class="form-text text-muted">
                 Drop a resume file or click to upload. To upload file size is <b>(Max 5Mb)</b> and allowed file types are <b>(.doc, .docx, .pdf)</b>
-              </small>
+            </small>
+            @error('resume')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
           </div>
 
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary">Sign up</button>
 
         <p class="mb-2 text-muted mt-3">
             <a href="https://recruitment.talentsmine.net/my-account/lost-password/">Lost your password?</a>
