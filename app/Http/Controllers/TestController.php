@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Job;
 use App\Models\Term;
 use GuzzleHttp\Client;
 use App\Models\JobMeta;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class TestController extends Controller
@@ -20,39 +22,89 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // dd(strtotime("Thu, 14 January 2021"));
+        dd(date("Y-m-d", strtotime("Thu, 14 January 2021")));
+        // Store a string into the variable which 
+        // need to be Encrypted 
+        $simple_string = "Welcome to GeeksforGeeks"; 
 
-        $results = Job::where('post_type', 'job_listing')->get()->groupBy('post_name');
+        // Store the cipher method 
+        $ciphering = "AES-128-CTR"; 
+        
+        // Use OpenSSl Encryption method 
+        $options = 0; 
+        
+        // Non-NULL Initialization Vector for encryption 
+        $encryption_iv = '1234567891011121'; 
+        
+        // Store the encryption key 
+        $encryption_key = "GeeksforGeeks"; 
+        
+        // Use openssl_encrypt() function to encrypt the data 
+        $encryption = openssl_encrypt($simple_string, $ciphering, 
+                    $encryption_key, $options, $encryption_iv); 
+        
+        dump($encryption . '-' .time());
+
+        // Non-NULL Initialization Vector for decryption 
+        $decryption_iv = '1234567891011121'; 
+        
+        // Store the decryption key 
+        $decryption_key = "GeeksforGeeks"; 
+        
+        // Use openssl_decrypt() function to decrypt the data 
+        $decryption=openssl_decrypt ($encryption, $ciphering,  
+                $decryption_key, $options, $decryption_iv); 
+        
+
+        dd($decryption);
+
+        // dump(Hash::check('Digital Marketing Lead – Retail | Quest Search &amp; Selection', '$2y$10$fqVMh81rcJnmYSMCVs2EUOzHGAjLS2Tqu9Tld7rmkIofHJFzqO.pW'));
+        // dump(Hash::check('Digital Marketing Lead – Retail | Quest Search &amp; Selection', '$2y$10$vb0DFD8tzJj4Pk5z.QVMsOGBUiR7AZ8m0J9YXONvHXozzuTCnfBHO'));
+        // dump(Hash::make('Digital Marketing Lead – Retail | Quest Search &amp; Selection'));
+        // dd(Hash::make('Digital Marketing Lead – Retail | Quest Search &amp; Selection'));
+
+        // $index = (int) floor(Carbon::parse('06:00')->format('H') / 2);
+
+        // $country = [
+        //     '10111111000000',
+        //     '10111112000000'
+        // ];
+
+        // dd("https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=" . $country[$index]);
+        // dd($country[$index]);
+        // $results = Job::where('post_type', 'job_listing')->get()->groupBy('post_name');
 
 
-        foreach ($results as $key => $jobs) {
+        // foreach ($results as $key => $jobs) {
 
-            if($jobs->count() > 1){
-                foreach ($jobs as $key => $job) {
+        //     if($jobs->count() > 1){
+        //         foreach ($jobs as $key => $job) {
 
-                    $name = $job->post_name . ($key == 0 ? '' : '-' . $key);
+        //             $name = $job->post_name . ($key == 0 ? '' : '-' . $key);
 
-                    $job->update([
-                        'post_name' => $name 
-                    ]);
+        //             $job->update([
+        //                 'post_name' => $name 
+        //             ]);
 
-                }
-            }
-        }
-        dd('fgf');
+        //         }
+        //     }
+        // }
+        // dd('fgf');
 
-        $url = "https://wuzzuf.net/feeds/all-jobs.xml";
+        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=10111112000000";
 
         $response = Http::get($url);
 
         $xml_string = (string) $response->body();
 
-        $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
-        // $xml = simplexml_load_string($xml_string);
+        // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
+        $xml = simplexml_load_string($xml_string);
 
         $json = json_encode($xml);
 
         $array = json_decode($json,TRUE);
-        dd($array);
+        dd($array['channel']['item']);
 
         dd($array);
 
