@@ -56,7 +56,7 @@ class JobGulf extends Command
 
         $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=" . $data[0];
 
-        Log::info('Country: ' . $data[1] . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
+        Log::info('Website: Gulf Talent Country: ' . $data[1] . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $response = Http::get($url);
 
