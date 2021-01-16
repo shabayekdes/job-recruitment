@@ -148,11 +148,10 @@ class JobWuzzuf extends Command
 
             $jobExists = JobMeta::where('meta_value', $job['job_id'])->exists();
 
-            Log::info('Jobs Key: ' . $job['job_id']);
-
             if(!$jobExists){
-                $slug = Str::slug($job["title"], '-');
 
+                $slug = Str::slug($job["title"], '-');
+                \DB::beginTransaction();
                 $jobCreated = Job::create([
                     "post_author" => 1,
                     "post_date" => now(),
@@ -178,7 +177,7 @@ class JobWuzzuf extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . 'Jobs Key: ' . $job['job_id']);
+                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job['job_id']);
 
                 $metaData = $meta;
     
@@ -247,23 +246,25 @@ class JobWuzzuf extends Command
                     "meta_value" => $job['experience'],
                 ];
 
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_address",
-                    "meta_value" => $job['area'],
-                ];
+                if(!is_array($job['area'])){
+                    $metaData[] = [
+                        "meta_key" => "jobsearch_field_location_address",
+                        "meta_value" => $job['area'],
+                    ];
 
-                // $job = Job::find($jobCreated->id);
-    
+                    $roles = str_replace('/', ' ', $job['roles']);
+
+                    $term = Term::firstOrCreate([
+                        'name' => $roles,
+                        'slug' => Str::slug($roles, '-'),
+                    ]);
+                    $term->jobs()->attach([$jobCreated->ID => ['term_order' => 0]]);
+
+                }
+
                 $jobCreated->meta()->insert($metaData);
                 
-                $roles = str_replace('/', ' ', $job['roles']);
-
-                $term = Term::firstOrCreate([
-                    'name' => $roles,
-                    'slug' => Str::slug($roles, '-'),
-                ]);
-                $term->jobs()->attach([$jobCreated->ID => ['term_order' => 0]]);
-
+                \DB::commit();
                 // $queries = \DB::getQueryLog();
 
                 // dd($queries);
