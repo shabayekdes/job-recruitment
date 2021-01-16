@@ -21,6 +21,24 @@ class TestController extends Controller
     public function __invoke(Request $request)
     {
 
+        $results = Job::where('post_type', 'job_listing')->get()->groupBy('post_name');
+
+
+        foreach ($results as $key => $jobs) {
+
+            if($jobs->count() > 1){
+                foreach ($jobs as $key => $job) {
+
+                    $name = $job->post_name . ($key == 0 ? '' : '-' . $key);
+
+                    $job->update([
+                        'post_name' => $name 
+                    ]);
+
+                }
+            }
+        }
+        dd('fgf');
 
         $url = "https://wuzzuf.net/feeds/all-jobs.xml";
 
