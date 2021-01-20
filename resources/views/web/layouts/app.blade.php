@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Job Listings</title>
-    
+
     <!-- Css -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -17,8 +17,10 @@
     <link href="css/color.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext,vietnamese" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext,vietnamese"
+        rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,7 +30,7 @@
 </head>
 
 <body>
-    
+
     <!-- Wrapper -->
     <div class="careerfy-wrapper">
 
@@ -36,11 +38,13 @@
         <header id="careerfy-header" class="careerfy-header-one">
             <div class="container">
                 <div class="row">
-                    <aside class="col-md-2"> <a href="index.html" class="careerfy-logo"><img src="images/logo.png" alt=""></a> </aside>
+                    <aside class="col-md-2"> <a href="index.html" class="careerfy-logo">
+                        <img src="images/logox300.png" width="122" height="76" alt="Recruitment Talents Mine">                    </aside>
                     <aside class="col-md-6">
                         <nav class="careerfy-navigation">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#careerfy-navbar-collapse-1" aria-expanded="false">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#careerfy-navbar-collapse-1" aria-expanded="false">
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
@@ -51,9 +55,12 @@
                                     <li class="active"><a href="index.html">Home</a>
                                         <ul class="sub-menu">
                                             <li><a href="https://eyecix.com/html/careerfy/">Demo Careerfy</a></li>
-                                            <li><a href="https://eyecix.com/html/careerfy-demos/hireright-demo/">Demo Hireright</a></li>
-                                            <li><a href="https://eyecix.com/html/careerfy-demos/jobshub-demo/">Demo Jobshub</a></li>
-                                            <li><a href="https://eyecix.com/html/careerfy-demos/belovedjobs/">Demo BelovedJobs</a></li>
+                                            <li><a href="https://eyecix.com/html/careerfy-demos/hireright-demo/">Demo
+                                                    Hireright</a></li>
+                                            <li><a href="https://eyecix.com/html/careerfy-demos/jobshub-demo/">Demo
+                                                    Jobshub</a></li>
+                                            <li><a href="https://eyecix.com/html/careerfy-demos/belovedjobs/">Demo
+                                                    BelovedJobs</a></li>
                                             <li><a href="index-five.html">Demo JobsOnline</a></li>
                                             <li><a href="index-six.html">Demo JobSearch</a></li>
                                             <li><a href="index-seven.html">Demo JobFinder</a></li>
@@ -81,10 +88,12 @@
                                     <li><a href="#">For Candidates</a>
                                         <ul class="sub-menu">
                                             <li><a href="candidate-dashboard-applied-jobs.html">Applied Jobs</a></li>
-                                            <li><a href="candidate-dashboard-changed-password.html">Changed Password</a></li>
+                                            <li><a href="candidate-dashboard-changed-password.html">Changed Password</a>
+                                            </li>
                                             <li><a href="candidate-dashboard-cv-manager.html">CV Manager</a></li>
                                             <li><a href="candidate-dashboard-job-alert.html">Job Alert</a></li>
-                                            <li><a href="candidate-dashboard-profile-seting.html">Profile Setting</a></li>
+                                            <li><a href="candidate-dashboard-profile-seting.html">Profile Setting</a>
+                                            </li>
                                             <li><a href="candidate-dashboard-resume.html">Candidate Resume</a></li>
                                             <li><a href="candidate-dashboard-saved-jobs.html">Saved Jobs</a></li>
                                             <li><a href="candidate-listings.html">Candidate Listings</a></li>
@@ -93,8 +102,10 @@
                                                 <ul class="sub-menu">
                                                     <li><a href="candidate-detail.html">Candidate Detail I</a></li>
                                                     <li><a href="candidate-detail-two.html">Candidate Detail II</a></li>
-                                                    <li><a href="candidate-detail-three.html">Candidate Detail III</a></li>
-                                                    <li><a href="candidate-detail-four.html">Candidate Detail IV</a></li>
+                                                    <li><a href="candidate-detail-three.html">Candidate Detail III</a>
+                                                    </li>
+                                                    <li><a href="candidate-detail-four.html">Candidate Detail IV</a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -107,24 +118,27 @@
                                                 <ul class="sub-menu">
                                                     <li><a href="employer-detail.html">Employer Detail I</a></li>
                                                     <li><a href="employer-detail-two.html">Employer Detail II</a></li>
-                                                    <li><a href="employer-detail-three.html">Employer Detail III</a></li>
+                                                    <li><a href="employer-detail-three.html">Employer Detail III</a>
+                                                    </li>
                                                     <li><a href="employer-detail-four.html">Employer Detail IV</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="employer-dashboard-transactions.html">Transactions</a></li>
                                             <li><a href="employer-dashboard-resumes.html">Employer Resumes</a></li>
-                                            <li><a href="employer-dashboard-profile-seting.html">Profile Setting</a></li>
+                                            <li><a href="employer-dashboard-profile-seting.html">Profile Setting</a>
+                                            </li>
                                             <li><a href="employer-dashboard-pkgpayment.html">Package Payment</a></li>
                                             <li><a href="employer-dashboard-packages.html">Packages</a></li>
                                             <li><a href="employer-dashboard-newjob.html">Employer New Job</a></li>
                                             <li><a href="employer-dashboard-manage-jobs.html">Menage Jobs</a></li>
-                                            <li><a href="employer-dashboard-confitmation.html">Employer Confitmation</a></li>
+                                            <li><a href="employer-dashboard-confitmation.html">Employer Confitmation</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a href="contact-us.html">Contact</a></li>
                                 </ul>
                             </div>
-                      </nav>
+                        </nav>
                     </aside>
                     <aside class="col-md-4">
                         <div class="careerfy-right">
@@ -132,18 +146,19 @@
                                 <li><a class="careerfy-color careerfy-open-signin-tab" href="#">Register</a></li>
                                 <li><a class="careerfy-color careerfy-open-signup-tab" href="#">Sign in</a></li>
                             </ul>
-                            <a href="#" class="careerfy-simple-btn careerfy-bgcolor"><span> <i class="careerfy-icon careerfy-arrows-2"></i> Post Job</span></a>
+                            <a href="#" class="careerfy-simple-btn careerfy-bgcolor"><span> <i
+                                        class="careerfy-icon careerfy-arrows-2"></i> Post Job</span></a>
                         </div>
                     </aside>
                 </div>
             </div>
         </header>
         <!-- Header -->
-        
+
         <!-- Main Content -->
         @yield('content')
         <!-- Main Content -->
-        
+
         <!-- Footer -->
         <footer id="careerfy-footer" class="careerfy-footer-one">
             <div class="container">
@@ -152,13 +167,17 @@
                     <div class="row">
                         <aside class="widget col-md-4 widget_contact_info">
                             <div class="widget_contact_wrap">
-                                <a class="careerfy-footer-logo" href="index.html"><img src="images/footer-logo.png" alt=""></a>
-                                <p>Sed consequat sapien faus quam bibendum convallis quis in nulla. Pellentesque volutpat odio eget diam cursus semper. Sed coquat sapien faucibus quam.</p>
+                                <a class="careerfy-footer-logo" href="index.html"><img src="images/footer-logo.png"
+                                        alt=""></a>
+                                <p>Sed consequat sapien faus quam bibendum convallis quis in nulla. Pellentesque
+                                    volutpat odio eget diam cursus semper. Sed coquat sapien faucibus quam.</p>
                                 <a href="#" class="careerfy-classic-btn careerfy-bgcolor">Learn more</a>
                             </div>
                         </aside>
                         <aside class="widget col-md-3 widget_nav_manu">
-                            <div class="footer-widget-title"><h2>Quick Links</h2></div>
+                            <div class="footer-widget-title">
+                                <h2>Quick Links</h2>
+                            </div>
                             <ul>
                                 <li><a href="#">Shortcodes</a></li>
                                 <li><a href="#">Job Page</a></li>
@@ -169,7 +188,9 @@
                             </ul>
                         </aside>
                         <aside class="widget col-md-3 widget_nav_manu">
-                            <div class="footer-widget-title"><h2>For Candidates</h2></div>
+                            <div class="footer-widget-title">
+                                <h2>For Candidates</h2>
+                            </div>
                             <ul>
                                 <li><a href="#">Browse Jobs</a></li>
                                 <li><a href="#">Browse Categories</a></li>
@@ -180,7 +201,9 @@
                             </ul>
                         </aside>
                         <aside class="widget col-md-2 widget_nav_manu">
-                            <div class="footer-widget-title"><h2>For Employers</h2></div>
+                            <div class="footer-widget-title">
+                                <h2>For Employers</h2>
+                            </div>
                             <ul>
                                 <li><a href="#">Browse Candidates</a></li>
                                 <li><a href="#">Employer Dashboard</a></li>
@@ -228,16 +251,16 @@
                         <ul>
                             <li class="active">
                                 <a href="#">
-                                     <i class="careerfy-icon careerfy-user"></i>
-                                     <span>Candidate</span>
-                                     <small>I want to discover awesome companies.</small>
+                                    <i class="careerfy-icon careerfy-user"></i>
+                                    <span>Candidate</span>
+                                    <small>I want to discover awesome companies.</small>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                     <i class="careerfy-icon careerfy-building"></i>
-                                     <span>Employer</span>
-                                     <small>I want to attract the best talent.</small>
+                                    <i class="careerfy-icon careerfy-building"></i>
+                                    <span>Employer</span>
+                                    <small>I want to attract the best talent.</small>
                                 </a>
                             </li>
                         </ul>
@@ -246,12 +269,17 @@
                         <ul>
                             <li>
                                 <label>Email Address:</label>
-                                <input value="Enter Your Email Address" onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }" onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }" type="text">
+                                <input value="Enter Your Email Address"
+                                    onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }"
+                                    onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }"
+                                    type="text">
                                 <i class="careerfy-icon careerfy-mail"></i>
                             </li>
                             <li>
                                 <label>Password:</label>
-                                <input value="Enter Password" onblur="if(this.value == '') { this.value ='Enter Password'; }" onfocus="if(this.value =='Enter Password') { this.value = ''; }" type="text">
+                                <input value="Enter Password"
+                                    onblur="if(this.value == '') { this.value ='Enter Password'; }"
+                                    onfocus="if(this.value =='Enter Password') { this.value = ''; }" type="text">
                                 <i class="careerfy-icon careerfy-multimedia"></i>
                             </li>
                             <li>
@@ -273,12 +301,15 @@
                     <div class="clearfix"></div>
                     <ul class="careerfy-login-media">
                         <li><a href="#"><i class="fa fa-facebook"></i> Sign In with Facebook</a></li>
-                        <li><a href="#" data-original-title="google"><i class="fa fa-google"></i> Sign In with Google</a></li>
-                        <li><a href="#" data-original-title="twitter"><i class="fa fa-twitter"></i> Sign In with Twitter</a></li>
-                        <li><a href="#" data-original-title="linkedin"><i class="fa fa-linkedin"></i> Sign In with LinkedIn</a></li>
+                        <li><a href="#" data-original-title="google"><i class="fa fa-google"></i> Sign In with
+                                Google</a></li>
+                        <li><a href="#" data-original-title="twitter"><i class="fa fa-twitter"></i> Sign In with
+                                Twitter</a></li>
+                        <li><a href="#" data-original-title="linkedin"><i class="fa fa-linkedin"></i> Sign In with
+                                LinkedIn</a></li>
                     </ul>
                 </form>
-                
+
             </div>
         </div>
     </div>
@@ -300,16 +331,16 @@
                         <ul>
                             <li class="active">
                                 <a href="#">
-                                     <i class="careerfy-icon careerfy-user"></i>
-                                     <span>Candidate</span>
-                                     <small>I want to discover awesome companies.</small>
+                                    <i class="careerfy-icon careerfy-user"></i>
+                                    <span>Candidate</span>
+                                    <small>I want to discover awesome companies.</small>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                     <i class="careerfy-icon careerfy-building"></i>
-                                     <span>Employer</span>
-                                     <small>I want to attract the best talent.</small>
+                                    <i class="careerfy-icon careerfy-building"></i>
+                                    <span>Employer</span>
+                                    <small>I want to attract the best talent.</small>
                                 </a>
                             </li>
                         </ul>
@@ -318,22 +349,32 @@
                         <ul>
                             <li>
                                 <label>First Name:</label>
-                                <input value="Enter Your Name" onblur="if(this.value == '') { this.value ='Enter Your Name'; }" onfocus="if(this.value =='Enter Your Name') { this.value = ''; }" type="text">
+                                <input value="Enter Your Name"
+                                    onblur="if(this.value == '') { this.value ='Enter Your Name'; }"
+                                    onfocus="if(this.value =='Enter Your Name') { this.value = ''; }" type="text">
                                 <i class="careerfy-icon careerfy-user"></i>
                             </li>
                             <li>
                                 <label>Last Name:</label>
-                                <input value="Enter Your Name" onblur="if(this.value == '') { this.value ='Enter Your Name'; }" onfocus="if(this.value =='Enter Your Name') { this.value = ''; }" type="text">
+                                <input value="Enter Your Name"
+                                    onblur="if(this.value == '') { this.value ='Enter Your Name'; }"
+                                    onfocus="if(this.value =='Enter Your Name') { this.value = ''; }" type="text">
                                 <i class="careerfy-icon careerfy-user"></i>
                             </li>
                             <li>
                                 <label>Email Address:</label>
-                                <input value="Enter Your Email Address" onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }" onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }" type="text">
+                                <input value="Enter Your Email Address"
+                                    onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }"
+                                    onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }"
+                                    type="text">
                                 <i class="careerfy-icon careerfy-mail"></i>
                             </li>
                             <li>
                                 <label>Phone Number:</label>
-                                <input value="Enter Your Phone Number" onblur="if(this.value == '') { this.value ='Enter Your Phone Number'; }" onfocus="if(this.value =='Enter Your Phone Number') { this.value = ''; }" type="text">
+                                <input value="Enter Your Phone Number"
+                                    onblur="if(this.value == '') { this.value ='Enter Your Phone Number'; }"
+                                    onfocus="if(this.value =='Enter Your Phone Number') { this.value = ''; }"
+                                    type="text">
                                 <i class="careerfy-icon careerfy-technology"></i>
                             </li>
                             <li class="careerfy-user-form-coltwo-full">
@@ -359,12 +400,15 @@
                     <div class="clearfix"></div>
                     <ul class="careerfy-login-media">
                         <li><a href="#"><i class="fa fa-facebook"></i> Sign In with Facebook</a></li>
-                        <li><a href="#" data-original-title="google"><i class="fa fa-google"></i> Sign In with Google</a></li>
-                        <li><a href="#" data-original-title="twitter"><i class="fa fa-twitter"></i> Sign In with Twitter</a></li>
-                        <li><a href="#" data-original-title="linkedin"><i class="fa fa-linkedin"></i> Sign In with LinkedIn</a></li>
+                        <li><a href="#" data-original-title="google"><i class="fa fa-google"></i> Sign In with
+                                Google</a></li>
+                        <li><a href="#" data-original-title="twitter"><i class="fa fa-twitter"></i> Sign In with
+                                Twitter</a></li>
+                        <li><a href="#" data-original-title="linkedin"><i class="fa fa-linkedin"></i> Sign In with
+                                LinkedIn</a></li>
                     </ul>
                 </form>
-                
+
             </div>
         </div>
     </div>

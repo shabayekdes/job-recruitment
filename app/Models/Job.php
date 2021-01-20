@@ -36,4 +36,12 @@ class Job extends Model
     {
         return $this->hasMany(JobMeta::class, 'post_id', 'ID');
     }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function term()
+    {
+        return $this->belongsToMany(Term::class, 'wpqs_term_relationships', 'object_id', 'term_taxonomy_id');
+    }
 }

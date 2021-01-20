@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -14,7 +15,10 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('web.job.index');
+        $jobs = Job::with('meta', 'term')->where('post_type', 'job_listing')->paginate();
+
+        // dd($jobs->first());
+        return view('web.job.index', compact('jobs'));
     }
 
     /**

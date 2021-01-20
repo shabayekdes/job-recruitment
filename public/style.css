@@ -442,7 +442,7 @@ address                         { font-style: italic; }
     padding: 138px 0px 139px 0px;
 }
 .careerfy-banner-transparent {
-    background-color: #1e3142;
+    background-image: url(images/subheader-bg.jpg);
     opacity: 0.76;
     position: absolute;
     left: 0px;
@@ -2096,4 +2096,10 @@ li:hover .careerfy-read-more { background-color: transparent; }
         -ms-transition: all 0.4s ease-in-out;
          -o-transition: all 0.4s ease-in-out;
             transition: all 0.4s ease-in-out;
+}
+
+.displayed-here {
+    font-size: 12px;
+    padding: 8px 0px 10px 0px;
+    color: #838383;
 }
