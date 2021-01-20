@@ -22,38 +22,38 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // dd(strtotime("Thu, 14 January 2021"));
-        dd(date("Y-m-d", strtotime("Thu, 14 January 2021")));
-        // Store a string into the variable which 
-        // need to be Encrypted 
-        $simple_string = "Welcome to GeeksforGeeks"; 
+        // // dd(strtotime("Thu, 14 January 2021"));
+        // dd(date("Y-m-d", strtotime("Thu, 14 January 2021")));
+        // // Store a string into the variable which 
+        // // need to be Encrypted 
+        // $simple_string = "Welcome to GeeksforGeeks"; 
 
-        // Store the cipher method 
+        // // Store the cipher method 
         $ciphering = "AES-128-CTR"; 
         
-        // Use OpenSSl Encryption method 
+        // // Use OpenSSl Encryption method 
         $options = 0; 
         
-        // Non-NULL Initialization Vector for encryption 
-        $encryption_iv = '1234567891011121'; 
+        // // Non-NULL Initialization Vector for encryption 
+        // $encryption_iv = '1234567891011121'; 
         
-        // Store the encryption key 
-        $encryption_key = "GeeksforGeeks"; 
+        // // Store the encryption key 
+        // $encryption_key = "GeeksforGeeks"; 
         
-        // Use openssl_encrypt() function to encrypt the data 
-        $encryption = openssl_encrypt($simple_string, $ciphering, 
-                    $encryption_key, $options, $encryption_iv); 
+        // // Use openssl_encrypt() function to encrypt the data 
+        // $encryption = openssl_encrypt($simple_string, $ciphering, 
+        //             $encryption_key, $options, $encryption_iv); 
         
-        dump($encryption . '-' .time());
+        // dump($encryption . '-' .time());
 
-        // Non-NULL Initialization Vector for decryption 
+        // // Non-NULL Initialization Vector for decryption 
         $decryption_iv = '1234567891011121'; 
         
-        // Store the decryption key 
-        $decryption_key = "GeeksforGeeks"; 
+        // // Store the decryption key 
+        $decryption_key = "GulfTalent"; 
         
-        // Use openssl_decrypt() function to decrypt the data 
-        $decryption=openssl_decrypt ($encryption, $ciphering,  
+        // // Use openssl_decrypt() function to decrypt the data 
+        $decryption=openssl_decrypt ("oUcXRwhsO97duxb4MXGS23mNv41HfYfAsw==", $ciphering,  
                 $decryption_key, $options, $decryption_iv); 
         
 
@@ -92,11 +92,12 @@ class TestController extends Controller
         // }
         // dd('fgf');
 
-        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=10111112000000";
+        $url = "https://www.bayt.com/associates/rss/feed.xml?aff_id=0&country_list=all&jobrole_list=all";
 
         $response = Http::get($url);
 
         $xml_string = (string) $response->body();
+        dd($xml_string);
 
         // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
         $xml = simplexml_load_string($xml_string);
@@ -104,9 +105,8 @@ class TestController extends Controller
         $json = json_encode($xml);
 
         $array = json_decode($json,TRUE);
-        dd($array['channel']['item']);
-
         dd($array);
+
 
 
         $jobs = Job::with(['meta' => function ($query){
