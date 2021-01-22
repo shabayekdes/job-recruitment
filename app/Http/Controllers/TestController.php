@@ -22,7 +22,7 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dd(now()->subDays(7));
+        // dd(now()->subDays(7));
 
         // // dd(strtotime("Thu, 14 January 2021"));
         // dd(date("Y-m-d", strtotime("Thu, 14 January 2021")));
@@ -55,7 +55,7 @@ class TestController extends Controller
         $decryption_key = "GulfTalent"; 
         
         // // Use openssl_decrypt() function to decrypt the data 
-        $decryption=openssl_decrypt ("oUcXRwhsO97duxb4MXGS23mNv41HfYfAsw==", $ciphering,  
+        $decryption=openssl_decrypt ("sEsXWgNkaOCclBn+OHrB03mj3p1yMazMsYqB8drmToMIgXAAuPHZXygXqQjBwCs===", $ciphering,  
                 $decryption_key, $options, $decryption_iv); 
         
 
@@ -94,12 +94,13 @@ class TestController extends Controller
         // }
         // dd('fgf');
 
-        $url = "https://www.bayt.com/associates/rss/feed.xml?aff_id=0&country_list=all&jobrole_list=all";
+        dd(Str::slug('Engineering | Civil & Construction', '-'));
+        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=10111112000000";
 
         $response = Http::get($url);
 
         $xml_string = (string) $response->body();
-        dd($xml_string);
+        // dd($xml_string);
 
         // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
         $xml = simplexml_load_string($xml_string);

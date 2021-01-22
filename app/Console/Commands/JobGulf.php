@@ -167,7 +167,7 @@ class JobGulf extends Command
                 \DB::beginTransaction();
                 $jobCreated = Job::create([
                     "post_author" => 1,
-                    "post_date" => now(),
+                    "post_date" => Carbon::parse($job['pubDate']),
                     "post_date_gmt" => now(),
                     "post_content" => $job["description"],
                     "post_title" => $job["title"],

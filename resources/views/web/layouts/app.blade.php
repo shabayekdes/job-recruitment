@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Job Listings</title>
+	<title>Home - Recruitment Talents Mine</title>
+
+    <link rel="icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-32x32.png" sizes="32x32" />
+    <link rel="icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-180x180.png" />
+    <meta name="msapplication-TileImage" content="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-270x270.png" />
 
     <!-- Css -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -46,19 +51,37 @@
                             </p>
                             <p><i class="fa fa-phone"></i><a href="tel: +201022-606-247"> +201022-606-247</a></p>
                             <ul class="careerfy-stripuser">
-                                <li class="jobsearch-userdash-menumain">
-                                    <a href="https://recruitment.talentsmine.net/user-dashboard/"
-                                        class="jobsearch-color   active">My Account</a>
-
-                                    <ul class="nav-item-children sub-menu">
-                                        <li>
-                                            <a
-                                                href="https://recruitment.talentsmine.net/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Frecruitment.talentsmine.net%2F&amp;_wpnonce=3832c5f99d">
-                                                <i class="jobsearch-icon jobsearch-logout"></i>
-                                                Logout </a>
-                                        </li>
-                                    </ul>
+                                {{-- @guest
+                                    <li class="jobsearch-userdash-menumain">
+                                        <a class="jobsearch-color active" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
+                                @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="jobsearch-color active"
+                                        href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                                @endif
+                                @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="jobsearch-color active dropdown-toggle" href="#"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                                @endguest --}}
                             </ul>
                         </div>
                     </div>
@@ -67,109 +90,83 @@
             <!-- TopStrip -->
             <div class="container">
                 <div class="row">
-                    <aside class="col-md-4"> <a href="index.html" class="careerfy-logo">
-                            <img src="images/logox300.png" width="122" height="76" alt="Recruitment Talents Mine">
-                    </aside>
-                    <aside class="col-md-8">
-                        <nav class="careerfy-navigation">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                    data-target="#careerfy-navbar-collapse-1" aria-expanded="false">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="collapse navbar-collapse" id="careerfy-navbar-collapse-1">
-                                <ul class="navbar-nav">
-                                    <li class="active"><a href="index.html">Home</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="https://eyecix.com/html/careerfy/">Demo Careerfy</a></li>
-                                            <li><a href="https://eyecix.com/html/careerfy-demos/hireright-demo/">Demo
-                                                    Hireright</a></li>
-                                            <li><a href="https://eyecix.com/html/careerfy-demos/jobshub-demo/">Demo
-                                                    Jobshub</a></li>
-                                            <li><a href="https://eyecix.com/html/careerfy-demos/belovedjobs/">Demo
-                                                    BelovedJobs</a></li>
-                                            <li><a href="index-five.html">Demo JobsOnline</a></li>
-                                            <li><a href="index-six.html">Demo JobSearch</a></li>
-                                            <li><a href="index-seven.html">Demo JobFinder</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="cv-packages.html">CV Packages</a></li>
-                                            <li><a href="faq.html">Faq's</a></li>
-                                            <li><a href="job-grid-full.html">Job Grid</a></li>
-                                            <li><a href="job-grid-with-filters.html">Job Grid W/filter</a></li>
-                                            <li><a href="job-listings.html">Job Listings</a></li>
-                                            <li><a href="job-detail.html">Job Detail</a>
+                    <div class="col-md-12">
+                        <a class="careerfy-logo" title="Recruitment Talents Mine"
+                            href="https://recruitment.talentsmine.net/"><img
+                                src="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/logox300.png"
+                                width="122" height="76" alt="Recruitment Talents Mine"></a>
+                        <div class="careerfy-right">
+                            <nav class="jobsearch-navigation">
+
+                                <div class="collapse navbar-collapse" id="jobsearch-navbar-collapse-1">
+                                    <!-- Navigation -->
+                                    <a href="#menu" class="menu-link active"><span></span></a>
+                                    <nav id="menu" class="careerfy-navigation menu">
+                                        <ul id="menu-talents-mine" class="level-1 navbar-nav">
+                                            <li id="menu-item-414"
+                                                class="menu-item  menu-item-type-post_type  menu-item-object-page  menu-item-home  current-menu-item  page_item  page-item-145  current_page_item">
+                                                <a href="https://recruitment.talentsmine.net/">Home</a></li>
+                                            <li id="menu-item-420"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu-addicon">
+                                                <a href="https://recruitment.talentsmine.net/jobs/">Jobs</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="job-detail.html">Job Detail I</a></li>
-                                                    <li><a href="job-detail-two.html">Job Detail II</a></li>
-                                                    <li><a href="job-detail-three.html">Job Detail III</a></li>
-                                                    <li><a href="job-detail-four.html">Job Detail IV</a></li>
+                                                    <li id="menu-item-615"
+                                                        class="menu-item  menu-item-type-post_type  menu-item-object-page">
+                                                        <a href="https://recruitment.talentsmine.net/jobs-by-sectors/">Jobs
+                                                            By Sectors</a></li>
+                                                    <li id="menu-item-633"
+                                                        class="menu-item  menu-item-type-post_type  menu-item-object-page">
+                                                        <a href="https://recruitment.talentsmine.net/jobs-by-location/">Jobs
+                                                            By Location</a></li>
+                                                    <li id="menu-item-614"
+                                                        class="menu-item  menu-item-type-post_type  menu-item-object-page">
+                                                        <a href="https://recruitment.talentsmine.net/jobs-by-type/">Jobs
+                                                            By Type</a></li>
                                                 </ul>
+
                                             </li>
-                                            <li><a href="job-packages.html">Job Packages</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">For Candidates</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="candidate-dashboard-applied-jobs.html">Applied Jobs</a></li>
-                                            <li><a href="candidate-dashboard-changed-password.html">Changed Password</a>
-                                            </li>
-                                            <li><a href="candidate-dashboard-cv-manager.html">CV Manager</a></li>
-                                            <li><a href="candidate-dashboard-job-alert.html">Job Alert</a></li>
-                                            <li><a href="candidate-dashboard-profile-seting.html">Profile Setting</a>
-                                            </li>
-                                            <li><a href="candidate-dashboard-resume.html">Candidate Resume</a></li>
-                                            <li><a href="candidate-dashboard-saved-jobs.html">Saved Jobs</a></li>
-                                            <li><a href="candidate-listings.html">Candidate Listings</a></li>
-                                            <li><a href="candidate-grid.html">Candidate Grid</a></li>
-                                            <li><a href="candidate-detail.html">Candidate Detail</a>
+                                            <li id="menu-item-419"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu-addicon">
+                                                <a href="https://recruitment.talentsmine.net/employers/">Employers</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="candidate-detail.html">Candidate Detail I</a></li>
-                                                    <li><a href="candidate-detail-two.html">Candidate Detail II</a></li>
-                                                    <li><a href="candidate-detail-three.html">Candidate Detail III</a>
-                                                    </li>
-                                                    <li><a href="candidate-detail-four.html">Candidate Detail IV</a>
-                                                    </li>
+                                                    <li id="menu-item-632"
+                                                        class="menu-item  menu-item-type-post_type  menu-item-object-page">
+                                                        <a
+                                                            href="https://recruitment.talentsmine.net/employer-by-sector/">Employer
+                                                            By Sector</a></li>
+                                                    <li id="menu-item-631"
+                                                        class="menu-item  menu-item-type-post_type  menu-item-object-page">
+                                                        <a
+                                                            href="https://recruitment.talentsmine.net/employer-by-location/">Employer
+                                                            By Location</a></li>
                                                 </ul>
+
                                             </li>
+                                            <li id="menu-item-421"
+                                                class="menu-item  menu-item-type-post_type  menu-item-object-page"><a
+                                                    href="https://recruitment.talentsmine.net/candidates/">Candidates</a>
+                                            </li>
+                                            <li id="menu-item-415"
+                                                class="menu-item  menu-item-type-post_type  menu-item-object-page"><a
+                                                    href="https://recruitment.talentsmine.net/company-packages/">Packages</a>
+                                            </li>
+                                            <li id="menu-item-438"
+                                                class="menu-item  menu-item-type-post_type  menu-item-object-page"><a
+                                                    href="https://recruitment.talentsmine.net/career-coaching/">Career
+                                                    Coaching</a></li>
+                                            <li id="menu-item-518"
+                                                class="menu-item  menu-item-type-post_type  menu-item-object-page"><a
+                                                    href="https://recruitment.talentsmine.net/career-advising/">Career
+                                                    Advising</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="#">For Employers</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="employer-list.html">Employer List</a></li>
-                                            <li><a href="employer-grid.html">Employer Grid</a></li>
-                                            <li><a href="employer-detail.html">Employer Detail</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="employer-detail.html">Employer Detail I</a></li>
-                                                    <li><a href="employer-detail-two.html">Employer Detail II</a></li>
-                                                    <li><a href="employer-detail-three.html">Employer Detail III</a>
-                                                    </li>
-                                                    <li><a href="employer-detail-four.html">Employer Detail IV</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="employer-dashboard-transactions.html">Transactions</a></li>
-                                            <li><a href="employer-dashboard-resumes.html">Employer Resumes</a></li>
-                                            <li><a href="employer-dashboard-profile-seting.html">Profile Setting</a>
-                                            </li>
-                                            <li><a href="employer-dashboard-pkgpayment.html">Package Payment</a></li>
-                                            <li><a href="employer-dashboard-packages.html">Packages</a></li>
-                                            <li><a href="employer-dashboard-newjob.html">Employer New Job</a></li>
-                                            <li><a href="employer-dashboard-manage-jobs.html">Menage Jobs</a></li>
-                                            <li><a href="employer-dashboard-confitmation.html">Employer Confitmation</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact-us.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </aside>
+                                    </nav>
+                                    <!-- Navigation -->
+                                </div>
+                            </nav>
+                            <a href="https://recruitment.talentsmine.net/post-new-job/"
+                                class="careerfy-headernine-btn">Post New Job</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -182,78 +179,128 @@
         <!-- Footer -->
         <footer id="careerfy-footer" class="careerfy-footer-one">
             <div class="container">
-                <!-- Footer Widget -->
                 <div class="careerfy-footer-widget">
                     <div class="row">
-                        <aside class="widget col-md-4 widget_contact_info">
-                            <div class="widget_contact_wrap">
-                                <a class="careerfy-footer-logo" href="index.html"><img src="images/footer-logo.png"
-                                        alt=""></a>
-                                <p>Sed consequat sapien faus quam bibendum convallis quis in nulla. Pellentesque
-                                    volutpat odio eget diam cursus semper. Sed coquat sapien faucibus quam.</p>
-                                <a href="#" class="careerfy-classic-btn careerfy-bgcolor">Learn more</a>
-                            </div>
-                        </aside>
-                        <aside class="widget col-md-3 widget_nav_manu">
-                            <div class="footer-widget-title">
-                                <h2>Quick Links</h2>
-                            </div>
-                            <ul>
-                                <li><a href="#">Shortcodes</a></li>
-                                <li><a href="#">Job Page</a></li>
-                                <li><a href="#">Job Page Alternative</a></li>
-                                <li><a href="#">Resume Page</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </aside>
-                        <aside class="widget col-md-3 widget_nav_manu">
-                            <div class="footer-widget-title">
-                                <h2>For Candidates</h2>
-                            </div>
-                            <ul>
-                                <li><a href="#">Browse Jobs</a></li>
-                                <li><a href="#">Browse Categories</a></li>
-                                <li><a href="#">Submit Resume</a></li>
-                                <li><a href="#">Candidate Dashboard</a></li>
-                                <li><a href="#">Job Alerts</a></li>
-                                <li><a href="#">My Bookmarks</a></li>
-                            </ul>
-                        </aside>
-                        <aside class="widget col-md-2 widget_nav_manu">
-                            <div class="footer-widget-title">
-                                <h2>For Employers</h2>
-                            </div>
-                            <ul>
-                                <li><a href="#">Browse Candidates</a></li>
-                                <li><a href="#">Employer Dashboard</a></li>
-                                <li><a href="#">Add Job</a></li>
-                                <li><a href="#">Job Packages</a></li>
-                            </ul>
-                        </aside>
+                        <div class="col-md-3">
+                            <aside id="text-2" class="widget widget_text">
+                                <div class="textwidget">
+                                    <p><img loading="lazy" class="alignnone size-full wp-image-581"
+                                            src="https://recruitment.talentsmine.net/wp-content/uploads/2020/03/logo-2.png"
+                                            alt="" width="200px" height=""></p>
+                                    <p>As today’s market competition becomes very aggressive, Talents Mining is the
+                                        science of sorting of large amounts of human capitals and identifying their
+                                        potential</p>
+                                    <p>&nbsp;</p>
+                                    <p><a class="careerfy-classic-btn jobsearch-bgcolor"
+                                            href="http://talentsmine.net/about-us/" target="_blank" rel="noopener">About Us</a></p>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-md-3">
+                            <aside id="nav_menu-2" class="widget widget_nav_menu">
+                                <div class="footer-widget-title">
+                                    <h2>Jobs</h2>
+                                </div>
+                                <div class="menu-for-jobs-container">
+                                    <ul id="menu-for-jobs" class="menu">
+                                        <li id="menu-item-310"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-310">
+                                            <a href="https://recruitment.talentsmine.net/post-new-job/">Post New Job</a>
+                                        </li>
+                                        <li id="menu-item-308"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-308">
+                                            <a href="https://recruitment.talentsmine.net/jobs-listing/">Jobs Listing</a>
+                                        </li>
+                                        <li id="menu-item-650"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-650">
+                                            <a href="https://recruitment.talentsmine.net/jobs-by-location/">Jobs By
+                                                Location</a></li>
+                                        <li id="menu-item-651"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-651">
+                                            <a href="https://recruitment.talentsmine.net/jobs-by-type/">Jobs By Type</a>
+                                        </li>
+                                        <li id="menu-item-652"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-652">
+                                            <a href="https://recruitment.talentsmine.net/jobs-by-sectors/">Jobs By
+                                                Sectors</a></li>
+                                        <li id="menu-item-658"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-658">
+                                            <a href="https://recruitment.talentsmine.net/user-dashboard/">User
+                                                Dashboard</a></li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-md-3">
+                            <aside id="nav_menu-4" class="widget widget_nav_menu">
+                                <div class="footer-widget-title">
+                                    <h2>Employers</h2>
+                                </div>
+                                <div class="menu-for-employer-container">
+                                    <ul id="menu-for-employer" class="menu">
+                                        <li id="menu-item-298"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-298">
+                                            <a href="https://recruitment.talentsmine.net/post-new-job/">Post New Job</a>
+                                        </li>
+                                        <li id="menu-item-295"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-295">
+                                            <a href="https://recruitment.talentsmine.net/employer-listing/">Employer
+                                                Listing</a></li>
+                                        <li id="menu-item-653"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-653">
+                                            <a href="https://recruitment.talentsmine.net/employer-by-location/">Employer
+                                                By Location</a></li>
+                                        <li id="menu-item-654"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-654">
+                                            <a href="https://recruitment.talentsmine.net/employer-by-sector/">Employer
+                                                By Sector</a></li>
+                                        <li id="menu-item-642"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-642">
+                                            <a href="https://recruitment.talentsmine.net/company-packages/">Company
+                                                Packages</a></li>
+                                        <li id="menu-item-657"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-657">
+                                            <a href="https://recruitment.talentsmine.net/user-dashboard/">User
+                                                Dashboard</a></li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
                     </div>
+
                 </div>
-                <!-- Footer Widget -->
-                <!-- CopyRight -->
+                <!-- CopyRight Section -->
                 <div class="careerfy-copyright">
-                    <p>Copyrights © 2018 All Rights Reserved by <a href="#" class="careerfy-color">EyeCix</a></p>
+
+                    <p>Copyright © 2021 Talents Mine
+                        <br>
+                        Designed and Developed with by <a href="https://shabayekdes.netlify.app/">Shabayekdes</a>
+                    </p>
+
                     <ul class="careerfy-social-network">
-                        <li><a href="#" class="careerfy-bgcolorhover fa fa-facebook"></a></li>
-                        <li><a href="#" class="careerfy-bgcolorhover fa fa-twitter"></a></li>
-                        <li><a href="#" class="careerfy-bgcolorhover fa fa-dribbble"></a></li>
-                        <li><a href="#" class="careerfy-bgcolorhover fa fa-linkedin"></a></li>
-                        <li><a href="#" class="careerfy-bgcolorhover fa fa-instagram"></a></li>
+                        <li><a href="https://www.facebook.com/talentsmine/" target="_blank" class="fa fa-facebook"></a>
+                        </li>
+                        <li><a href="https://twitter.com/TalentsMine" target="_blank" class="fa fa-twitter"></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCJmssxo9dQhhcaqjZ6ATr4w" target="_blank"
+                                class="fa fa-youtube"></a></li>
+                        <li><a class="fa fa-linkedin" href="http://www.linkedin.com/company/talents-mine"
+                                target="_blank"></a>
+                        </li>
+                        <li><a href="https://www.instagram.com/talentsmine/" target="_blank"
+                                class="fa fa-instagram"></a>
+                        </li>
                     </ul>
                 </div>
-                <!-- CopyRight -->
             </div>
+
+
         </footer>
         <!-- Footer -->
 
     </div>
     <!-- Wrapper -->
 
-    <!-- ModalLogin Box -->
+    {{-- <!-- ModalLogin Box -->
     <div class="careerfy-modal fade careerfy-typo-wrap" id="JobSearchModalSignup">
         <div class="modal-inner-area">&nbsp;</div>
         <div class="modal-content-area">
@@ -431,7 +478,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="script/jquery.js"></script>
