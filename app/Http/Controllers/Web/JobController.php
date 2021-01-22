@@ -29,7 +29,7 @@ class JobController extends Controller
                             $query->where('post_type', 'job_listing');
                         })
                         ->limit(20)
-                        ->having('jobs_count', '>', 0)
+                        // ->having('jobs_count', '>', 0)
                         ->get();
         // dd($terms);
        
@@ -59,6 +59,7 @@ class JobController extends Controller
         }
 
         $jobs = $jobs->where('post_type', 'job_listing')
+                    ->orderByDesc('ID')
                     ->paginate()->onEachSide(1);
 
         // dd($jobs->first());
