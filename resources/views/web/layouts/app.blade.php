@@ -36,11 +36,41 @@
 
         <!-- Header -->
         <header id="careerfy-header" class="careerfy-header-one">
+            <!-- TopStrip -->
+            <div class="careerfy-topstrip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><i class="fa fa-envelope"></i> <a
+                                    href="mailto:recruitment@talentsmine.net">recruitment@talentsmine.net</a>
+                            </p>
+                            <p><i class="fa fa-phone"></i><a href="tel: +201022-606-247"> +201022-606-247</a></p>
+                            <ul class="careerfy-stripuser">
+                                <li class="jobsearch-userdash-menumain">
+                                    <a href="https://recruitment.talentsmine.net/user-dashboard/"
+                                        class="jobsearch-color   active">My Account</a>
+
+                                    <ul class="nav-item-children sub-menu">
+                                        <li>
+                                            <a
+                                                href="https://recruitment.talentsmine.net/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Frecruitment.talentsmine.net%2F&amp;_wpnonce=3832c5f99d">
+                                                <i class="jobsearch-icon jobsearch-logout"></i>
+                                                Logout </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TopStrip -->
             <div class="container">
                 <div class="row">
-                    <aside class="col-md-2"> <a href="index.html" class="careerfy-logo">
-                        <img src="images/logox300.png" width="122" height="76" alt="Recruitment Talents Mine">                    </aside>
-                    <aside class="col-md-6">
+                    <aside class="col-md-4"> <a href="index.html" class="careerfy-logo">
+                            <img src="images/logox300.png" width="122" height="76" alt="Recruitment Talents Mine">
+                    </aside>
+                    <aside class="col-md-8">
                         <nav class="careerfy-navigation">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -139,16 +169,6 @@
                                 </ul>
                             </div>
                         </nav>
-                    </aside>
-                    <aside class="col-md-4">
-                        <div class="careerfy-right">
-                            <ul class="careerfy-user-section">
-                                <li><a class="careerfy-color careerfy-open-signin-tab" href="#">Register</a></li>
-                                <li><a class="careerfy-color careerfy-open-signup-tab" href="#">Sign in</a></li>
-                            </ul>
-                            <a href="#" class="careerfy-simple-btn careerfy-bgcolor"><span> <i
-                                        class="careerfy-icon careerfy-arrows-2"></i> Post Job</span></a>
-                        </div>
                     </aside>
                 </div>
             </div>
@@ -422,6 +442,7 @@
     <script src="plugin-script/isotope.min.js"></script>
     <script src="plugin-script/functions.js"></script>
     <script src="script/functions.js"></script>
+    @yield('footer-js')
 
 </body>
 

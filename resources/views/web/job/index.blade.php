@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- SubHeader -->
-<div class="careerfy-subheader" style="background: url('images/subheader-bg.jpg') no-repeat center/cover;">
+<div class="careerfy-subheader careerfy-subheader-without-bg" style="background: url('images/subheader-bg.jpg') no-repeat center/cover;">
     <span class="careerfy-banner-transparent" style="background-color: rgba(30,49,66,0.85) !important;"></span>
     <div class="container">
         <div class="row">
@@ -33,62 +33,78 @@
 
                 <aside class="careerfy-column-3 careerfy-typo-wrap">
                     <div class="careerfy-typo-wrap">
-                        <form class="careerfy-search-filter">
+                        <form class="careerfy-search-filter" action="{{ route('job.index') }}" method="GET">
+                            <input type="submit" class="careerfy-filter-submit" value="Filter">
+
                             <div class="careerfy-search-filter-wrap careerfy-without-toggle">
                                 <h2><a href="#">Locations</a></h2>
-                                <div class="careerfy-search-box">
-                                    <input value="Search" onblur="if(this.value == '') { this.value ='Search'; }"
-                                        onfocus="if(this.value =='Search') { this.value = ''; }" type="text">
-                                    <input type="submit" value="">
-                                    <i class="careerfy-icon careerfy-search"></i>
-                                </div>
                                 <ul class="careerfy-checkbox">
                                     <li>
-                                        <input type="checkbox" id="r1" name="rr" />
-                                        <label for="r1"><span></span>San Francisco</label>
+                                        <input type="checkbox" id="egypt" {{ in_array("Egypt", request()->query('location', [])  ) ? 'checked' : '' }} name="location[]" value="Egypt" />
+                                        <label for="egypt"><span></span>Egypt</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="r2" name="rr" />
-                                        <label for="r2"><span></span>Portland</label>
+                                        <input type="checkbox" id="saudi-arabia" {{ in_array("Saudi Arabia", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Saudi Arabia" />
+                                        <label for="saudi-arabia"><span></span>Saudi Arabia</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="r3" name="rr" />
-                                        <label for="r3"><span></span>London</label>
+                                        <input type="checkbox" id="uae" {{ in_array("UAE", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="UAE" />
+                                        <label for="uae"><span></span>UAE</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="r4" name="rr" />
-                                        <label for="r4"><span></span>Bangalore</label>
+                                        <input type="checkbox" id="kuwait" {{ in_array("Kuwait", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Kuwait" />
+                                        <label for="kuwait"><span></span>Kuwait</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="bahrain" {{ in_array("Bahrain", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Bahrain" />
+                                        <label for="bahrain"><span></span>Bahrain</label>
+                                    </li>
+                                    <li class="filter-more-fields-location">
+                                        <input type="checkbox" id="qatar" {{ in_array("Qatar", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Qatar" />
+                                        <label for="qatar"><span></span>Qatar</label>
+                                    </li>
+                                    <li class="filter-more-fields-location">
+                                        <input type="checkbox" id="oman" {{ in_array("Oman", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Oman" />
+                                        <label for="oman"><span></span>Oman</label>
+                                    </li>
+                                    <li class="filter-more-fields-location">
+                                        <input type="checkbox" id="lebanon" {{ in_array("Lebanon", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Lebanon" />
+                                        <label for="lebanon"><span></span>Lebanon</label>
+                                    </li>
+                                    <li class="filter-more-fields-location">
+                                        <input type="checkbox" id="jordan" {{ in_array("Jordan", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Jordan" />
+                                        <label for="jordan"><span></span>Jordan</label>
+                                    </li>
+                                    <li class="filter-more-fields-location">
+                                        <input type="checkbox" id="iraq" {{ in_array("Iraq", request()->query('location', []) ) ? 'checked' : '' }} name="location[]" value="Iraq" />
+                                        <label for="iraq"><span></span>Iraq</label>
                                     </li>
                                 </ul>
-                                <a href="#" class="careerfy-seemore">+see more</a>
+                                <a href="#" id="location" class="careerfy-seemore">+see more</a>
                             </div>
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Date Posted</a></h2>
                                 <div class="careerfy-checkbox-toggle">
                                     <ul class="careerfy-checkbox">
                                         <li>
-                                            <input type="checkbox" id="r5" name="rr" />
-                                            <label for="r5"><span></span>Last Hour</label>
+                                            <input type="radio" id="r6" name="date" {{ request()->query('date') == now()->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->format('Y-m-d') }}" />
+                                            <label for="r6"><span></span>Today</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="r6" name="rr" />
-                                            <label for="r6"><span></span>Last 24 hours</label>
+                                            <input type="radio" id="r6" name="date" {{ request()->query('date') == now()->subDay()->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->subDay()->format('Y-m-d') }}" />
+                                            <label for="r6"><span></span>Yesterday</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="r7" name="rr" />
+                                            <input type="radio" id="r7" name="date" {{ request()->query('date') == now()->subDays(7)->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->subDays(7)->format('Y-m-d') }}" />
                                             <label for="r7"><span></span>Last 7 days</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="r8" name="rr" />
+                                            <input type="radio" id="r8" name="date" {{ request()->query('date') == now()->subDays(14)->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->subDays(14)->format('Y-m-d') }}" />
                                             <label for="r8"><span></span>Last 14 days</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="r9" name="rr" />
+                                            <input type="radio" id="r9" name="date" {{ request()->query('date') == now()->subDays(30)->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->subDays(30)->format('Y-m-d') }}" />
                                             <label for="r9"><span></span>Last 30 days</label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="r10" name="rr" />
-                                            <label for="r10"><span></span>All</label>
                                         </li>
                                     </ul>
                                 </div>
@@ -97,45 +113,18 @@
                                 <h2><a href="#" class="careerfy-click-btn">Categories</a></h2>
                                 <div class="careerfy-checkbox-toggle">
                                     <ul class="careerfy-checkbox">
-                                        <li>
-                                            <input type="checkbox" id="r17" name="rr" />
-                                            <label for="r17"><span></span>Accountancy</label>
-                                            <small>10</small>
+                                        @foreach ($terms as $term)
+                                        <li class="{{ $loop->iteration > 5 ? "filter-more-fields-terms" : "" }}">
+                                            <input type="checkbox" id="{{ $term->slug }}" {{ in_array($term->slug, request()->query('term', []) ) ? 'checked' : '' }} name="term[]" value="{{ $term->slug }}" />
+                                            <label for="{{ $term->slug }}"><span></span>{{ $term->name }}</label>
+                                            <small>{{ $term->jobs_count }}</small>
                                         </li>
-                                        <li>
-                                            <input type="checkbox" id="r18" name="rr" />
-                                            <label for="r18"><span></span>Banking</label>
-                                            <small>2</small>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="r19" name="rr" />
-                                            <label for="r19"><span></span>Charity & Voluntary</label>
-                                            <small>6</small>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="r20" name="rr" />
-                                            <label for="r20"><span></span>Digital & Creative</label>
-                                            <small>4</small>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="r21" name="rr" />
-                                            <label for="r21"><span></span>Estate Agency</label>
-                                            <small>19</small>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="r22" name="rr" />
-                                            <label for="r22"><span></span>Graduate</label>
-                                            <small>5</small>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="r23" name="rr" />
-                                            <label for="r23"><span></span>IT Contractor</label>
-                                            <small>10</small>
-                                        </li>
+                                        @endforeach
                                     </ul>
-                                    <a href="#" class="careerfy-seemore">+see more</a>
+                                    <a href="#" id="term" class="careerfy-seemore">+see more</a>
                                 </div>
                             </div>
+                            <a href="{{ route('job.index') }}" class="careerfy-seemore">Reset filter</a>
                         </form>
                     </div>
                 </aside>
@@ -144,22 +133,8 @@
                         <!-- FilterAble -->
                         <div class="careerfy-filterable">
                             <h2 class="jobsearch-fltcount-title">
-                                {{ $jobs->total() }} Jobs Found <div class="displayed-here">Displayed Here: 1 - 12 Jobs</div>
+                                {{ $jobs->total() }} Jobs Found <div class="displayed-here">Displayed Here: {{ $jobs->firstItem() }} - {{ $jobs->lastItem() }} Jobs</div>
                             </h2>
-                            {{-- <ul>
-                                <li>
-                                    <i class="careerfy-icon careerfy-sort"></i>
-                                    <div class="careerfy-filterable-select">
-                                        <select>
-                                            <option>Sort</option>
-                                            <option>Sort</option>
-                                            <option>Sort</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li><a href="#"><i class="careerfy-icon careerfy-squares"></i> Grid</a></li>
-                                <li><a href="#"><i class="careerfy-icon careerfy-list"></i> List</a></li>
-                            </ul> --}}
                         </div>
                         <!-- FilterAble -->
                         <!-- JobGrid -->
@@ -173,9 +148,8 @@
                                         </figure>
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
-                                                <h2><a href="#">{{ $job->post_title }}</a>
-                                                    @if ($job->meta->where('meta_key',
-                                                    '_featured')->first()->meta_value)
+                                                <h2><a href="{{ $job->ID }}">{{ $job->post_title }}</a>
+                                                    @if ($job->meta->where('meta_key', '_featured')->first()->meta_value)
                                                     <span>Featured</span>
                                                     @endif
                                                 </h2>
@@ -186,8 +160,7 @@
                                                 </ul>
                                                 <ul>
                                                     <li>
-                                                        <i
-                                                            class="jobsearch-icon jobsearch-calendar"></i>{{ $job->post_date }}
+                                                        <i class="fa fa-clock-o"></i>Published {{ $job->post_date->diffForHumans() }}
                                                     </li>
                                                     @if ($job->term->first())
                                                     <li><i class="careerfy-icon careerfy-filter-tool-black-shape"></i>
@@ -207,18 +180,7 @@
                             </ul>
                         </div>
                         <!-- Pagination -->
-                        <div class="careerfy-pagination-blog">
-                            <ul class="page-numbers">
-                                <li><a class="prev page-numbers" href="#"><span><i
-                                                class="careerfy-icon careerfy-arrows4"></i></span></a></li>
-                                <li><span class="page-numbers current">01</span></li>
-                                <li><a class="page-numbers" href="#">02</a></li>
-                                <li><a class="page-numbers" href="#">03</a></li>
-                                <li><a class="page-numbers" href="#">04</a></li>
-                                <li><a class="next page-numbers" href="#"><span><i
-                                                class="careerfy-icon careerfy-arrows4"></i></span></a></li>
-                            </ul>
-                        </div>
+                        {{ $jobs->links('web.view.paginate') }}
                     </div>
                 </div>
 
@@ -229,4 +191,19 @@
 
 </div>
 <!-- Main Content -->
+@endsection
+
+@section('footer-js')
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $( "#location" ).click(function(e) {
+            e.preventDefault();
+            $( ".filter-more-fields-location" ).removeClass()
+        });
+        $( "#term" ).click(function(e) {
+            e.preventDefault();
+            $( ".filter-more-fields-terms" ).removeClass()
+        });
+    });   
+</script>  
 @endsection

@@ -30,6 +30,15 @@ class Job extends Model
     public $timestamps = false;
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'post_date'
+    ];
+
+    /**
      * Get the comments for the blog post.
      */
     public function meta()

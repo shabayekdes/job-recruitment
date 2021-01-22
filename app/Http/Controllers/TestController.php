@@ -22,6 +22,8 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        dd(now()->subDays(7));
+
         // // dd(strtotime("Thu, 14 January 2021"));
         // dd(date("Y-m-d", strtotime("Thu, 14 January 2021")));
         // // Store a string into the variable which 

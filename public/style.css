@@ -273,6 +273,185 @@ address                         { font-style: italic; }
     float: left;
     width: 100%;
 }
+/* TopStrip */
+.careerfy-topstrip {
+    background-color: #f1f1f1; }
+.careerfy-topstrip p {
+    float: left;
+    margin: 8px 30px 0px 0px;
+}
+.careerfy-topstrip p,
+.careerfy-topstrip p a {
+    color: #666666;
+    font-weight: 500;
+}
+.careerfy-topstrip p i {
+    font-size: 13px;
+    margin: 8px 11px 0px 0px;
+    float: left;
+}
+.careerfy-stripuser {
+    float: right; }
+.careerfy-stripuser ul.nav-item-children,
+.careerfy-headerfifteen-user .nav-item-children,
+.careerfy-header-twelve .nav-item-children,
+.careerfy-header-thirteen .nav-item-children,
+.careerfy-headersixteen-user .nav-item-children,
+.careerfy-header-seventeen .nav-item-children,
+.careerfy-header-eighteen .nav-item-children,
+.careerfy-header-fourteen .nav-item-children,
+.jobsearch-header-eight .jobsearch-headeight-option .nav-item-children,
+.careerfy-header-twentytwo-user .nav-item-children {
+    background-color: #ffffff;
+    right: 0;
+    margin: 5px 0px 0px 0px;
+    padding: 0px 20px;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    visibility: hidden;
+    width: 200px;
+    z-index: 999;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.20);
+    -webkit-transform: translateX(10px);
+       -moz-transform: translateX(10px);
+        -ms-transform: translateX(10px);
+         -o-transform: translateX(10px);
+            transform: translateX(10px);
+    -webkit-transition: all 0.5s ease-in-out;
+       -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+         -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+}
+.careerfy-sticky-header .nav-item-children,
+.careerfy-sticky-header .careerfy-header-twenty-user .nav-item-children,
+.careerfy-sticky-header .careerfy-header-twentytwo-user .nav-item-children,
+.careerfy-sticky-header .careerfy-user-section ul.nav-item-children {
+    width: 350px; }
+.careerfy-sticky-header .nav-item-children li,
+.careerfy-sticky-header .careerfy-header-twentytwo-user .nav-item-children li,
+.careerfy-sticky-header .careerfy-user-section ul.nav-item-children > li {
+    width: 50%; }
+.careerfy-headerfifteen-user .nav-item-children {
+    left: auto;
+    right: 0px;
+}
+.careerfy-header-twelve .nav-item-children,
+.careerfy-header-twelve .nav-item-children li,
+.careerfy-header-thirteen .nav-item-children li,
+.careerfy-headersixteen-user .nav-item-children,
+.careerfy-header-eighteen .nav-item-children,
+.careerfy-header-fourteen .nav-item-children,
+.jobsearch-header-eight .jobsearch-headeight-option .nav-item-children,
+.careerfy-header-twentytwo-user .nav-item-children {
+    text-align: left; }
+.careerfy-stripuser > li:hover > ul.nav-item-children,
+.careerfy-headerfifteen-user > li:hover > .nav-item-children,
+.careerfy-headertwelve-user > li:hover > .nav-item-children,
+.careerfy-headerthirteen-user > li:hover > .nav-item-children,
+.careerfy-headersixteen-user > li:hover > .nav-item-children,
+.careerfy-header-seventeen .careerfy-headerseventeen-user > li:hover > .nav-item-children,
+.careerfy-header-eighteen .careerfy-headereighteen-user > li:hover > .nav-item-children,
+.careerfy-header-fourteen .careerfy-headerfourteen-user > li:hover > .nav-item-children,
+.jobsearch-header-eight .jobsearch-headeight-option > li:hover > .nav-item-children,
+.careerfy-header-twentytwo-user > li:hover > .nav-item-children {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateX(0px);
+       -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+         -o-transform: translateX(0px);
+            transform: translateX(0px);
+}
+.careerfy-stripuser ul.nav-item-children li,
+.careerfy-headerfifteen-user .nav-item-children li,
+.careerfy-header-twelve .nav-item-children li,
+.careerfy-header-thirteen .nav-item-children li,
+.careerfy-headersixteen-user .nav-item-children li,
+.careerfy-header-seventeen .nav-item-children li,
+.careerfy-header-eighteen .nav-item-children li,
+.careerfy-header-fourteen .nav-item-children li,
+.jobsearch-header-eight .jobsearch-headeight-option .nav-item-children li,
+.careerfy-header-twentytwo-user .nav-item-children li {
+    float: left;
+    width: 100%;
+    list-style: none;
+}
+.careerfy-sticky-header .careerfy-stripuser ul.nav-item-children li,
+.careerfy-sticky-header .careerfy-headerfifteen-user .nav-item-children li,
+.careerfy-sticky-header .careerfy-header-twelve .nav-item-children li,
+.careerfy-sticky-header .careerfy-header-thirteen .nav-item-children li,
+.careerfy-sticky-header .careerfy-headersixteen-user .nav-item-children li,
+.careerfy-sticky-header .careerfy-header-seventeen .nav-item-children li,
+.careerfy-sticky-header .careerfy-header-eighteen .nav-item-children li,
+.careerfy-sticky-header .careerfy-header-fourteen .nav-item-children li,
+.careerfy-sticky-header .careerfy-header-twenty-user .nav-item-children li {
+    width: 50%;
+}
+.careerfy-stripuser ul.nav-item-children li a,
+.careerfy-headerfifteen-user .nav-item-children li a,
+.careerfy-header-twelve .nav-item-children li a,
+.careerfy-header-thirteen .nav-item-children li a,
+.careerfy-headersixteen-user .nav-item-children li a,
+.careerfy-header-seventeen .nav-item-children li a,
+.careerfy-header-eighteen .nav-item-children li a,
+.careerfy-header-fourteen .nav-item-children li a,
+.jobsearch-header-eight .jobsearch-headeight-option .nav-item-children li a,
+.careerfy-header-twentytwo-user .nav-item-children li a {
+    border-bottom: 1px solid #f2f2f2;
+    color: #656c6c;
+    float: left;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 0px;
+    width: 100%;
+    -webkit-transition: all 0.5s ease-in-out;
+       -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+         -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+}
+ .careerfy-headerfifteen-user .nav-item-children li a i {
+    float: right;
+    margin: 7px 0px 0px 7px;
+ }
+  .careerfy-header-twelve .nav-item-children li a i,
+  .careerfy-header-thirteen .nav-item-children li i,
+  .careerfy-headersixteen-user .nav-item-children li i,
+  .careerfy-header-seventeen .nav-item-children li i,
+  .careerfy-header-eighteen .nav-item-children li i,
+  .careerfy-header-fourteen .nav-item-children li i,
+  .jobsearch-header-eight .jobsearch-headeight-option .nav-item-children li i,
+  .careerfy-header-twentyone-user .nav-item-children li a i,
+  .careerfy-header-twentytwo-user .nav-item-children li a i {
+    float: left;
+    margin: 7px 7px 0px 0px;
+ }
+.careerfy-stripuser > li {
+    float: left;
+    list-style: none;
+    padding: 0px 20px;
+    line-height: 1;
+    border-left: 1px solid #999999;
+    margin: 15px 0px;
+    position: relative;
+}
+.careerfy-stripuser li:last-child {
+    padding-right: 0px; }
+.careerfy-stripuser li:first-child {
+    border: none; }
+.careerfy-stripuser li a {
+    color: #666666;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+}
+.careerfy-stripuser li a i {
+    font-size: 16px;
+    float: left;
+    margin: 0px 11px 0px 0px;
+}
 /* Header */
 #careerfy-header,.careerfy-header-one {
     float: left;
@@ -284,7 +463,7 @@ address                         { font-style: italic; }
 }
 .careerfy-logo,.jobsearch-logo {
     float: left;
-    margin: 30px 0px 22px 0px;
+    margin: 20px 0px 0px 0px;
 }
 /* Navigation */
 .navbar-nav li {
@@ -2102,4 +2281,26 @@ li:hover .careerfy-read-more { background-color: transparent; }
     font-size: 12px;
     padding: 8px 0px 10px 0px;
     color: #838383;
+}
+.filter-more-fields-location , .filter-more-fields-terms {
+    display: none;
+}
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff !important;
+    border-color: #dee2e6;
+}
+.careerfy-filter-submit{
+    /* float: left; */
+    background-color: #13b5ea;
+    font-size: 16px;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 13px 24px;
+    line-height: 1;
+    border: 1px solid #13b5ea;
+    width: 100%;
+    margin-bottom: 10px;
 }
