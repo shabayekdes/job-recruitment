@@ -31,3 +31,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('jobs', 'Web\JobController@index')->name('job.index');
+Route::get('jobs/{job:post_name}', 'Web\JobController@show')->name('job.show');

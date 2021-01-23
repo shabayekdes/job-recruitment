@@ -67,35 +67,33 @@ class JobController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Job $job)
     {
-        //
+        $job->load('term', 'meta');
+
+        $relatedJobs = Job::with([
+                'term', 
+                'meta'
+            ])
+            ->where('post_type', 'job_listing')
+            ->limit(5)
+            ->inRandomOrder()
+            ->get();
+
+        $termJobs = collect([]);
+
+        if($job->term->first()){
+            $termJobs = $job->term->first()->jobs()->limit(5)->get();
+        }    
+
+
+        return view('web.job.show', compact('job', 'relatedJobs', 'termJobs'));
+
     }
 
     /**
