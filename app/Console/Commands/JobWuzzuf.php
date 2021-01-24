@@ -253,16 +253,15 @@ class JobWuzzuf extends Command
                         "meta_key" => "jobsearch_field_location_address",
                         "meta_value" => $job['area'],
                     ];
-
-                    $roles = str_replace('/', ' ', $job['roles']);
-
-                    $term = Term::firstOrCreate([
-                        'name' => $roles,
-                        'slug' => Str::slug($roles, '-'),
-                    ]);
-                    $term->jobs()->attach([$jobCreated->ID => ['term_order' => 0]]);
-
                 }
+
+                $roles = str_replace('/', ' ', $job['roles']);
+
+                $term = Term::firstOrCreate([
+                    'name' => $roles,
+                    'slug' => Str::slug($roles, '-'),
+                ]);
+                $term->jobs()->attach([$jobCreated->ID => ['term_order' => 0]]);
 
                 $jobCreated->meta()->createMany($metaData);
                 

@@ -2,24 +2,24 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use App\Models\Job;
 use App\Models\Term;
 use App\Models\JobMeta;
 use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
-class JobGulf extends Command
+class JobCareerjet extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'job:gulf';
+    protected $signature = 'job:careerjet {country}';
 
     /**
      * The console command description.
@@ -46,17 +46,14 @@ class JobGulf extends Command
     public function handle()
     {
         // \DB::connection()->enableQueryLog();
+        $hour = (int) now()->format('H') * 15;
+        $minut = (int) now()->format('i') / 4;
+        $page = intval($hour + $minut);
+        $country = $this->argument('country');
 
-        $data = $this->getUrl();
+        $url = "http://public.api.careerjet.net/search?affid=7bd38e0476bfc2ea5ba865d62515d396&user_ip=REMOTE_ADDR&user_agent=HTTP_USER_AGENT&location=$country&pagesize=99&page=$page";
 
-        if($data == null){
-
-            return 0;
-        }
-
-        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=" . $data[0];
-
-        Log::info('Website: Gulf Talent Country: ' . $data[1] . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
+        Log::info('Website: CareerJet Country: ' . $country .' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $response = Http::get($url);
 
@@ -144,20 +141,20 @@ class JobGulf extends Command
             ]
         ];
 
-        $xml_string = (string) $response->body();
+        $results = $response->json();
+        $jobs = $results['jobs'];
 
-        // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
-        $xml = simplexml_load_string($xml_string);
+        if($results['pages'] < $page){
 
-        $json = json_encode($xml);
+            return 0;
+        }
 
-        $results = json_decode($json,TRUE);
 
-        foreach ($results['channel']['item'] as $job) {
+        foreach ($jobs as $job) {
 
-            $encryption = openssl_encrypt($job['title'], "AES-128-CTR", "GulfTalent", 0, "1234567891011121"); 
+            $encryption = openssl_encrypt($job['title'], "AES-128-CTR", "CareerJet", 0, "1234567891011121"); 
             // $decryption = openssl_decrypt($encryption, "AES-128-CTR", "GulfTalent", 0, "1234567891011121"); 
-            $job_id = date("Y-m-d", strtotime($job['pubDate'])) . '-' . $encryption;
+            $job_id = date("Y-m-d", strtotime($job['date'])) . '-' . $encryption;
 
             $jobExists = JobMeta::where('meta_value', $job_id)->exists();
 
@@ -167,7 +164,7 @@ class JobGulf extends Command
                 \DB::beginTransaction();
                 $jobCreated = Job::create([
                     "post_author" => 1,
-                    "post_date" => Carbon::parse($job['pubDate']),
+                    "post_date" => Carbon::parse($job['date']),
                     "post_date_gmt" => now(),
                     "post_content" => $job["description"],
                     "post_title" => $job["title"],
@@ -196,7 +193,7 @@ class JobGulf extends Command
     
                 $metaData[] = [
                     "meta_key" => "_job_location",
-                    "meta_value" => $data[1],
+                    "meta_value" => ucfirst($country),
                 ];
     
                 $metaData[] = [
@@ -226,14 +223,23 @@ class JobGulf extends Command
 
                 $metaData[] = [
                     "meta_key" => "app_joburl",
-                    "meta_value" => $job['link'],
+                    "meta_value" => $job['url'],
                 ];
 
-                // $metaData[] = [
-                //     "meta_key" => "_company_name",
-                //     "meta_value" => $job['source'],
-                // ];
-    
+                if($job['company'] != ""){
+                    $metaData[] = [
+                        "meta_key" => "_company_name",
+                        "meta_value" => $job['company'],
+                    ];
+                }
+
+                if($job['salary'] != ""){
+                    $metaData[] = [
+                        "meta_key" => "jobsearch_field_job_salary_type",
+                        "meta_value" => $job['salary'],
+                    ];
+                }
+
                 $metaData[] = [
                     "meta_key" => "_wpnonce",
                     "meta_value" => "78e67f11a6",
@@ -259,19 +265,10 @@ class JobGulf extends Command
                 //     "meta_value" => $job['experience'],
                 // ];
 
-                if($job['category'] != ''){
-                    // $metaData[] = [
-                    //     "meta_key" => "jobsearch_field_location_address",
-                    //     "meta_value" => $job['category'],
-                    // ];
-
-                    $term = Term::firstOrCreate([
-                        'name' => $job['category'],
-                        'slug' => Str::slug($job['category'], '-'),
-                    ]);
-                    $term->jobs()->attach([$jobCreated->ID => ['term_order' => 0]]);
-
-                }
+                $metaData[] = [
+                    "meta_key" => "jobsearch_field_location_address",
+                    "meta_value" => $job['locations'],
+                ];
 
                 $jobCreated->meta()->createMany($metaData);
                 
@@ -283,30 +280,5 @@ class JobGulf extends Command
 
             // sleep(3);
         }
-    }
-
-    private function getUrl()
-    {
-
-        $index = (int) floor(now()->format('H') / 2);
-        // $index = (int) floor(Carbon::parse('16:00')->format('H') / 2);
-
-        $country = [
-            ['10111111000000', 'UAE'],
-            ['10111112000000', 'Saudi Arabia'],
-            ['10111113000000', 'Kuwait'],
-            ['10111114000000', 'Qatar'],
-            ['10111115000000', 'Bahrain'],
-            ['10111116000000', 'Oman'],
-            ['10229411000000', 'Lebanon'],
-            ['10229362000000', 'Egypt'],
-            ['10229117000000', 'Jordan'],
-            ['10229120000000', 'Iraq'],
-        ];
-
-        if(count($country) > $index){
-            return $country[$index];
-        }
-        return null;
     }
 }

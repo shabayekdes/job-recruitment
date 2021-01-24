@@ -22,6 +22,17 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        dd(intval(15.25));
+        // $hour = (int) Carbon::parse('01:05')->format('H') * 15;
+        // $minut = (int) Carbon::parse('00:04')->format('i') / 4;
+        // dd($hour+ $minut);
+        // dd(Carbon::parse('23:10')->format('H:i'));
+        //                                                12*0=0
+        // 1   2   3   4   5   6   7   8   9   10  11  12 12*1=12
+        // 13  14  15  16  17  18  19  20  21  22  23  24 12*2=24
+        // 25  26  27  28  29  30  31  32  33  34  35  36 12*3=36
+        // 37  38  39  40  41  42  43  44  45  46  47  48 12*4=48
+
         // dd(now()->subDays(7));
 
         // // dd(strtotime("Thu, 14 January 2021"));
@@ -55,11 +66,11 @@ class TestController extends Controller
         $decryption_key = "GulfTalent"; 
         
         // // Use openssl_decrypt() function to decrypt the data 
-        $decryption=openssl_decrypt ("sEsXWgNkaOCclBn+OHrB03mj3p1yMazMsYqB8drmToMIgXAAuPHZXygXqQjBwCs===", $ciphering,  
-                $decryption_key, $options, $decryption_iv); 
+        // $decryption=openssl_decrypt ("sEsXWgNkaOCclBn+OHrB03mj3p1yMazMsYqB8drmToMIgXAAuPHZXygXqQjBwCs===", $ciphering,  
+        //         $decryption_key, $options, $decryption_iv); 
         
 
-        dd($decryption);
+        // dd($decryption);
 
         // dump(Hash::check('Digital Marketing Lead – Retail | Quest Search &amp; Selection', '$2y$10$fqVMh81rcJnmYSMCVs2EUOzHGAjLS2Tqu9Tld7rmkIofHJFzqO.pW'));
         // dump(Hash::check('Digital Marketing Lead – Retail | Quest Search &amp; Selection', '$2y$10$vb0DFD8tzJj4Pk5z.QVMsOGBUiR7AZ8m0J9YXONvHXozzuTCnfBHO'));
@@ -94,16 +105,18 @@ class TestController extends Controller
         // }
         // dd('fgf');
 
-        dd(Str::slug('Engineering | Civil & Construction', '-'));
-        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=10111112000000";
+        // dd(Str::slug('Engineering | Civil & Construction', '-'));
+        $url = "https://wuzzuf.net/feeds/all-jobs.xml";
 
         $response = Http::get($url);
 
         $xml_string = (string) $response->body();
-        // dd($xml_string);
+        // $json = $response->json()['jobs'];
 
-        // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
-        $xml = simplexml_load_string($xml_string);
+        // dd($json);
+
+        $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
+        // $xml = simplexml_load_string($xml_string);
 
         $json = json_encode($xml);
 
