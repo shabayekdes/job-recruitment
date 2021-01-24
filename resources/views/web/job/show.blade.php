@@ -136,7 +136,7 @@
                     <div class="careerfy-typo-wrap">
                         <div class="widget widget_apply_job">
                             <div class="widget_apply_job_wrap">
-                                <a href="#" class="careerfy-applyjob-btn">Apply for the job</a>
+                                <a href="{{ $job->meta->where('meta_key', '_application')->first()->meta_value }}" class="careerfy-applyjob-btn">Apply for the job</a>
                             </div>
                         </div>
                         <div class="widget widget_add">
