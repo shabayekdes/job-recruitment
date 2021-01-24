@@ -59,7 +59,7 @@ class JobController extends Controller
         }
 
         $jobs = $jobs->where('post_type', 'job_listing')
-                    ->orderByDesc('ID')
+                    ->orderByDesc('post_date')
                     ->paginate()->onEachSide(1);
 
         // dd($jobs->first());
