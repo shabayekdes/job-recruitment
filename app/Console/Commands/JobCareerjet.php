@@ -234,9 +234,11 @@ class JobCareerjet extends Command
                 }
 
                 if($job['salary'] != ""){
+                    $salary = $job['salary_currency_code'] . ' ' . $job['salary'];
+
                     $metaData[] = [
                         "meta_key" => "jobsearch_field_job_salary_type",
-                        "meta_value" => $job['salary'],
+                        "meta_value" => $salary,
                     ];
                 }
 
@@ -244,7 +246,7 @@ class JobCareerjet extends Command
                     "meta_key" => "_wpnonce",
                     "meta_value" => "78e67f11a6",
                 ];
-    
+                
                 $metaData[] = [
                     "meta_key" => "unique_jobkey",
                     "meta_value" => $job_id,

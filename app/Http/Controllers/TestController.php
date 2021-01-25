@@ -22,7 +22,7 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dd(intval(15.25));
+        // dd(intval(15.25));
         // $hour = (int) Carbon::parse('01:05')->format('H') * 15;
         // $minut = (int) Carbon::parse('00:04')->format('i') / 4;
         // dd($hour+ $minut);
@@ -106,7 +106,7 @@ class TestController extends Controller
         // dd('fgf');
 
         // dd(Str::slug('Engineering | Civil & Construction', '-'));
-        $url = "https://wuzzuf.net/feeds/all-jobs.xml";
+        $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=eg&page=1&of=200";
 
         $response = Http::get($url);
 
@@ -114,6 +114,7 @@ class TestController extends Controller
         // $json = $response->json()['jobs'];
 
         // dd($json);
+        // dd($xml_string);
 
         $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
         // $xml = simplexml_load_string($xml_string);
