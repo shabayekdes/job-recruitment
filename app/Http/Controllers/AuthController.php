@@ -59,8 +59,8 @@ class AuthController extends Controller
             // $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
             auth()->login($candidate);
             if ($request->get('job_id') != null){
-                $job = Job::find($request->get('job_id'));
-                return redirect()->route('job.show', [$job]);
+                $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
+                return redirect($application->meta_value);
             }
 
             return redirect()->intended('jobs');
@@ -342,8 +342,8 @@ class AuthController extends Controller
 
         auth()->login($candidate);
         if ($request->get('job_id') != null){
-            $job = Job::find($request->get('job_id'));
-            return redirect()->route('job.show', [$job]);
+            $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
+            return redirect($application->meta_value);
         }
 
         return redirect()->intended('jobs');
