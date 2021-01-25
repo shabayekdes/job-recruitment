@@ -7,6 +7,7 @@ use App\Models\Job;
 use App\Models\Term;
 use GuzzleHttp\Client;
 use App\Models\JobMeta;
+use App\Models\Candidate;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +23,11 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // $candidate = Candidate::find(1);
+
+        // auth()->login($candidate);
+
+        dd(auth()->user());
         // dd(intval(15.25));
         // $hour = (int) Carbon::parse('01:05')->format('H') * 15;
         // $minut = (int) Carbon::parse('00:04')->format('i') / 4;

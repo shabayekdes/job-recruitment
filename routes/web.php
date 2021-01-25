@@ -20,13 +20,15 @@ Route::get('/', function () {
 
 Route::get('test', 'TestController');
 
-Route::get('jobs/login/{job}', 'JobController@showLoginForm')->name('job.login.show');
-Route::post('jobs/login', 'JobController@login')->name('job.login.store');
+Route::get('login/{job?}', 'AuthController@showLoginForm')->name('login.show');
+Route::post('login', 'AuthController@login')->name('login.store');
 
-Route::get('jobs/register/{job}', 'JobController@showRegisterForm')->name('job.register.show');
-Route::post('jobs/register', 'JobController@register')->name('job.register.store');
+Route::get('register/{job?}', 'AuthController@showRegisterForm')->name('register.show');
+Route::post('register', 'AuthController@register')->name('register.store');
 
-Auth::routes();
+Route::post('logout', 'AuthController@logout')->name('logout');
+
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 

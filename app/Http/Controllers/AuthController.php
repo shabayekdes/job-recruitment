@@ -2,15 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Models\Job;
 use App\Models\JobMeta;
 use App\Models\Candidate;
-use App\Models\CandidateMeta;
-use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class JobController extends Controller
+class AuthController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
     
     /**
      * Display the specified resource.
@@ -18,9 +33,9 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showLoginForm($job)
+    public function showLoginForm($job = null)
     {
-        return view('job.login', compact('job'));
+        return view('web.auth.login', compact('job'));
     }
 
     /**
@@ -36,13 +51,19 @@ class JobController extends Controller
             'password' => 'required'
         ]);
 
-        $candidate = Candidate::where('user_email', $request->get('email'))->first();
+        $candidate = User::where('user_email', $request->get('email'))->first();
 
         $auth = Hash::driver('wp')->check($request->get('password'), $candidate->user_pass);
 
         if($auth){
-            $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
-            return redirect($application->meta_value);
+            // $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
+            auth()->login($candidate);
+            if ($request->get('job_id') != null){
+                $job = Job::find($request->get('job_id'));
+                return redirect()->route('job.show', [$job]);
+            }
+
+            return redirect()->intended('jobs');
         }
 
         return back()->withInput()->with("status", "Sorry, your password not correct<br> <a href='#' >forget password</a>");
@@ -54,9 +75,9 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showRegisterForm($job)
+    public function showRegisterForm($job = null)
     {
-        return view('job.register', compact('job'));
+        return view('web.auth.register', compact('job'));
     }
 
     /**
@@ -84,7 +105,7 @@ class JobController extends Controller
         $fullName = $request->input('meta.0.meta_value') . " " . $request->input('meta.1.meta_value');
         $hash = Hash::driver('wp')->make($request->get('password'));
 
-        $candidate = Candidate::create([
+        $candidate = User::create([
             "user_login" => $request->get('user_login'),
             "user_pass" =>  $hash,
             "user_nicename" => $request->get('user_login'),
@@ -319,8 +340,37 @@ class JobController extends Controller
 
         $job->meta()->createMany($jobMeta);
 
-        $application = JobMeta::where('post_id', $request->get('job_id'))->where('meta_key', 'app_joburl')->first();
-        return redirect($application->meta_value);
+        auth()->login($candidate);
+        if ($request->get('job_id') != null){
+            $job = Job::find($request->get('job_id'));
+            return redirect()->route('job.show', [$job]);
+        }
+
+        return redirect()->intended('jobs');
+
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/');
     }
 
 }

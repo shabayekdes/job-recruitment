@@ -2620,3 +2620,12 @@ li:hover .careerfy-read-more {
     border-radius: 2px;
     background-color: #114b95;
 }
+.careerfy-breadcrumb ul li:before {
+    content: "\eb60";
+    font-family: careerfy;
+    position: absolute;
+    left: -2px;
+    top: 1px;
+    color: #ffffff;
+    font-size: 9px;
+}

@@ -2,22 +2,35 @@
 
 namespace App;
 
+use App\Models\CandidateMeta;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'wpqs_users';
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'ID';
+
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $fillable = ['user_login', 'user_nicename', 'user_pass', 'user_email', 'user_url', 'user_registered', 'user_activation_key', 'user_status', 'display_name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -25,15 +38,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'user_pass'
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $guarded = ['user_pass'];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function meta()
+    {
+        return $this->hasMany(CandidateMeta::class, 'user_id', 'ID');
+    }
 }

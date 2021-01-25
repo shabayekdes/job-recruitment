@@ -36,13 +36,13 @@
 
 <body class="text-center" data-new-gr-c-s-check-loaded="14.990.0" data-gr-ext-installed="">
 
-    <form class="form-signin" action="{{ route('job.login.store') }}" method="POST">
+    <form class="form-signin" action="{{ route('login.store') }}" method="POST">
         @csrf
         <img src="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/logox300.png" width="122" height="76"
             alt="Recruitment Talents Mine">
         <h1 class="h3 mt-5 font-weight-normal">Please sign in</h1>
         <p class="mb-3 text-muted mt-3">
-            OR <a class="login-register-switch-link" href="{{ route('job.register.show', [$job]) }}">create an account</a>
+            OR <a class="login-register-switch-link" href="{{ route('register.show', [$job]) }}">create an account</a>
         </p>
         @if (session('status'))
             <div class="alert alert-danger">

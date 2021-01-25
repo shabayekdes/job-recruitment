@@ -5,12 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home - Recruitment Talents Mine</title>
+    <title>Home - Recruitment Talents Mine</title>
 
-    <link rel="icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-32x32.png" sizes="32x32" />
-    <link rel="icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-192x192.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-180x180.png" />
-    <meta name="msapplication-TileImage" content="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-270x270.png" />
+    <link rel="icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-32x32.png"
+        sizes="32x32" />
+    <link rel="icon" href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-192x192.png"
+        sizes="192x192" />
+    <link rel="apple-touch-icon"
+        href="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-180x180.png" />
+    <meta name="msapplication-TileImage"
+        content="https://recruitment.talentsmine.net/wp-content/uploads/2019/11/cropped-logox300-270x270.png" />
 
     <!-- Css -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
@@ -51,37 +55,36 @@
                             </p>
                             <p><i class="fa fa-phone"></i><a href="tel: +201022-606-247"> +201022-606-247</a></p>
                             <ul class="careerfy-stripuser">
-                                {{-- @guest
-                                    <li class="jobsearch-userdash-menumain">
-                                        <a class="jobsearch-color active" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="jobsearch-color active"
-                                        href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                                @endif
+                                @guest
+
+                                <li><a href="{{ route('login.show') }}"
+                                        class="careerfy-open-signup-tab jobsearch-open-signin-tab"><i
+                                            class="careerfy-icon careerfy-user-plus"></i>{{ __('Login') }} </a></li>
+                                <li><a href="{{ route('register.show') }}"
+                                        class="careerfy-open-signup-tab jobsearch-open-register-tab"><i
+                                            class="careerfy-icon careerfy-multimedia"></i>{{ __('Register') }} </a></li>
+
                                 @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="jobsearch-color active dropdown-toggle" href="#"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                        v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
+                                <li class="jobsearch-userdash-menumain">
+                                    <a href="https://recruitment.talentsmine.net/"
+                                        class="jobsearch-color active">Home</a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
+                                    <ul class="nav-item-children sub-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </li>
-                                @endguest --}}
+
+                                @endguest
                             </ul>
                         </div>
                     </div>
@@ -192,7 +195,8 @@
                                         potential</p>
                                     <p>&nbsp;</p>
                                     <p><a class="careerfy-classic-btn jobsearch-bgcolor"
-                                            href="http://talentsmine.net/about-us/" target="_blank" rel="noopener">About Us</a></p>
+                                            href="http://talentsmine.net/about-us/" target="_blank" rel="noopener">About
+                                            Us</a></p>
                                 </div>
                             </aside>
                         </div>
