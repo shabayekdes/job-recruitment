@@ -54,10 +54,9 @@ class JobNeuvoo extends Command
             'eg' => 'Egypt'
         ];
 
-        $url = "http://public.api.careerjet.net/search?affid=7bd38e0476bfc2ea5ba865d62515d396&user_ip=REMOTE_ADDR&user_agent=HTTP_USER_AGENT&location=$country&pagesize=99&page=$page";
         $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=$countryCode&of=256&page=$page";
 
-        Log::info('Website: CareerJet Country: ' . $country[$countryCode] .' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
+        Log::info('Website: Neuvoo Country: ' . $country[$countryCode] .' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $response = Http::get($url);
 
