@@ -263,6 +263,11 @@ class JobNeuvoo extends Command
                     "meta_key" => "unique_jobkey",
                     "meta_value" => $job_id,
                 ];
+
+                $metaData[] = [
+                    "meta_key" => "job_provider",
+                    "meta_value" => "Neuvoo",
+                ];
     
                 // $metaData[] = [
                 //     "meta_key" => "career-level",

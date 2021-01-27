@@ -195,6 +195,11 @@ class JobCareerjet extends Command
                     "meta_key" => "_job_location",
                     "meta_value" => ucfirst($country),
                 ];
+
+                $metaData[] = [
+                    "meta_key" => "job_provider",
+                    "meta_value" => "CareerJet",
+                ];
     
                 $metaData[] = [
                     "meta_key" => "_wp_old_slug",

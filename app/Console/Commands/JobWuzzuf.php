@@ -182,6 +182,11 @@ class JobWuzzuf extends Command
                 Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job['job_id']);
 
                 $metaData = $meta;
+
+                $metaData[] = [
+                    "meta_key" => "job_provider",
+                    "meta_value" => "Wuzzuf",
+                ];
     
                 $metaData[] = [
                     "meta_key" => "_job_location",

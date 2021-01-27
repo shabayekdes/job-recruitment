@@ -198,6 +198,11 @@ class JobGulf extends Command
                     "meta_key" => "_job_location",
                     "meta_value" => $data[1],
                 ];
+
+                $metaData[] = [
+                    "meta_key" => "job_provider",
+                    "meta_value" => "Gulf Talent",
+                ];
     
                 $metaData[] = [
                     "meta_key" => "_wp_old_slug",
