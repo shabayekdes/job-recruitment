@@ -199,16 +199,6 @@ class JobWuzzuf extends Command
                 ];
     
                 $metaData[] = [
-                    "meta_key" => "ID",
-                    "meta_value" => $jobCreated->ID,
-                ];
-    
-                $metaData[] = [
-                    "meta_key" => "post_ID",
-                    "meta_value" => $jobCreated->ID,
-                ];
-    
-                $metaData[] = [
                     "meta_key" => "_wp_http_referer",
                     "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
                 ];

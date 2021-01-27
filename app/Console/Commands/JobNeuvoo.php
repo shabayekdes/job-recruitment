@@ -202,16 +202,6 @@ class JobNeuvoo extends Command
                 ];
     
                 $metaData[] = [
-                    "meta_key" => "ID",
-                    "meta_value" => $jobCreated->ID,
-                ];
-    
-                $metaData[] = [
-                    "meta_key" => "post_ID",
-                    "meta_value" => $jobCreated->ID,
-                ];
-    
-                $metaData[] = [
                     "meta_key" => "_wp_http_referer",
                     "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
                 ];
@@ -284,10 +274,12 @@ class JobNeuvoo extends Command
                 //     "meta_value" => $job['experience'],
                 // ];
 
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_address",
-                    "meta_value" => $job['city'],
-                ];
+                if(is_string($job['city'])){
+                    $metaData[] = [
+                        "meta_key" => "jobsearch_field_location_address",
+                        "meta_value" => $job['city'],
+                    ];
+                }
 
                 $jobCreated->meta()->createMany($metaData);
                 

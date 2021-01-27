@@ -209,15 +209,6 @@ class JobGulf extends Command
                     "meta_value" =>  $slug,
                 ];
     
-                $metaData[] = [
-                    "meta_key" => "ID",
-                    "meta_value" => $jobCreated->ID,
-                ];
-    
-                $metaData[] = [
-                    "meta_key" => "post_ID",
-                    "meta_value" => $jobCreated->ID,
-                ];
     
                 $metaData[] = [
                     "meta_key" => "_wp_http_referer",
