@@ -152,7 +152,7 @@ class JobNeuvoo extends Command
 
         $jobs = json_decode($json,TRUE);
 
-        foreach ($jobs as $job) {
+        foreach ($jobs['job'] as $job) {
 
             $job_id = $job['jobid'];
 
