@@ -23,37 +23,37 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $jobs = Job::with(['meta' => function ($query){
-            $query->where('meta_key', '_application');
+        // $jobs = Job::with(['meta' => function ($query){
+        //     $query->where('meta_key', '_application');
 
-        }])
-        ->whereHas('meta' , function ($query){
-            $query->where('meta_key', '_application');
+        // }])
+        // ->whereHas('meta' , function ($query){
+        //     $query->where('meta_key', '_application');
 
-        })
-        ->where('post_type', 'job_listing')->get();
+        // })
+        // ->where('post_type', 'job_listing')->get();
 
-        foreach ($jobs as $job) {
+        // foreach ($jobs as $job) {
 
-            $data = $job->meta->first()->toArray();
+        //     $data = $job->meta->first()->toArray();
 
-            dd($data);
+        //     dd($data);
 
-            // $metaUrl = [
-            //     "meta_key" => "app_joburl",
-            //     "meta_value" => "/login/" . $job->ID,
-            // ];
+        //     // $metaUrl = [
+        //     //     "meta_key" => "app_joburl",
+        //     //     "meta_value" => "/login/" . $job->ID,
+        //     // ];
 
-            JobMeta::where('meta_id', $data['meta_id'])->update([
-                "meta_value" => "/login/" . $job->ID
-            ]);
+        //     JobMeta::where('meta_id', $data['meta_id'])->update([
+        //         "meta_value" => "/login/" . $job->ID
+        //     ]);
 
-        }
+        // }
         // $candidate = Candidate::find(1);
 
         // auth()->login($candidate);
 
-        dd(auth()->user());
+        // dd(auth()->user());
         // dd(intval(15.25));
         // $hour = (int) Carbon::parse('01:05')->format('H') * 15;
         // $minut = (int) Carbon::parse('00:04')->format('i') / 4;
@@ -135,10 +135,10 @@ class TestController extends Controller
         //         }
         //     }
         // }
-        // dd('fgf');
+        // dd(Carbon::parse('2021-01-18T15:01:00Z'));
 
         // dd(Str::slug('Engineering | Civil & Construction', '-'));
-        $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=eg&page=1&of=200";
+        $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=eg&page=15&of=256";
 
         $response = Http::get($url);
 
