@@ -205,7 +205,7 @@ class JobWuzzuf extends Command
 
                 $metaData[] = [
                     "meta_key" => "_application",
-                    "meta_value" => "http://api.talentsmine.net/jobs/login/" . $jobCreated->ID
+                    "meta_value" => "/login/" . $jobCreated->ID
                 ];
 
                 $metaData[] = [

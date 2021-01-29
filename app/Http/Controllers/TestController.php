@@ -138,7 +138,7 @@ class TestController extends Controller
         // dd(Carbon::parse('2021-01-18T15:01:00Z'));
 
         // dd(Str::slug('Engineering | Civil & Construction', '-'));
-        $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=eg&page=15&of=256";
+        $url = "https://www.cantalop.com/jobs/all_rss";
 
         $response = Http::get($url);
 
@@ -148,8 +148,8 @@ class TestController extends Controller
         // dd($json);
         // dd($xml_string);
 
-        $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
-        // $xml = simplexml_load_string($xml_string);
+        // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
+        $xml = simplexml_load_string($xml_string);
 
         $json = json_encode($xml);
 
