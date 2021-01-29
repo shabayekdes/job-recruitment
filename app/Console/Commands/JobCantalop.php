@@ -178,7 +178,7 @@ class JobCantalop extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job['job_id']);
+                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
 
                 $metaData = $meta;
 
