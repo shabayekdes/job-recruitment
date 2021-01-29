@@ -146,7 +146,9 @@ class JobNeuvoo extends Command
 
         $xml_string = (string) $response->body();
 
-        if ($response->failed() || $response->serverError()){
+        $arr = json_decode($xml_string, true);
+
+        if ($response->failed() || $response->serverError() || $arr != null) {
 
             return 0;
         }

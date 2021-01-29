@@ -23,6 +23,13 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $json = '{"error":"invalid ranges"}';
+
+        $arr = json_decode($json, true);
+
+        dd($arr != null);
+
+        // dd(array_key_exists('error', $arr));
         // $jobs = Job::with(['meta' => function ($query){
         //     $query->where('meta_key', '_application');
 
@@ -138,7 +145,7 @@ class TestController extends Controller
         // dd(Carbon::parse('2021-01-18T15:01:00Z'));
 
         // dd(Str::slug('Engineering | Civil & Construction', '-'));
-        $url = "https://www.cantalop.com/jobs/all_rss";
+        $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=eg&of=256&page=1";
 
         $response = Http::get($url);
 
@@ -146,7 +153,10 @@ class TestController extends Controller
         // $json = $response->json()['jobs'];
 
         // dd($json);
-        // dd($xml_string);
+
+        $arr = json_decode($xml_string, true);
+
+        dd($arr);
 
         // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
         $xml = simplexml_load_string($xml_string);
