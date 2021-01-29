@@ -146,6 +146,11 @@ class JobNeuvoo extends Command
 
         $xml_string = (string) $response->body();
 
+        if ($response->failed() || $response->serverError()){
+
+            return 0;
+        }
+
         $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
 
         $json = json_encode($xml);
@@ -160,14 +165,17 @@ class JobNeuvoo extends Command
 
             if(!$jobExists){
 
-                $slug = Str::slug($job["title"], '-');
+                $title = Str::limit($job["title"], 190);
+
+                $slug = Str::slug($title, '-');
+
                 \DB::beginTransaction();
                 $jobCreated = Job::create([
                     "post_author" => 1,
                     "post_date" => Carbon::parse($job['date']),
                     "post_date_gmt" => now(),
                     "post_content" => $job["description"],
-                    "post_title" => $job["title"],
+                    "post_title" => $title,
                     "post_excerpt" => "",
                     "post_status" => "publish",
                     "comment_status" => "closed",
