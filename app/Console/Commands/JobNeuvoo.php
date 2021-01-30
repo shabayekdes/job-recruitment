@@ -18,7 +18,7 @@ class JobNeuvoo extends Command
      *
      * @var string
      */
-    protected $signature = 'job:neuvoo {country} {--hour=} {--minut=}';
+    protected $signature = 'job:neuvoo {country} {--hour=} {--minute=}';
 
     /**
      * The console command description.
@@ -46,7 +46,7 @@ class JobNeuvoo extends Command
     {
         // \DB::connection()->enableQueryLog();
         $hourRate = $this->option('hour') ?? 15;
-        $minutRate = $this->option('minut') ?? 4;
+        $minutRate = $this->option('minute') ?? 4;
 
         $hour = (int) now()->format('H') * $hourRate;
         $minut = (int) now()->format('i') / $minutRate;
