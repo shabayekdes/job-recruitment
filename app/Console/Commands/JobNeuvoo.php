@@ -45,13 +45,17 @@ class JobNeuvoo extends Command
     public function handle()
     {
         // \DB::connection()->enableQueryLog();
-        $hour = (int) now()->format('H') * 12;
-        $minut = (int) now()->format('i') / 5;
+        $hourRate = $this->option('hour') ?? 15;
+        $minutRate = $this->option('minut') ?? 4;
+
+        $hour = (int) now()->format('H') * $hourRate;
+        $minut = (int) now()->format('i') / $minutRate;
         $page = intval($hour + $minut);
         $countryCode = $this->argument('country');
 
         $country = [
-            'eg' => 'Egypt'
+            'eg' => 'Egypt',
+
         ];
 
         $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=$countryCode&of=256&page=$page";

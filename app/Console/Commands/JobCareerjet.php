@@ -19,7 +19,7 @@ class JobCareerjet extends Command
      *
      * @var string
      */
-    protected $signature = 'job:careerjet {country}';
+    protected $signature = 'job:careerjet {country} {--hour=} {--minut=}';
 
     /**
      * The console command description.
@@ -46,8 +46,11 @@ class JobCareerjet extends Command
     public function handle()
     {
         // \DB::connection()->enableQueryLog();
-        $hour = (int) now()->format('H') * 15;
-        $minut = (int) now()->format('i') / 4;
+        $hourRate = $this->option('hour') ?? 15;
+        $minutRate = $this->option('minut') ?? 4;
+
+        $hour = (int) now()->format('H') * $hourRate;
+        $minut = (int) now()->format('i') / $minutRate;
         $page = intval($hour + $minut);
         $country = $this->argument('country');
 
