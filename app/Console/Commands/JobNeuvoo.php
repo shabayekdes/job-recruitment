@@ -18,7 +18,7 @@ class JobNeuvoo extends Command
      *
      * @var string
      */
-    protected $signature = 'job:neuvoo {country}';
+    protected $signature = 'job:neuvoo {country} {--hour=} {--minut=}';
 
     /**
      * The console command description.
