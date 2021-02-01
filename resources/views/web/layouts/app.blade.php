@@ -111,8 +111,11 @@
                                                 <a href="https://recruitment.talentsmine.net/">Home</a></li>
                                             <li id="menu-item-420"
                                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu-addicon">
-                                                <a href="https://recruitment.talentsmine.net/jobs/">Jobs</a>
+                                                <a href="{{ route('job.index') }}">Jobs</a>
                                                 <ul class="sub-menu">
+                                                    <li id="menu-item-615"
+                                                        class="menu-item  menu-item-type-post_type  menu-item-object-page">
+                                                        <a href="{{ route('job.index') }}">Job search engine</a></li>
                                                     <li id="menu-item-615"
                                                         class="menu-item  menu-item-type-post_type  menu-item-object-page">
                                                         <a href="https://recruitment.talentsmine.net/jobs-by-sectors/">Jobs
@@ -207,9 +210,14 @@
                                 </div>
                                 <div class="menu-for-jobs-container">
                                     <ul id="menu-for-jobs" class="menu">
+
                                         <li id="menu-item-310"
                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-310">
                                             <a href="https://recruitment.talentsmine.net/post-new-job/">Post New Job</a>
+                                        </li>
+                                        <li id="menu-item-310"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-310">
+                                            <a href="{{ route('job.index') }}">Job search engine</a>
                                         </li>
                                         <li id="menu-item-308"
                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-308">
