@@ -34,7 +34,8 @@
                 <aside class="careerfy-column-3 careerfy-typo-wrap">
                     <div class="careerfy-typo-wrap">
                         <form class="careerfy-search-filter" action="{{ route('job.index') }}" method="GET">
-                            <input type="submit" class="careerfy-filter-submit" value="Apply Filter">
+                            
+                            <a href="{{ route('job.index') }}" class="careerfy-seemore">Reset filter</a>
 
                             <div class="careerfy-search-filter-wrap careerfy-without-toggle">
                                 <h2><a href="#">Locations</a></h2>
@@ -124,7 +125,7 @@
                                     <a href="#" id="term" class="careerfy-seemore">+see more</a>
                                 </div>
                             </div>
-                            <a href="{{ route('job.index') }}" class="careerfy-seemore">Reset filter</a>
+                            <input type="submit" class="careerfy-filter-submit" value="Apply Filter">
                         </form>
                     </div>
                 </aside>
