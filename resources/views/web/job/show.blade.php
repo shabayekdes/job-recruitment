@@ -90,7 +90,7 @@
                         <div class="careerfy-job careerfy-joblisting-classic careerfy-jobdetail-joblisting">
                             <ul class="careerfy-row">
                                 @foreach ($relatedJobs as $relatedJob)
-                                {{-- {{ dd($job) }} --}}
+
                                 <li class="careerfy-column-12">
                                     <div class="careerfy-joblisting-classic-wrap">
                                         <figure><a href="#"><img src="extra-images/job-listing-logo-1.png" alt=""></a>
@@ -155,7 +155,7 @@
                                 <li>
                                     <h6><a href="{{ url('jobs/' . $termJob->post_name) }}">{{ $termJob->post_title }}</a>
                                     </h6>
-                                    <small> {{ $termJob->meta->where('meta_key', '_job_location')->first()->meta_value }}</small>
+                                    <small> {{ $termJob->meta->where('meta_key', '_job_location')->first()->meta_value ?? ""}}</small>
                                 </li>
                                 @endforeach
                             </ul>
