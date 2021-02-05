@@ -55,7 +55,16 @@ class JobNeuvoo extends Command
 
         $country = [
             'eg' => 'Egypt',
-
+            'sa' => 'Saudi Arabia',
+            'ae' => 'United Arab Emirates',
+            'qa' => 'Qatar',
+            'kw' => 'Kuwait',
+            'om' => 'Oman',
+            'lb' => 'Lebanon',
+            'bh' => 'Bahrain',
+            'dz' => 'Algeria',
+            'tn' => 'Tunisia',
+            'ma' => 'Morocco',
         ];
 
         $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=$countryCode&of=256&page=$page";
