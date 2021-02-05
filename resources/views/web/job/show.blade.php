@@ -104,7 +104,7 @@
                                                 </h2>
                                                 <ul>
                                                     <li><i class="careerfy-icon careerfy-maps-and-flags"></i>
-                                                        {{ $relatedJob->meta->where('meta_key', '_job_location')->first()->meta_value }}
+                                                        {{ $relatedJob->meta->where('meta_key', '_job_location')->first()->meta_value ?? '' }}
                                                     </li>
                                                 </ul>
                                                 <ul>

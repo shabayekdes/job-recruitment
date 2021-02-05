@@ -43,7 +43,7 @@ class Job extends Model
      */
     public function meta()
     {
-        return $this->hasMany(JobMeta::class, 'post_id', 'ID')->withDefault();
+        return $this->hasMany(JobMeta::class, 'post_id', 'ID');
     }
 
     /**
@@ -51,6 +51,6 @@ class Job extends Model
      */
     public function term()
     {
-        return $this->belongsToMany(Term::class, 'wpqs_term_relationships', 'object_id', 'term_taxonomy_id')->withDefault();
+        return $this->belongsToMany(Term::class, 'wpqs_term_relationships', 'object_id', 'term_taxonomy_id');
     }
 }
