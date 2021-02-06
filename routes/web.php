@@ -33,4 +33,4 @@ Route::post('logout', 'AuthController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('jobs', 'Web\JobController@index')->name('job.index');
-Route::get('jobs/{job:post_name}', 'Web\JobController@show')->name('job.show');
+Route::get('jobs/{id}-{job:post_name}', 'Web\JobController@show')->name('job.show');

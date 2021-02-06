@@ -72,7 +72,7 @@ class JobController extends Controller
      * @param  Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function show(Job $job)
+    public function show($id, Job $job)
     {
         $job->load('term', 'meta');
 

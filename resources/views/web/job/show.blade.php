@@ -97,7 +97,7 @@
                                         </figure>
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
-                                                <h2><a href="{{ url('jobs/' . $relatedJob->post_name) }}">{{ $relatedJob->post_title }}</a>
+                                                <h2><a href="{{ route('job.show', ['id' => $relatedJob->ID, 'job' => $relatedJob->post_name]) }}">{{ $relatedJob->post_title }}</a>
                                                     @if ($job->meta->where('meta_key', '_featured')->first()->meta_value)
                                                     <span>Featured</span>
                                                     @endif
@@ -153,7 +153,7 @@
                             <ul>
                                 @foreach ($termJobs as $termJob)
                                 <li>
-                                    <h6><a href="{{ url('jobs/' . $termJob->post_name) }}">{{ $termJob->post_title }}</a>
+                                    <h6><a href="{{ route('job.show', ['id' => $termJob->ID, 'job' => $termJob->post_name]) }}">{{ $termJob->post_title }}</a>
                                     </h6>
                                     <small> {{ $termJob->meta->where('meta_key', '_job_location')->first()->meta_value ?? ""}}</small>
                                 </li>

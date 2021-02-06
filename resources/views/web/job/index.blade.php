@@ -149,7 +149,7 @@
                                         </figure>
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
-                                                <h2><a href="{{ url('jobs/' . $job->post_name) }}">{{ $job->post_title }}</a>
+                                                <h2><a href="{{ route('job.show', ['id' => $job->ID, 'job' => $job->post_name]) }}">{{ $job->post_title }}</a>
                                                     @if ($job->meta->where('meta_key', '_featured')->first()->meta_value)
                                                     <span>Featured</span>
                                                     @endif
