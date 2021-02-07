@@ -21,6 +21,7 @@ class JobController extends Controller
         $locations = request()->query('location');
         $term = request()->query('term');
         $date = request()->query('date');
+        $career = request()->query('career-level');
 
         $terms = Term::withCount(['jobs' => function($query){
                             $query->where('post_type', 'job_listing');
@@ -43,6 +44,11 @@ class JobController extends Controller
                     ->whereHas('meta', function($query) use($locations){
                         if(request()->has('location')){
                             $query->whereIn('meta_value', $locations);
+                        }
+                    })
+                    ->whereHas('meta', function($query) use($career){
+                        if(request()->has('career-level')){
+                            $query->where('meta_value', 'LIKE' , "%{$career}%");
                         }
                     });
 

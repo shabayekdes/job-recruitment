@@ -111,6 +111,33 @@
                                 </div>
                             </div>
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                                <h2><a href="#" class="careerfy-click-btn">Date Posted</a></h2>
+                                <div class="careerfy-checkbox-toggle">
+                                    <ul class="careerfy-checkbox">
+                                        <li>
+                                            <input type="radio" id="career1" name="career-level" {{ request()->query('career-level') == "Intern" ? 'checked' : '' }} value="Intern" />
+                                            <label for="career1"><span></span>Intern</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="career2" name="career-level" {{ request()->query('career-level') == "junior" ? 'checked' : '' }} value="junior" />
+                                            <label for="career2"><span></span>junior</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="career3" name="career-level" {{ request()->query('career-level') == "Experienced (Non-Manager)" ? 'checked' : '' }} value="Experienced (Non-Manager)" />
+                                            <label for="career3"><span></span>Experienced (Non-Manager)</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="career4" name="career-level" {{ request()->query('career-level') == "Senior Management" ? 'checked' : '' }} value="Senior Management" />
+                                            <label for="career4"><span></span>Senior Management</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="career5" name="career-level" {{ request()->query('career-level') == "manager" ? 'checked' : '' }} value="manager" />
+                                            <label for="career5"><span></span>manager</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Categories</a></h2>
                                 <div class="careerfy-checkbox-toggle">
                                     <ul class="careerfy-checkbox">
