@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
-                                <h2><a href="#" class="careerfy-click-btn">Date Posted</a></h2>
+                                <h2><a href="#" class="careerfy-click-btn">Career Level</a></h2>
                                 <div class="careerfy-checkbox-toggle">
                                     <ul class="careerfy-checkbox">
                                         <li>
