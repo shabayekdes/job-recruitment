@@ -88,7 +88,7 @@
                                 <div class="careerfy-checkbox-toggle">
                                     <ul class="careerfy-checkbox">
                                         <li>
-                                            <input type="radio" id="r6" name="date" {{ request()->query('date') == now()->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->format('Y-m-d') }}" />
+                                            <input type="radio" id="r5" name="date" {{ request()->query('date') == now()->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->format('Y-m-d') }}" />
                                             <label for="r6"><span></span>Today</label>
                                         </li>
                                         <li>
