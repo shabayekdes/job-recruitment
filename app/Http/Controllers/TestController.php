@@ -23,6 +23,8 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $candidates = Job::where('post_type', 'candidate')->get();
+        dd($candidates);
         $json = '{"error":"invalid ranges"}';
 
         $arr = json_decode($json, true);
