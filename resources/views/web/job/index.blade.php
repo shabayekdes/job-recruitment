@@ -91,10 +91,10 @@
                                             <input type="radio" id="r5" name="date" {{ request()->query('date') == now()->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->format('Y-m-d') }}" />
                                             <label for="r6"><span></span>Today</label>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <input type="radio" id="r6" name="date" {{ request()->query('date') == now()->subDay()->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->subDay()->format('Y-m-d') }}" />
                                             <label for="r6"><span></span>Yesterday</label>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <input type="radio" id="r7" name="date" {{ request()->query('date') == now()->subDays(7)->format('Y-m-d') ? 'checked' : '' }} value="{{ now()->subDays(7)->format('Y-m-d') }}" />
                                             <label for="r7"><span></span>Last 7 days</label>
