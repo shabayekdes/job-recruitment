@@ -6,6 +6,7 @@ use App\User;
 use App\Models\Job;
 use App\Models\JobMeta;
 use App\Models\Candidate;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -128,7 +129,7 @@ class AuthController extends Controller
             "comment_status" => "closed",
             "ping_status" => "closed",
             "post_password" => "",
-            "post_name" => $request->get('user_login'),
+            "post_name" => Str::slug($request->get('user_login'), '-'),
             "to_ping" => "",
             "pinged" => "",
             "post_modified" => now(),
