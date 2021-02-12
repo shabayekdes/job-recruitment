@@ -146,7 +146,7 @@
                         <div class="widget widget_add">
                             <img src="extra-images/jobdetail-add.jpg" alt="">
                         </div>
-                        <div class="widget widget_view_jobs">
+                        {{-- <div class="widget widget_view_jobs">
                             <div class="careerfy-widget-title">
                                 <h2>More Jobs from {{ $job->term->first()->name ?? '' }}</h2>
                             </div>
@@ -161,7 +161,7 @@
                             </ul>
                             <a href="#" class="widget_view_jobs_btn">View all jobs <i
                                     class="careerfy-icon careerfy-arrows32"></i></a>
-                        </div>
+                        </div> --}}
                     </div>
                 </aside>
                 <!-- Job Detail SideBar -->

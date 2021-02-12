@@ -91,14 +91,14 @@ class JobController extends Controller
             ->inRandomOrder()
             ->get();
 
-        $termJobs = collect([]);
+        // $termJobs = collect([]);
 
-        if($job->term->first()){
-            $termJobs = $job->term->first()->jobs()->limit(5)->get();
-        }    
+        // if($job->term->first()){
+        //     $termJobs = $job->term->first()->jobs()->limit(5)->get();
+        // }    
 
 
-        return view('web.job.show', compact('job', 'relatedJobs', 'termJobs'));
+        return view('web.job.show', compact('job', 'relatedJobs'));
 
     }
 
