@@ -269,7 +269,7 @@ class JobGulf extends Command
 
                 }
 
-                $jobCreated->meta()->createMany($metaData);
+                $jobCreated->meta()->insert($metaData);
                 
                 \DB::commit();
                 // $queries = \DB::getQueryLog();

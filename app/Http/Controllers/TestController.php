@@ -23,13 +23,24 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $candidates = Job::where('post_type', 'candidate')->get();
-        dd($candidates);
-        $json = '{"error":"invalid ranges"}';
+        // $terms = Term::withCount(['jobs' => function($query){
+        //                 $query->where('post_type', 'job_listing');
+        //             }])
+        //             ->whereHas('jobs', function($query){
+        //                 $query->where('post_type', 'job_listing');
+        //             })
+        //             // ->limit(20)
+        //             // ->having('jobs_count', '>', 0)
+        //             ->get();
 
-        $arr = json_decode($json, true);
+        //             dd($terms);
+        // $candidates = Job::where('post_type', 'candidate')->get();
+        // dd($candidates);
+        // $json = '{"error":"invalid ranges"}';
 
-        dd($arr != null);
+        // $arr = json_decode($json, true);
+
+        // dd($arr != null);
 
         // dd(array_key_exists('error', $arr));
         // $jobs = Job::with(['meta' => function ($query){
@@ -147,18 +158,18 @@ class TestController extends Controller
         // dd(Carbon::parse('2021-01-18T15:01:00Z'));
 
         // dd(Str::slug('Engineering | Civil & Construction', '-'));
-        $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=eg&of=256&page=1";
+        $url = "https://wazaefalyoum.com/?feed=job_feed&sh_atts=job_ad_banners:yes%7Cjob_ad_after_list:3%7Cjob_ads_group:143433890%7Cjob_per_page:15%7Cjob_view:view-default%7Cjob_excerpt:20%7Cjob_order:DESC%7Cjob_orderby:date%7Cjob_pagination:yes%7Cjob_filters:yes%7Cjob_filters_loc:yes%7Cjob_filters_date:yes%7Cjob_filters_type:yes%7Cjob_filters_sector:yes%7Cjob_custom_fields_switch:no%7Cjob_deadline_switch:no%7Cjob_loc_listing:country,city";
 
         $response = Http::get($url);
 
         $xml_string = (string) $response->body();
         // $json = $response->json()['jobs'];
 
-        // dd($json);
+        // dd($xml_string);
 
-        $arr = json_decode($xml_string, true);
+        // $arr = json_decode($xml_string, true);
 
-        dd($arr);
+        // dd($arr);
 
         // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
         $xml = simplexml_load_string($xml_string);

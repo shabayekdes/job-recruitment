@@ -34,7 +34,7 @@
                                 <span>{{ $job->term->first()->name ?? '' }}</span>
                                 @endif
                                 <ul class="careerfy-jobdetail-options">
-                                    <li><i class="fa fa-map-marker"></i> {{ $job->meta->where('meta_key', '_job_location')->first()->meta_value }}</li>
+                                    <li><i class="fa fa-map-marker"></i> {{ $job->meta->where('meta_key', '_job_location')->first()->meta_value ?? "" }}</li>
                                     <li><i class="careerfy-icon careerfy-calendar"></i> Post Date: {{ $job->post_date->diffForHumans() }}</li>
                                     {{-- <li><i class="careerfy-icon careerfy-summary"></i> Applications 4</li> --}}
                                     {{-- <li><a href="#"><i class="careerfy-icon careerfy-view"></i> Views 3806</a></li> --}}
@@ -98,7 +98,7 @@
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
                                                 <h2><a href="{{ route('job.show', ['id' => $relatedJob->ID, 'job' => $relatedJob->post_name]) }}">{{ $relatedJob->post_title }}</a>
-                                                    @if ($job->meta->where('meta_key', '_featured')->first()->meta_value)
+                                                    @if ($job->meta->where('meta_key', '_featured')->exists())
                                                     <span>Featured</span>
                                                     @endif
                                                 </h2>

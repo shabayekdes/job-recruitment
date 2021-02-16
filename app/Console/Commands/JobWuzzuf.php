@@ -258,7 +258,7 @@ class JobWuzzuf extends Command
                 ]);
                 $term->jobs()->attach([$jobCreated->ID => ['term_order' => 0]]);
 
-                $jobCreated->meta()->createMany($metaData);
+                $jobCreated->meta()->insert($metaData);
                 
                 \DB::commit();
                 // $queries = \DB::getQueryLog();
