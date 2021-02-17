@@ -177,13 +177,13 @@
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
                                                 <h2><a href="{{ route('job.show', ['id' => $job->ID, 'job' => $job->post_name]) }}">{{ $job->post_title }}</a>
-                                                    @if ($job->meta->where('meta_key', '_featured')->first()->meta_value)
+                                                    @if ($job->meta->where('meta_key', '_featured')->exists())
                                                     <span>Featured</span>
                                                     @endif
                                                 </h2>
                                                 <ul>
                                                     <li><i class="careerfy-icon careerfy-maps-and-flags"></i>
-                                                        {{ $job->meta->where('meta_key', '_job_location')->first()->meta_value }} {{ $job->meta->where('meta_key', 'jobsearch_field_location_address')->first()->meta_value ?? "" }}
+                                                        {{ $job->meta->where('meta_key', '_job_location')->first()->meta_value ?? "" }} {{ $job->meta->where('meta_key', 'jobsearch_field_location_address')->first()->meta_value ?? "" }}
                                                     </li>
                                                     <li><i class="careerfy-icon careerfy-maps-and-flags"></i>
                                                         {{ $job->meta->where('meta_key', '_company_name')->first()->meta_value ?? "" }}

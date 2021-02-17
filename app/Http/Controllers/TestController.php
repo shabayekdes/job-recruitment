@@ -23,17 +23,17 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // $terms = Term::withCount(['jobs' => function($query){
-        //                 $query->where('post_type', 'job_listing');
-        //             }])
-        //             ->whereHas('jobs', function($query){
-        //                 $query->where('post_type', 'job_listing');
-        //             })
-        //             // ->limit(20)
-        //             // ->having('jobs_count', '>', 0)
-        //             ->get();
+        $terms = Term::withCount(['jobs' => function($query){
+                        $query->where('post_type', 'job_listing');
+                    }])
+                    ->whereHas('jobs', function($query){
+                        $query->where('post_type', 'job_listing');
+                    })
+                    // ->limit(20)
+                    // ->having('jobs_count', '>', 0)
+                    ->get();
 
-        //             dd($terms);
+                    dd($terms);
         // $candidates = Job::where('post_type', 'candidate')->get();
         // dd($candidates);
         // $json = '{"error":"invalid ranges"}';
