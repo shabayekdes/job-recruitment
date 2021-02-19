@@ -98,7 +98,7 @@
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
                                                 <h2><a href="{{ route('job.show', ['id' => $relatedJob->ID, 'job' => $relatedJob->post_name]) }}">{{ $relatedJob->post_title }}</a>
-                                                    @if ($job->meta->where('meta_key', '_featured')->exists())
+                                                    @if ($job->meta->where('meta_key', '_featured')->first())
                                                     <span>Featured</span>
                                                     @endif
                                                 </h2>
