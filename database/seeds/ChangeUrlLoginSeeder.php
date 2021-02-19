@@ -28,7 +28,7 @@ class ChangeUrlLoginSeeder extends Seeder
             $data = $job->meta->first()->toArray();
 
             JobMeta::where('meta_id', $data['meta_id'])->update([
-                "meta_value" => "/login/" . $job->ID
+                "meta_value" => url("/login/" . $job->ID)
             ]);
 
         }
