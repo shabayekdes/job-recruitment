@@ -188,7 +188,7 @@ class JobCantalop extends Command
                 ];
     
                 $metaData[] = [
-                    "meta_key" => "_job_location",
+                    "meta_key" => "jobsearch_field_location_location1",
                     "meta_value" => "Egypt",
                 ];
     

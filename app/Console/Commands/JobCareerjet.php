@@ -195,7 +195,7 @@ class JobCareerjet extends Command
                 $metaData = $meta;
     
                 $metaData[] = [
-                    "meta_key" => "_job_location",
+                    "meta_key" => "jobsearch_field_location_location1",
                     "meta_value" => ucfirst($country),
                 ];
 
@@ -227,7 +227,7 @@ class JobCareerjet extends Command
 
                 if($job['company'] != ""){
                     $metaData[] = [
-                        "meta_key" => "_company_name",
+                        "meta_key" => "jobsearch_field_company_name",
                         "meta_value" => $job['company'],
                     ];
                 }

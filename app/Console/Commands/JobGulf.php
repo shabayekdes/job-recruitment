@@ -195,7 +195,7 @@ class JobGulf extends Command
                 $metaData = $meta;
     
                 $metaData[] = [
-                    "meta_key" => "_job_location",
+                    "meta_key" => "jobsearch_field_location_location1",
                     "meta_value" => $data[1],
                 ];
 

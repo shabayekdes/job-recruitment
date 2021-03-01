@@ -188,8 +188,13 @@ class JobWuzzuf extends Command
                     "meta_value" => "Wuzzuf",
                 ];
     
+                // $metaData[] = [
+                //     "meta_key" => "_job_location",
+                //     "meta_value" => "Egypt",
+                // ];
+
                 $metaData[] = [
-                    "meta_key" => "_job_location",
+                    "meta_key" => "jobsearch_field_location_location1",
                     "meta_value" => "Egypt",
                 ];
     
@@ -213,8 +218,13 @@ class JobWuzzuf extends Command
                     "meta_value" => $job['link'],
                 ];
 
+                // $metaData[] = [
+                //     "meta_key" => "_company_name",
+                //     "meta_value" => $job['source'],
+                // ];
+
                 $metaData[] = [
-                    "meta_key" => "_company_name",
+                    "meta_key" => "jobsearch_field_company_name",
                     "meta_value" => $job['source'],
                 ];
     
