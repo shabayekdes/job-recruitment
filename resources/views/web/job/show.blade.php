@@ -146,6 +146,9 @@
                     <div class="careerfy-typo-wrap">
                         <div class="widget widget_apply_job">
                             <div class="widget_apply_job_wrap">
+                                @guest
+                                <a href="{{ route('login.show', [$job]) }}" class="careerfy-applyjob-btn">Login to Apply to Job </a>
+                                @else
                                 @if ($job->post_type == 'job')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="careerfy-applyjob-btn" data-toggle="modal"
@@ -153,14 +156,10 @@
                                     Apply for the job
                                 </button>
                                 @else
-                                @guest
-                                <a href="{{ $job->meta->where('meta_key', '_application')->first()->meta_value }}"
-                                    class="careerfy-applyjob-btn">Apply for the job</a>
-                                @else
                                 <a href="{{ $job->meta->where('meta_key', 'app_joburl')->first()->meta_value }}"
                                     class="careerfy-applyjob-btn">Apply for the job</a>
-                                @endguest
                                 @endif
+                                @endguest
                             </div>
                         </div>
 
