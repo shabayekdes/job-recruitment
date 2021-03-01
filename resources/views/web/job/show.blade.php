@@ -34,8 +34,11 @@
                                 <span>{{ $job->term->first()->name ?? '' }}</span>
                                 @endif
                                 <ul class="careerfy-jobdetail-options">
-                                    <li><i class="fa fa-map-marker"></i> {{ $job->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? "" }}</li>
-                                    <li><i class="careerfy-icon careerfy-calendar"></i> Post Date: {{ $job->post_date->diffForHumans() }}</li>
+                                    <li><i class="fa fa-map-marker"></i>
+                                        {{ $job->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? "" }}
+                                    </li>
+                                    <li><i class="careerfy-icon careerfy-calendar"></i> Post Date:
+                                        {{ $job->post_date->diffForHumans() }}</li>
                                     {{-- <li><i class="careerfy-icon careerfy-summary"></i> Applications 4</li> --}}
                                     {{-- <li><a href="#"><i class="careerfy-icon careerfy-view"></i> Views 3806</a></li> --}}
                                 </ul>
@@ -56,15 +59,20 @@
                                 <ul class="careerfy-row">
                                     <li class="careerfy-column-4">
                                         <i class="careerfy-icon careerfy-network"></i>
-                                        <div class="careerfy-services-text">Industry <small>{{ $job->term->first()->name ?? '' }}</small></div>
+                                        <div class="careerfy-services-text">Industry
+                                            <small>{{ $job->term->first()->name ?? '' }}</small></div>
                                     </li>
                                     <li class="careerfy-column-4">
                                         <i class="careerfy-icon careerfy-social-media"></i>
-                                        <div class="careerfy-services-text">Career Level <small>{{ $job->meta->where('meta_key', 'career-level')->first()->meta_value ?? '-' }}</small></div>
+                                        <div class="careerfy-services-text">Career Level
+                                            <small>{{ $job->meta->where('meta_key', 'career-level')->first()->meta_value ?? '-' }}</small>
+                                        </div>
                                     </li>
                                     <li class="careerfy-column-4">
                                         <i class="careerfy-icon careerfy-briefcase"></i>
-                                        <div class="careerfy-services-text">Experience <small>{{ $job->meta->where('meta_key', 'experience')->first()->meta_value ?? '-' }}</small></div>
+                                        <div class="careerfy-services-text">Experience
+                                            <small>{{ $job->meta->where('meta_key', 'experience')->first()->meta_value ?? '-' }}</small>
+                                        </div>
                                     </li>
                                     {{-- <li class="careerfy-column-4">
                                         <i class="careerfy-icon careerfy-user"></i>
@@ -97,7 +105,8 @@
                                         </figure>
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
-                                                <h2><a href="{{ route('job.show', ['id' => $relatedJob->ID, 'job' => $relatedJob->post_name]) }}">{{ $relatedJob->post_title }}</a>
+                                                <h2><a
+                                                        href="{{ route('job.show', ['id' => $relatedJob->ID, 'job' => $relatedJob->post_name]) }}">{{ $relatedJob->post_title }}</a>
                                                     @if ($job->meta->where('meta_key', '_featured')->first())
                                                     <span>Featured</span>
                                                     @endif
@@ -109,7 +118,8 @@
                                                 </ul>
                                                 <ul>
                                                     <li>
-                                                        <i class="fa fa-clock-o"></i>Published {{ $relatedJob->post_date->diffForHumans() }}
+                                                        <i class="fa fa-clock-o"></i>Published
+                                                        {{ $relatedJob->post_date->diffForHumans() }}
                                                     </li>
                                                     @if ($relatedJob->term->first())
                                                     <li><i class="careerfy-icon careerfy-filter-tool-black-shape"></i>
@@ -136,41 +146,78 @@
                     <div class="careerfy-typo-wrap">
                         <div class="widget widget_apply_job">
                             <div class="widget_apply_job_wrap">
-                                @guest
-                                <a href="{{ $job->meta->where('meta_key', '_application')->first()->meta_value }}" class="careerfy-applyjob-btn">Apply for the job</a>
+                                @if ($job->post_type == 'job')
+                                <!-- Button trigger modal -->
+                                <button type="button" class="careerfy-applyjob-btn" data-toggle="modal"
+                                    data-target="#applyJobModal">
+                                    Apply for the job
+                                </button>
                                 @else
-                                <a href="{{ $job->meta->where('meta_key', 'app_joburl')->first()->meta_value }}" class="careerfy-applyjob-btn">Apply for the job</a>
+                                @guest
+                                <a href="{{ $job->meta->where('meta_key', '_application')->first()->meta_value }}"
+                                    class="careerfy-applyjob-btn">Apply for the job</a>
+                                @else
+                                <a href="{{ $job->meta->where('meta_key', 'app_joburl')->first()->meta_value }}"
+                                    class="careerfy-applyjob-btn">Apply for the job</a>
                                 @endguest
+                                @endif
                             </div>
                         </div>
+
                         <div class="widget widget_add">
                             <img src="extra-images/jobdetail-add.jpg" alt="">
                         </div>
                         {{-- <div class="widget widget_view_jobs">
                             <div class="careerfy-widget-title">
                                 <h2>More Jobs from {{ $job->term->first()->name ?? '' }}</h2>
-                            </div>
-                            <ul>
-                                @foreach ($termJobs as $termJob)
-                                <li>
-                                    <h6><a href="{{ route('job.show', ['id' => $termJob->ID, 'job' => $termJob->post_name]) }}">{{ $termJob->post_title }}</a>
-                                    </h6>
-                                    <small> {{ $termJob->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? ""}}</small>
-                                </li>
-                                @endforeach
-                            </ul>
-                            <a href="#" class="widget_view_jobs_btn">View all jobs <i
-                                    class="careerfy-icon careerfy-arrows32"></i></a>
-                        </div> --}}
                     </div>
-                </aside>
-                <!-- Job Detail SideBar -->
+                    <ul>
+                        @foreach ($termJobs as $termJob)
+                        <li>
+                            <h6><a
+                                    href="{{ route('job.show', ['id' => $termJob->ID, 'job' => $termJob->post_name]) }}">{{ $termJob->post_title }}</a>
+                            </h6>
+                            <small>
+                                {{ $termJob->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? ""}}</small>
+                        </li>
+                        @endforeach
+                    </ul>
+                    <a href="#" class="widget_view_jobs_btn">View all jobs <i
+                            class="careerfy-icon careerfy-arrows32"></i></a>
+            </div> --}}
+        </div>
+        </aside>
+        <!-- Job Detail SideBar -->
 
-            </div>
+    </div>
+</div>
+</div>
+
+<!-- Main Section -->
+
+<!-- Modal -->
+<div class="modal fade" id="applyJobModal" tabindex="-1" role="dialog" aria-labelledby="applyJobModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form>
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Cover letter</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="careerfy-applyjob-btn">Apply for the job</button>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- Main Section -->
-
+</div>
 </div>
 <!-- Main Content -->
 @endsection

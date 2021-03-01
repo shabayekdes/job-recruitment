@@ -493,14 +493,14 @@
     </div> --}}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="script/jquery.js"></script>
-    <script src="script/bootstrap.js"></script>
-    <script src="script/slick-slider.js"></script>
-    <script src="plugin-script/counter.js"></script>
-    <script src="plugin-script/fancybox.pack.js"></script>
-    <script src="plugin-script/isotope.min.js"></script>
-    <script src="plugin-script/functions.js"></script>
-    <script src="script/functions.js"></script>
+    <script src="/script/jquery.js"></script>
+    <script src="/script/bootstrap.js"></script>
+    <script src="/script/slick-slider.js"></script>
+    <script src="/plugin-script/counter.js"></script>
+    <script src="/plugin-script/fancybox.pack.js"></script>
+    <script src="/plugin-script/isotope.min.js"></script>
+    <script src="/plugin-script/functions.js"></script>
+    <script src="/script/functions.js"></script>
     @yield('footer-js')
 
 </body>
