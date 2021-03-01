@@ -23,6 +23,53 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // jobId
+        // 4569
+        // postId Esmail 
+        // 5497 
+        // job Esmail 
+        // 1594
+
+        // jobsearch_instamatch_job_ids
+        // a:13:{i:0;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591036114;}i:1;a:2:{s:7:"post_id";s:4:"1805";s:9:"date_time";i:1591104421;}i:2;a:2:{s:7:"post_id";s:4:"1998";s:9:"date_time";i:1591860603;}i:3;a:2:{s:7:"post_id";s:4:"2229";s:9:"date_time";i:1593297495;}i:4;a:2:{s:7:"post_id";i:2371;s:9:"date_time";i:1593540649;}i:5;a:2:{s:7:"post_id";s:4:"2961";s:9:"date_time";i:1594289001;}i:6;a:2:{s:7:"post_id";s:4:"3350";s:9:"date_time";i:1595164240;}i:7;a:2:{s:7:"post_id";s:4:"3697";s:9:"date_time";i:1595767283;}i:8;a:2:{s:7:"post_id";i:4019;s:9:"date_time";i:1597170462;}i:9;a:2:{s:7:"post_id";s:4:"4237";s:9:"date_time";i:1597320101;}i:10;a:2:{s:7:"post_id";s:4:"4426";s:9:"date_time";i:1597591765;}i:11;a:2:{s:7:"post_id";s:4:"4496";s:9:"date_time";i:1597592360;}i:12;a:2:{s:7:"post_id";s:4:"4569";s:9:"date_time";i:1597592719;}}
+        // jobsearch-user-jobs-applied-list
+        // a:3:{i:0;a:2:{s:7:"post_id";s:3:"596";s:9:"date_time";i:1585494294;}i:1;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591178531;}i:2;a:2:{s:7:"post_id";s:4:"5095";s:9:"date_time";i:1608937504;}}
+
+
+        $jobs = unserialize('a:1:{i:0;i:1359;}');
+        $test = [
+            "file_name" => "HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
+            "mime_type" => [
+              "ext" => "pdf",
+              "type" => "application/pdf"
+            ],
+            "file_url" => "http://recruitment.talentsmine.net/wp-content/uploads/jobsearch-resumes/HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
+
+        ];
+        $test2 = [[
+                "post_id" => "3566",
+                "date_time" => 1598121076
+            ], [
+                "post_id" => "1998",
+                "date_time" => 1598121161
+            ], [
+                "post_id" => "4932",
+                "date_time" => 1598121161
+            ]
+        ];
+
+        $test3 = [
+            5002 => "hello",
+            5497 => "Hello World"
+        ];
+
+        $test4 = [
+            1359,
+            5497 
+        ];
+
+        // dd($jobs);
+        dd(serialize($test4));
         $terms = Term::withCount(['jobs' => function($query){
                         $query->where('post_type', 'job_listing');
                     }])
@@ -463,7 +510,6 @@ class TestController extends Controller
 
 
 
-//         $jobs = unserialize('a:20:{s:9:"post_type";s:11:"job_listing";s:11:"post_author";s:1:"1";s:9:"tax_input";a:1:{s:16:"job_listing_type";s:9:"freelance";}s:15:"smart_tax_input";s:0:"";s:4:"meta";a:14:{s:12:"_application";s:0:"";s:12:"_job_expires";s:0:"";s:13:"_job_location";s:0:"";s:13:"_company_name";s:0:"";s:13:"_company_logo";s:0:"";s:16:"_company_website";s:0:"";s:29:"geolocation_formatted_address";s:0:"";s:16:"geolocation_city";s:0:"";s:15:"geolocation_lat";s:0:"";s:16:"geolocation_long";s:0:"";s:24:"geolocation_country_long";s:0:"";s:25:"geolocation_country_short";s:0:"";s:23:"geolocation_state_short";s:0:"";s:22:"geolocation_state_long";s:0:"";}s:9:"from_date";s:0:"";s:7:"to_date";s:0:"";s:5:"limit";s:2:"25";s:8:"keywords";s:0:"";s:19:"keywords_comparison";s:2:"OR";s:16:"keywords_exclude";s:0:"";s:27:"keywords_exclude_comparison";s:2:"OR";s:13:"import_images";b:1;s:7:"special";s:0:"";s:14:"field_mappings";a:24:{s:11:"description";s:12:"post_content";s:6:"author";s:11:"post_author";s:7:"creator";s:11:"post_author";s:4:"city";s:16:"geolocation_city";s:8:"location";s:13:"_job_location";s:7:"country";s:25:"geolocation_country_short";s:5:"state";s:23:"geolocation_state_short";s:8:"latitude";s:15:"geolocation_lat";s:3:"lat";s:15:"geolocation_lat";s:9:"longitude";s:16:"geolocation_long";s:4:"long";s:16:"geolocation_long";s:3:"lng";s:16:"geolocation_long";s:7:"company";s:13:"_company_name";s:12:"company_name";s:13:"_company_name";s:7:"website";s:16:"_company_website";s:4:"site";s:16:"_company_website";s:11:"company_url";s:16:"_company_website";s:12:"company_site";s:12:"company_site";s:8:"job_type";s:16:"job_listing_type";s:4:"type";s:16:"job_listing_type";s:12:"job_category";s:20:"job_listing_category";s:8:"category";s:20:"job_listing_category";s:4:"logo";s:13:"_company_logo";s:9:"logo_html";s:9:"logo_html";}s:6:"source";a:5:{s:4:"name";s:46:"Jobs in Canada 【 Now Hiring 】 Job Listings";s:7:"website";s:9:"neuvoo.ca";s:4:"logo";s:0:"";s:4:"args";a:0:{}s:8:"feed_url";s:55:"https://rss.app/feeds/YJwwnhysZ35DQpov.xml%20%20%20Copy";}s:15:"rss_feed_import";s:55:"https://rss.app/feeds/YJwwnhysZ35DQpov.xml%20%20%20Copy";s:5:"logos";s:0:"";s:9:"operation";s:6:"insert";s:4:"post";a:1:{s:12:"post_content";s:0:"";}}');
 // dd($jobs);
 
     $data = [

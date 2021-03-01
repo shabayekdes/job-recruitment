@@ -64,7 +64,7 @@ class JobController extends Controller
 
         }
 
-        $jobs = $jobs->where('post_type', 'job_listing')
+        $jobs = $jobs->whereIn('post_type', ['job_listing', 'job'])
                     ->orderByDesc('post_date')
                     ->paginate()->onEachSide(1);
 

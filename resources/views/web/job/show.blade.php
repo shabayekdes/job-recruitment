@@ -34,7 +34,7 @@
                                 <span>{{ $job->term->first()->name ?? '' }}</span>
                                 @endif
                                 <ul class="careerfy-jobdetail-options">
-                                    <li><i class="fa fa-map-marker"></i> {{ $job->meta->where('meta_key', '_job_location')->first()->meta_value ?? "" }}</li>
+                                    <li><i class="fa fa-map-marker"></i> {{ $job->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? "" }}</li>
                                     <li><i class="careerfy-icon careerfy-calendar"></i> Post Date: {{ $job->post_date->diffForHumans() }}</li>
                                     {{-- <li><i class="careerfy-icon careerfy-summary"></i> Applications 4</li> --}}
                                     {{-- <li><a href="#"><i class="careerfy-icon careerfy-view"></i> Views 3806</a></li> --}}
@@ -104,7 +104,7 @@
                                                 </h2>
                                                 <ul>
                                                     <li><i class="careerfy-icon careerfy-maps-and-flags"></i>
-                                                        {{ $relatedJob->meta->where('meta_key', '_job_location')->first()->meta_value ?? '' }}
+                                                        {{ $relatedJob->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? '' }}
                                                     </li>
                                                 </ul>
                                                 <ul>
@@ -155,7 +155,7 @@
                                 <li>
                                     <h6><a href="{{ route('job.show', ['id' => $termJob->ID, 'job' => $termJob->post_name]) }}">{{ $termJob->post_title }}</a>
                                     </h6>
-                                    <small> {{ $termJob->meta->where('meta_key', '_job_location')->first()->meta_value ?? ""}}</small>
+                                    <small> {{ $termJob->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? ""}}</small>
                                 </li>
                                 @endforeach
                             </ul>
