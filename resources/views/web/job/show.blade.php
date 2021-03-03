@@ -199,19 +199,20 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form>
+            <form action="{{ route('candidate.apply', [$job])}}" method="post">
+                @csrf
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Cover letter</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" name="cover_letter" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="careerfy-applyjob-btn">Apply for the job</button>
+                    <button type="submit" class="careerfy-applyjob-btn">Apply for the job</button>
                 </div>
             </form>
         </div>

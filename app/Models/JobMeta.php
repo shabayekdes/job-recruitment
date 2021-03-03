@@ -20,6 +20,13 @@ class JobMeta extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'meta_id';
+
     public $timestamps = false;
 
 }

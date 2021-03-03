@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Web;
 use Carbon\Carbon;
 use App\Models\Job;
 use App\Models\Term;
+use App\Models\JobMeta;
 use Illuminate\Http\Request;
+use App\Models\CandidateMeta;
 use App\Http\Controllers\Controller;
 
 class JobController extends Controller
@@ -82,6 +84,7 @@ class JobController extends Controller
     {
         $job->load('term', 'meta');
 
+        // dd(auth()->user());
         $relatedJobs = Job::with([
                 'term', 
                 'meta'
@@ -122,7 +125,64 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $candidateId = auth()->user()->ID;
+
+        $candidate = Job::where('post_type', 'candidate')->where('post_author', $candidateId)->first();
+
+        if($candidate == null){
+            return redirect()->route('job.index');
+        }
+
+        $jobMetas = JobMeta::where('post_id', $id)
+                                ->where(function ($query) {
+                                    $query->where('meta_key', 'jobsearch_job_apply_cvrs')
+                                        ->orWhere('meta_key', 'jobsearch_job_applicants_list');
+                                })
+                                ->get();
+
+        foreach ($jobMetas as $jobMeta) {
+
+            $value = $jobMeta->meta_value;
+
+            if($jobMeta->meta_key == 'jobsearch_job_apply_cvrs' && $request->get('cover_letter') != null){
+
+                // continue;
+                $cvrs = unserialize($jobMeta->meta_value);
+                $cvrs[$candidateId] = $request->get('cover_letter');
+                $value = serialize($cvrs);
+            }
+
+            if($jobMeta->meta_key == 'jobsearch_job_applicants_list'){
+
+                $applicants = explode(",", $jobMeta->meta_value);
+                $applicants[] = $candidateId;
+
+                $value = implode(",", $applicants);
+
+            }
+            // dd($jobMeta);
+
+            $jobMeta->update(['meta_value' => $value]);
+
+        }
+
+
+        $candidateMeta = CandidateMeta::where('user_id', $candidateId)
+                                        ->where('meta_key', 'jobsearch-user-jobs-applied-list')
+                                        ->first();
+
+        if($candidateMeta){
+            $candidateMetaAppliedList = unserialize($candidateMeta->meta_value);
+            $candidateMetaAppliedList[] = [
+                'post_id' => $id,
+                'date_time' => time()
+            ];
+            $candidateMeta->update(['meta_value' => serialize($candidateMetaAppliedList)]);
+        }
+
+
+
+        return redirect()->to('https://recruitment.talentsmine.net/candidate/' . $candidate->post_name);
     }
 
     /**

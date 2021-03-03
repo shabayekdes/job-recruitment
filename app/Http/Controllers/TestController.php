@@ -30,13 +30,17 @@ class TestController extends Controller
         // job Esmail 
         // 1594
 
+        //rehab
+        //postId => 808
+        //userId => 63
+
         // jobsearch_instamatch_job_ids
         // a:13:{i:0;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591036114;}i:1;a:2:{s:7:"post_id";s:4:"1805";s:9:"date_time";i:1591104421;}i:2;a:2:{s:7:"post_id";s:4:"1998";s:9:"date_time";i:1591860603;}i:3;a:2:{s:7:"post_id";s:4:"2229";s:9:"date_time";i:1593297495;}i:4;a:2:{s:7:"post_id";i:2371;s:9:"date_time";i:1593540649;}i:5;a:2:{s:7:"post_id";s:4:"2961";s:9:"date_time";i:1594289001;}i:6;a:2:{s:7:"post_id";s:4:"3350";s:9:"date_time";i:1595164240;}i:7;a:2:{s:7:"post_id";s:4:"3697";s:9:"date_time";i:1595767283;}i:8;a:2:{s:7:"post_id";i:4019;s:9:"date_time";i:1597170462;}i:9;a:2:{s:7:"post_id";s:4:"4237";s:9:"date_time";i:1597320101;}i:10;a:2:{s:7:"post_id";s:4:"4426";s:9:"date_time";i:1597591765;}i:11;a:2:{s:7:"post_id";s:4:"4496";s:9:"date_time";i:1597592360;}i:12;a:2:{s:7:"post_id";s:4:"4569";s:9:"date_time";i:1597592719;}}
         // jobsearch-user-jobs-applied-list
         // a:3:{i:0;a:2:{s:7:"post_id";s:3:"596";s:9:"date_time";i:1585494294;}i:1;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591178531;}i:2;a:2:{s:7:"post_id";s:4:"5095";s:9:"date_time";i:1608937504;}}
 
 
-        $jobs = unserialize('a:1:{i:0;i:1359;}');
+        $jobs = unserialize('a:2:{i:5002;s:5:"hello";i:5497;s:11:"Hello World";}');
         $test = [
             "file_name" => "HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
             "mime_type" => [
@@ -46,7 +50,7 @@ class TestController extends Controller
             "file_url" => "http://recruitment.talentsmine.net/wp-content/uploads/jobsearch-resumes/HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
 
         ];
-        $test2 = [[
+        $usermeta = [[
                 "post_id" => "3566",
                 "date_time" => 1598121076
             ], [
@@ -68,7 +72,7 @@ class TestController extends Controller
             5497 
         ];
 
-        // dd($jobs);
+        dd($jobs);
         dd(serialize($test4));
         $terms = Term::withCount(['jobs' => function($query){
                         $query->where('post_type', 'job_listing');
