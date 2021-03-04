@@ -163,7 +163,7 @@ class JobController extends Controller
 
         if($jobApplicants){
             $applicants = explode(",", $jobApplicants->meta_value);
-            if(array_search($candidate->ID , $applicants)){
+            if(!array_search($candidate->ID , $applicants)){
                 $applicants[] = $candidate->ID;
                 $jobApplicants->update(['meta_value' => implode(",", $applicants)]);
             }
@@ -184,7 +184,7 @@ class JobController extends Controller
         if($candidateMeta){
             $candidateMetaAppliedList = unserialize($candidateMeta->meta_value);
 
-            if(array_search($id , $candidateMetaAppliedList)){
+            if(!array_search($id , $candidateMetaAppliedList)){
                 $candidateMetaAppliedList[] = [
                     'post_id' => $id,
                     'date_time' => time()

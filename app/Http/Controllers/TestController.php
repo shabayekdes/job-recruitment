@@ -23,12 +23,13 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+
         $test3 = [
             5002 => "hello",
             5497 => "Hello World"
         ];
-        $test3[5002] = "dfdf";
-        dd($test3);
+        // $test3[5002] = "dfdf";
+        dd(!array_search("hellos" , $test3));
         dd(array_search(auth()->user()->ID , explode(",", $job->meta->where('meta_key' , 'jobsearch_job_applicants_list')->first()->meta_value)));
         // jobId
         // 4569
