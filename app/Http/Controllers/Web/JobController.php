@@ -125,6 +125,7 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->get('cover_letter'));
         $candidateId = auth()->user()->ID;
 
         $candidate = Job::where('post_type', 'candidate')->where('post_author', $candidateId)->first();
@@ -133,39 +134,46 @@ class JobController extends Controller
             return redirect()->route('job.index');
         }
 
-        $jobMetas = JobMeta::where('post_id', $id)
-                                ->where(function ($query) {
-                                    $query->where('meta_key', 'jobsearch_job_apply_cvrs')
-                                        ->orWhere('meta_key', 'jobsearch_job_applicants_list');
-                                })
-                                ->get();
 
-        foreach ($jobMetas as $jobMeta) {
+        if($request->get('cover_letter') != null){
+            $jobCvrs = JobMeta::where('post_id', $id)
+                    ->where('meta_key', 'jobsearch_job_apply_cvrs')
+                    ->first();
 
-            $value = $jobMeta->meta_value;
-
-            if($jobMeta->meta_key == 'jobsearch_job_apply_cvrs' && $request->get('cover_letter') != null){
-
-                // continue;
-                $cvrs = unserialize($jobMeta->meta_value);
+            if($jobCvrs){
+                $cvrs = unserialize($jobCvrs->meta_value);
                 $cvrs[$candidate->ID] = $request->get('cover_letter');
-                $value = serialize($cvrs);
+
+                $jobCvrs->update(['meta_value' => serialize($cvrs)]);
+            }else {
+                $cvrs = [$candidate->ID => $request->get('cover_letter')];
+
+                $jobCvrs = JobMeta::create([
+                            'post_id' => $id,
+                            'meta_key' => 'jobsearch_job_apply_cvrs',
+                            'meta_value' => serialize($cvrs)
+                        ]);
             }
-
-            if($jobMeta->meta_key == 'jobsearch_job_applicants_list'){
-
-                $applicants = explode(",", $jobMeta->meta_value);
-                $applicants[] = $candidate->ID;
-
-                $value = implode(",", $applicants);
-
-            }
-            // dd($jobMeta);
-
-            $jobMeta->update(['meta_value' => $value]);
-
         }
 
+        $jobApplicants = JobMeta::where('post_id', $id)
+                            ->where('meta_key', 'jobsearch_job_applicants_list')
+                            ->first();
+
+        if($jobApplicants){
+            $applicants = explode(",", $jobApplicants->meta_value);
+            $applicants[] = $candidate->ID;
+            $jobApplicants->update(['meta_value' => implode(",", $applicants)]);
+
+        }else {
+            $cvrs = [$candidate->ID => $request->get('cover_letter')];
+
+            $jobCvrs = JobMeta::create([
+                        'post_id' => $id,
+                        'meta_key' => 'jobsearch_job_applicants_list',
+                        'meta_value' => $candidate->ID
+                    ]);
+        }
 
         $candidateMeta = CandidateMeta::where('user_id', $candidateId)
                                         ->where('meta_key', 'jobsearch-user-jobs-applied-list')
