@@ -23,6 +23,9 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+
+        // dd((string) 1);
+        dd(array_search(auth()->user()->ID , explode(",", $job->meta->where('meta_key' , 'jobsearch_job_applicants_list')->first()->meta_value)));
         // jobId
         // 4569
         // postId Esmail 
