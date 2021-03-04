@@ -151,9 +151,12 @@
                                 @else
                                 @if ($job->post_type == 'job')
                                 <!-- Button trigger modal -->
-                                <button type="button" class="careerfy-applyjob-btn" data-toggle="modal"
+                                {{-- {{ dd(auth()->user()->ID) }}
+
+                                {{ dd( ) }} --}}
+                                <button type="button" {{ strpos($job->meta->where('meta_key' , 'jobsearch_job_applicants_list')->first()->meta_value, (string) auth()->user()->ID) ? '' : 'disabled'}} class="careerfy-applyjob-btn" data-toggle="modal"
                                     data-target="#applyJobModal">
-                                    Apply for the job
+                                    {{ strpos($job->meta->where('meta_key' , 'jobsearch_job_applicants_list')->first()->meta_value, (string) auth()->user()->ID) ? 'Apply for the job' : 'Applied'}}
                                 </button>
                                 @else
                                 <a href="{{ $job->meta->where('meta_key', 'app_joburl')->first()->meta_value }}"
