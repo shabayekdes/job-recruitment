@@ -148,14 +148,14 @@ class JobController extends Controller
 
                 // continue;
                 $cvrs = unserialize($jobMeta->meta_value);
-                $cvrs[$candidateId] = $request->get('cover_letter');
+                $cvrs[$candidate->ID] = $request->get('cover_letter');
                 $value = serialize($cvrs);
             }
 
             if($jobMeta->meta_key == 'jobsearch_job_applicants_list'){
 
                 $applicants = explode(",", $jobMeta->meta_value);
-                $applicants[] = $candidateId;
+                $applicants[] = $candidate->ID;
 
                 $value = implode(",", $applicants);
 
