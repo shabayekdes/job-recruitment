@@ -125,7 +125,6 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->get('cover_letter'));
         $candidateId = auth()->user()->ID;
 
         $candidate = Job::where('post_type', 'candidate')->where('post_author', $candidateId)->first();
@@ -142,9 +141,11 @@ class JobController extends Controller
 
             if($jobCvrs){
                 $cvrs = unserialize($jobCvrs->meta_value);
-                $cvrs[$candidate->ID] = $request->get('cover_letter');
+                // if (array_key_exists($candidate->ID, $cvrs)) {
+                    $cvrs[$candidate->ID] = $request->get('cover_letter');
+                    $jobCvrs->update(['meta_value' => serialize($cvrs)]);
+                // }
 
-                $jobCvrs->update(['meta_value' => serialize($cvrs)]);
             }else {
                 $cvrs = [$candidate->ID => $request->get('cover_letter')];
 
@@ -162,9 +163,10 @@ class JobController extends Controller
 
         if($jobApplicants){
             $applicants = explode(",", $jobApplicants->meta_value);
-            $applicants[] = $candidate->ID;
-            $jobApplicants->update(['meta_value' => implode(",", $applicants)]);
-
+            if(array_search($candidate->ID , $applicants)){
+                $applicants[] = $candidate->ID;
+                $jobApplicants->update(['meta_value' => implode(",", $applicants)]);
+            }
         }else {
             $cvrs = [$candidate->ID => $request->get('cover_letter')];
 
@@ -181,11 +183,15 @@ class JobController extends Controller
 
         if($candidateMeta){
             $candidateMetaAppliedList = unserialize($candidateMeta->meta_value);
-            $candidateMetaAppliedList[] = [
-                'post_id' => $id,
-                'date_time' => time()
-            ];
-            $candidateMeta->update(['meta_value' => serialize($candidateMetaAppliedList)]);
+
+            if(array_search($id , $candidateMetaAppliedList)){
+                $candidateMetaAppliedList[] = [
+                    'post_id' => $id,
+                    'date_time' => time()
+                ];
+                $candidateMeta->update(['meta_value' => serialize($candidateMetaAppliedList)]);
+            }
+
         }
 
 
