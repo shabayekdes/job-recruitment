@@ -304,7 +304,7 @@ class JobNeuvoo extends Command
                     ];
                 }
 
-                $jobCreated->meta()->insert($metaData);
+                $jobCreated->meta()->createMany($metaData);
                 
                 \DB::commit();
                 // $queries = \DB::getQueryLog();

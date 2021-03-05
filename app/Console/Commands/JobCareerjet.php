@@ -271,7 +271,7 @@ class JobCareerjet extends Command
                     "meta_value" => $job['locations'],
                 ];
 
-                $jobCreated->meta()->insert($metaData);
+                $jobCreated->meta()->createMany($metaData);
                 
                 \DB::commit();
                 // $queries = \DB::getQueryLog();
