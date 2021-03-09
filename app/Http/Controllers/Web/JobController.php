@@ -24,6 +24,8 @@ class JobController extends Controller
         $term = request()->query('term');
         $date = request()->query('date');
         $career = request()->query('career-level');
+        $provider = request()->query('provider');
+
 
         $terms = Term::withCount(['jobs' => function($query){
                             $query->where('post_type', 'job_listing');
@@ -57,6 +59,12 @@ class JobController extends Controller
         if(request()->has('term')){
             $jobs->whereHas('term', function($query) use($term){
                 $query->whereIn('slug', $term);
+            });
+        }
+
+        if (request()->has('provider')) {
+            $jobs->whereHas('meta', function($query) use($provider){
+                $query->where('meta_value', $provider);
             });
         }
 
