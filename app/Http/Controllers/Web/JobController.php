@@ -25,6 +25,7 @@ class JobController extends Controller
         $date = request()->query('date');
         $career = request()->query('career-level');
         $provider = request()->query('provider');
+        $search = request()->query('search');
 
 
         $terms = Term::withCount(['jobs' => function($query){
@@ -33,7 +34,7 @@ class JobController extends Controller
                         ->whereHas('jobs', function($query){
                             $query->where('post_type', 'job_listing');
                         })
-                        ->limit(20)
+                        // ->limit(20)
                         // ->having('jobs_count', '>', 0)
                         ->get();
         // dd($terms);
@@ -74,12 +75,17 @@ class JobController extends Controller
 
         }
 
+        if(request()->has('search')){
+            $jobs->where('post_title', 'LIKE', "%{$search}%")
+                    ->orWhere('post_content', 'LIKE', "%{$search}%");
+        }
+
         $jobs = $jobs->whereIn('post_type', ['job_listing', 'job'])
                     ->orderByDesc('post_date')
                     ->paginate()->onEachSide(1);
 
         // dd($jobs->first());
-        return view('web.job.index', compact('jobs', 'terms'));
+        return view('web.job.index', compact('jobs', 'terms', 'locations'));
     }
 
     /**

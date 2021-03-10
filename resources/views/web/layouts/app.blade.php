@@ -179,6 +179,7 @@
         <!-- Header -->
 
         <!-- Main Content -->
+        
         @yield('content')
         <!-- Main Content -->
 

@@ -16,15 +16,47 @@
 
 </div>
 <!-- SubHeader -->
-<div class="careerfy-breadcrumb">
-    <ul>
-        <li><a href="https://recruitment.talentsmine.net//">Home</a></li>
-        <li class="active">Jobs</li>
-    </ul>
-</div>
 
 <!-- Main Content -->
 <div class="careerfy-main-content">
+
+                <!-- Main Section -->
+                <div class="careerfy-main-section careerfy-subheader-form-full">
+                    <div class="container">
+                        <div class="row">
+    
+                            <div class="col-md-12 careerfy-typo-wrap">
+                                <!-- Sub Header Form -->
+                                <div class="careerfy-subheader-form">
+                                    <form class="careerfy-banner-search" method="GET" action="{{ route('job.index') }}">
+                                        <ul>
+                                            <li>
+                                                <input name="search" value="{{ old('search') ?? request()->query('search') }}" placeholder="Job Title, Keywords, or Company" type="text">
+                                            </li>
+                                            <li>
+                                                <input name="locations[]" value="{{ empty($locations) ? '' : $locations[0] }}" placeholder="City, State or ZIP" type="text">
+                                                <i class="careerfy-icon careerfy-location"></i>
+                                            </li>
+                                            <li>
+                                                <div class="careerfy-select-style">
+                                                    <select name="term[]">
+                                                        @foreach ($terms as $term)
+                                                        <option value="{{ $term->slug }}">{{ $term->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li class="careerfy-banner-submit"> <input type="submit" value=""> <i class="careerfy-icon careerfy-search"></i> </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <!-- Sub Header Form -->
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Section -->
 
     <!-- Main Section -->
     <div class="careerfy-main-section">
@@ -235,6 +267,19 @@
             e.preventDefault();
             $( ".filter-more-fields-terms" ).removeClass()
         });
-    });   
+
+                // Remove empty fields from GET forms
+        // Author: Bill Erickson
+        // URL: http://www.billerickson.net/code/hide-empty-fields-get-form/
+        
+            // Change 'form' to class or ID of your specific form
+            $("form").submit(function() {
+                $(this).find(":input").filter(function(){ return !this.value; }).attr("disabled", "disabled");
+                return true; // ensure form still submits
+            });
+            
+            // Un-disable form fields when page loads, in case they click back after submission
+            $( "form" ).find( ":input" ).prop( "disabled", false );
+    });  
 </script>  
 @endsection
