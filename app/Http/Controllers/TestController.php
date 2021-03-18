@@ -23,7 +23,17 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $collection = collect([
+            ['product' => 'Desk', 'price' => 200],
+            ['product' => 'Chair', 'price' => 100],
+            ['product' => 'Bookcase', 'price' => 150],
+            ['product' => 'Door', 'price' => 100],
+        ]);
+        
+        $filtered = $collection->where('price', 251);
+        
 
+        dd($filtered->all());
         $test3 = [
             5002 => "hello",
             5497 => "Hello World"
