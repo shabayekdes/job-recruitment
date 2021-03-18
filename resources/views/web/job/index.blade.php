@@ -44,7 +44,7 @@
                                     <div class="careerfy-select-style">
                                         <select name="term[]">
                                             @foreach ($terms as $term)
-                                            <option value="{{ $term->slug }}">{{ $term->name }}</option>
+                                            <option value="{{ $term->slug }}" {{ in_array($term->slug, request()->query('term', []) ) ? 'selected' : '' }}>{{ $term->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
