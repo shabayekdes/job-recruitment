@@ -21,7 +21,7 @@ class JobController extends Controller
     {
         // dd(request()->all());
         $locations = request()->query('location');
-        $term = request()->query('term');
+        $term = request()->query('term', []);
         $date = request()->query('date');
         $career = request()->query('career-level');
         $search = request()->query('search');
