@@ -101,8 +101,19 @@
 .careerfy-select-style select option { padding: 8px 18px; }
 .careerfy-select-style { position: relative; }
 .careerfy-select-style:after {
-    content: "\e964";
-    font-family: icomoon;
+    content: "\f0dd";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: inherit;
+    line-height: 1;
+    font-family: FontAwesome;
+    /* font-family: icomoon; */
     color: #999999;
     right: 20px;
     top: 17px;
@@ -574,15 +585,26 @@
 }
 .careerfy-without-toggle.careerfy-search-filter-wrap h2 a:before { display: none; }
 .careerfy-search-filter-wrap h2 a:before {
-    content: "\e964";
-    font-family: icomoon;
+    content: "\f0dd";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: inherit;
+    line-height: 1;
+    font-family: FontAwesome;
+    /* font-family: icomoon; */
     position: absolute;
     right: 0px;
     top: 14px;
     font-size: 13px;
     color: #9d9d9d;
 }
-.careerfy-remove-padding h2 a:before { content: "\e94c"; }
+.careerfy-remove-padding h2 a:before { content: "\f0de"; }
 .careerfy-checkbox li {
     list-style: none;
     margin-bottom: 2px;

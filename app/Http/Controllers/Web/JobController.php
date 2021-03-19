@@ -24,10 +24,16 @@ class JobController extends Controller
         $term = request()->query('term');
         $date = request()->query('date');
         $career = request()->query('career-level');
-        $provider = request()->query('provider');
         $search = request()->query('search');
 
-
+        $filter = [];
+        $filter[] = request()->query('provider');
+        $filter[] = request()->query('experience');
+        $filter[] = request()->query('gender');
+        $filter[] = request()->query('location');
+        $filter[] = request()->query('industry');
+        $filter[] = request()->query('qualifications');
+ 
         $terms = Term::withCount(['jobs' => function($query){
                             $query->where('post_type', 'job_listing');
                         }])
@@ -41,16 +47,8 @@ class JobController extends Controller
        
         $jobs = Job::with([
                     'term', 
-                    'meta' => function($query) use($locations){
-                        // if(request()->has('location')){
-                        //     $query->whereIn('meta_value', $locations);
-                        // }
-                    }])
-                    ->whereHas('meta', function($query) use($locations){
-                        if(request()->has('location')){
-                            $query->whereIn('meta_value', $locations);
-                        }
-                    })
+                    'meta'
+                    ])
                     ->whereHas('meta', function($query) use($career){
                         if(request()->has('career-level')){
                             $query->where('meta_value', 'LIKE' , "%{$career}%");
@@ -63,9 +61,9 @@ class JobController extends Controller
             });
         }
 
-        if (request()->has('provider')) {
-            $jobs->whereHas('meta', function($query) use($provider){
-                $query->where('meta_value', $provider);
+        if (count(array_filter($filter)) > 0) {
+            $jobs->whereHas('meta', function($query) use($filter){
+                $query->whereIn('meta_value', array_filter($filter));
             });
         }
 

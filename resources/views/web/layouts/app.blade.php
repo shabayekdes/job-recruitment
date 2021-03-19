@@ -501,7 +501,7 @@
     <script src="/plugin-script/fancybox.pack.js"></script>
     <script src="/plugin-script/isotope.min.js"></script>
     <script src="/plugin-script/functions.js"></script>
-    <script src="/script/functions.js"></script>
+    {{-- <script src="/script/functions.js"></script> --}}
     @yield('footer-js')
 
 </body>

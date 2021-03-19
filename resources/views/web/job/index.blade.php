@@ -44,7 +44,9 @@
                                     <div class="careerfy-select-style">
                                         <select name="term[]">
                                             @foreach ($terms as $term)
-                                            <option value="{{ $term->slug }}" {{ in_array($term->slug, request()->query('term', []) ) ? 'selected' : '' }}>{{ $term->name }}</option>
+                                            <option value="{{ $term->slug }}"
+                                                {{ in_array($term->slug, request()->query('term', []) ) ? 'selected' : '' }}>
+                                                {{ $term->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -73,6 +75,7 @@
 
                             <a href="{{ route('job.index') }}" class="careerfy-seemore">Reset filter</a>
 
+                            {{-- Locations --}}
                             <div class="careerfy-search-filter-wrap careerfy-without-toggle">
                                 <h2><a href="#">Locations</a></h2>
                                 <ul class="careerfy-checkbox">
@@ -139,6 +142,7 @@
                                 </ul>
                                 <a href="#" id="location" class="careerfy-seemore">+see more</a>
                             </div>
+                            {{-- Date Posted --}}
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Date Posted</a></h2>
                                 <div class="careerfy-checkbox-toggle">
@@ -175,8 +179,36 @@
                                     </ul>
                                 </div>
                             </div>
-                            {{-- <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                            {{-- Job Type --}}
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Job Type</a></h2>
+                                <div class="careerfy-checkbox-toggle" style="display: block;">
+                                    <ul class="careerfy-checkbox">
+                                        <li>
+                                            <input type="radio" id="job_type_1" name="job_type" value="freelance">
+                                            <label for="job_type_1"><span></span>Freelance </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="job_type_2" name="job_type" value="full-time">
+                                            <label for="job_type_2"><span></span>Full time </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="job_type_3" name="job_type" value="part-time">
+                                            <label for="job_type_3"><span></span>Part time </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="job_type_4" name="job_type" value="temporary">
+                                            <label for="job_type_4"><span></span>Temporary </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="job_type_5" name="job_type" value="work-from-home">
+                                            <label for="job_type_5"><span></span>Work From Home </label>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <div class="careerfy-checkbox-toggle">
                                     <ul class="careerfy-checkbox">
                                         <li>
@@ -211,7 +243,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div> --}}
+                            </div>
+                            {{-- Career Level --}}
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Career Level</a></h2>
                                 <div class="careerfy-checkbox-toggle">
@@ -249,6 +282,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            {{-- Categories --}}
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Categories</a></h2>
                                 <div class="careerfy-checkbox-toggle">
@@ -266,7 +300,147 @@
                                     <a href="#" id="term" class="careerfy-seemore">+see more</a>
                                 </div>
                             </div>
+                            {{-- Experience --}}
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                                <h2><a href="#" class="careerfy-click-btn">Experience</a></h2>
+                                <div class="careerfy-checkbox-toggle">
+                                    <ul class="careerfy-checkbox">
+                                        <li>
+                                            <input type="radio" name="experience" id="experience_1" value="fresh">
+                                            <label for="experience_1">
+                                                <span></span>Fresh </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="experience" id="experience_2"
+                                                value="less-than-1-year">
+                                            <label for="experience_2">
+                                                <span></span>Less Than 1 Year </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="experience" id="experience_3" value="2-years">
+                                            <label for="experience_3">
+                                                <span></span>2 Years </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="experience" id="experience_4" value="3-years">
+                                            <label for="experience_4">
+                                                <span></span>3 Years </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="experience" id="experience_5" value="4-years">
+                                            <label for="experience_5">
+                                                <span></span>4 Years </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="experience" id="experience_6" value="5-years">
+                                            <label for="experience_6">
+                                                <span></span>5 Years </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {{-- Gender --}}
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                                <h2><a href="#" class="careerfy-click-btn">Gender</a></h2>
+                                <div class="careerfy-checkbox-toggle" style="display: none;">
+                                    <ul class="careerfy-checkbox">
+                                        <li>
+                                            <input type="radio" name="gender" id="gender_1" value="male">
+                                            <label for="gender_1">
+                                                <span></span>Male </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="gender" id="gender_2" value="female">
+                                            <label for="gender_2">
+                                                <span></span>Female </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="gender" id="gender_3" value="any">
+                                            <label for="gender_3">
+                                                <span></span>Any </label>
+                                        </li>
+                                    </ul>
 
+                                </div>
+                            </div>
+                            {{-- Industry --}}
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                                <h2><a href="#" class="careerfy-click-btn">Industry</a></h2>
+                                <div class="careerfy-checkbox-toggle" style="display: none;">
+                                    <ul class="careerfy-checkbox">
+                                        <li>
+                                            <input type="radio" name="industry" id="industry_1"
+                                                value="Accounting / Finanace">
+                                            <label for="industry_1">
+                                                <span></span>Accounting / Finanace </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="industry" id="industry_2" value="Administration">
+                                            <label for="industry_2">
+                                                <span></span>Administration </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="industry" id="industry_3" value="Analyst">
+                                            <label for="industry_3">
+                                                <span></span>Analyst </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="industry" id="industry_4" value="Research">
+                                            <label for="industry_4">
+                                                <span></span>Research </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="industry" id="industry_5" value="Banking">
+                                            <label for="industry_5">
+                                                <span></span>Banking </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="industry" id="industry_6"
+                                                value="Business Development">
+                                            <label for="industry_6">
+                                                <span></span>Business Development </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {{-- Qualifications --}}
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                                <h2><a href="#" class="careerfy-click-btn">Qualifications</a></h2>
+                                <div class="careerfy-checkbox-toggle" style="display: none;">
+                                    <ul class="careerfy-checkbox">
+                                        <li class="">
+                                            <input type="radio" name="qualifications" id="qualifications_1" value="PHD">
+                                            <label for="qualifications_1">
+                                                <span></span>PHD </label>
+                                        </li>
+                                        <li class="">
+                                            <input type="radio" name="qualifications" id="qualifications_2"
+                                                value="Masters">
+                                            <label for="qualifications_2">
+                                                <span></span>Masters </label>
+                                        </li>
+                                        <li class="">
+                                            <input type="radio" name="qualifications" id="qualifications_3"
+                                                value="Diploma">
+                                            <label for="qualifications_3">
+                                                <span></span>Diploma </label>
+                                        </li>
+                                        <li class="">
+                                            <input type="radio" name="qualifications" id="qualifications_4"
+                                                value="Bachelor-Degree">
+                                            <label for="qualifications_4">
+                                                <span></span>Bachelor Degree </label>
+                                        </li>
+                                        <li class="">
+                                            <input type="radio" name="qualifications" id="qualifications_5"
+                                                value="High-School">
+                                            <label for="qualifications_5">
+                                                <span></span>High School </label>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
 
                             <input type="submit" class="careerfy-filter-submit" value="Apply Filter">
                         </form>
@@ -276,7 +450,7 @@
                     <div class="careerfy-typo-wrap">
                         <!-- FilterAble -->
                         <div class="careerfy-filterable">
-                            <h2 class="jobsearch-fltcount-title">
+                            <h2 class="careerfy-fltcount-title">
                                 {{ $jobs->total() }} Jobs Found <div class="displayed-here">Displayed Here:
                                     {{ $jobs->firstItem() }} - {{ $jobs->lastItem() }} Jobs</div>
                             </h2>
@@ -301,11 +475,11 @@
                                                 </h2>
                                                 <ul>
                                                     <li><i class="careerfy-icon careerfy-maps-and-flags"></i>
-                                                        {{ $job->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? "" }}
-                                                        {{ $job->meta->where('meta_key', 'jobsearch_field_location_address')->first()->meta_value ?? "" }}
+                                                        {{ $job->meta->where('meta_key', 'careerfy_field_location_location1')->first()->meta_value ?? "" }}
+                                                        {{ $job->meta->where('meta_key', 'careerfy_field_location_address')->first()->meta_value ?? "" }}
                                                     </li>
                                                     <li><i class="careerfy-icon careerfy-maps-and-flags"></i>
-                                                        {{ $job->meta->where('meta_key', 'jobsearch_field_company_name')->first()->meta_value ?? "" }}
+                                                        {{ $job->meta->where('meta_key', 'careerfy_field_company_name')->first()->meta_value ?? "" }}
                                                     </li>
                                                 </ul>
                                                 <ul>
