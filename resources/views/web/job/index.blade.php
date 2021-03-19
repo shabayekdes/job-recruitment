@@ -43,9 +43,10 @@
                                 <li>
                                     <div class="careerfy-select-style">
                                         <select name="term[]">
+                                            <option value="">Select one</option>
                                             @foreach ($terms as $term)
-                                            <option value="{{ $term->slug }}"
-                                                {{ in_array($term->slug, request()->query('term', []) ) ? 'selected' : '' }}>
+                                            <option value="{{ $term->term_id }}"
+                                                {{ in_array($term->term_id, request()->query('term', []) ) ? 'selected' : '' }}>
                                                 {{ $term->name }}</option>
                                             @endforeach
                                         </select>
@@ -289,10 +290,10 @@
                                     <ul class="careerfy-checkbox">
                                         @foreach ($terms as $term)
                                         <li class="{{ $loop->iteration > 5 ? "filter-more-fields-terms" : "" }}">
-                                            <input type="checkbox" id="{{ $term->slug }}"
-                                                {{ in_array($term->slug, request()->query('term', []) ) ? 'checked' : '' }}
-                                                name="term[]" value="{{ $term->slug }}" />
-                                            <label for="{{ $term->slug }}"><span></span>{{ $term->name }}</label>
+                                            <input type="checkbox" id="{{ $term->term_id }}"
+                                                {{ in_array($term->term_id, request()->query('term', []) ) ? 'checked' : '' }}
+                                                name="term[]" value="{{ $term->term_id }}" />
+                                            <label for="{{ $term->term_id }}"><span></span>{{ $term->name }}</label>
                                             <small>{{ $term->jobs_count }}</small>
                                         </li>
                                         @endforeach

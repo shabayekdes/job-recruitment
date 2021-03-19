@@ -57,7 +57,7 @@ class JobController extends Controller
 
         if(request()->has('term')){
             $jobs->whereHas('term', function($query) use($term){
-                $query->whereIn('slug', $term);
+                $query->whereIn('term_id', $term);
             });
         }
 
@@ -82,7 +82,7 @@ class JobController extends Controller
                     ->orderByDesc('post_date')
                     ->paginate()->onEachSide(1);
 
-        // dd($jobs->first());
+        // dd($jobs->toSql());
         return view('web.job.index', compact('jobs', 'terms', 'locations'));
     }
 
