@@ -85,10 +85,10 @@ class JobController extends Controller
                         $query->where('post_type', 'LIKE', "job_listing")
                             ->orWhere('post_type', 'LIKE', "job");
                     })
-                    ->orderByDesc('post_date');
-                    // ->paginate()->onEachSide(1);
+                    ->orderByDesc('post_date')
+                    ->paginate()->onEachSide(1);
 
-        dd($jobs->toSql());
+        // dd($jobs->toSql());
         return view('web.job.index', compact('jobs', 'terms', 'locations'));
     }
 
