@@ -46,8 +46,10 @@ class JobController extends Controller
         // dd($terms);
        
         $jobs = Job::with([
-                    'term', 
-                    'meta'
+                    'meta',
+                    'term' => function($query) use($term){
+                        $query->whereIn('term_id', $term);
+                    }
                     ])
                     ->whereHas('meta', function($query) use($career){
                         if(request()->has('career-level')){
@@ -83,10 +85,10 @@ class JobController extends Controller
                         $query->where('post_type', 'LIKE', "job_listing")
                             ->orWhere('post_type', 'LIKE', "job");
                     })
-                    ->orderByDesc('post_date')
-                    ->paginate()->onEachSide(1);
+                    ->orderByDesc('post_date');
+                    // ->paginate()->onEachSide(1);
 
-        // dd($jobs->toSql());
+        dd($jobs->toSql());
         return view('web.job.index', compact('jobs', 'terms', 'locations'));
     }
 
