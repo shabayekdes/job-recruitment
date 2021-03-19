@@ -78,7 +78,11 @@ class JobController extends Controller
                     ->orWhere('post_content', 'LIKE', "%{$search}%");
         }
 
-        $jobs = $jobs->whereIn('post_type', ['job_listing', 'job'])
+        $jobs = $jobs->where(function ($query) {
+                        // subqueries goes here
+                        $query->where('post_type', 'LIKE', "job_listing")
+                            ->orWhere('post_type', 'LIKE', "job");
+                    })
                     ->orderByDesc('post_date')
                     ->paginate()->onEachSide(1);
 
