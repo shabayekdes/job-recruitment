@@ -342,6 +342,7 @@ class AuthController extends Controller
         }
 
         $job->meta()->createMany($jobMeta);
+        $job->term()->attach([ $request->get('sector') => [ 'term_order' => 0]]);
 
         auth()->login($candidate);
         if ($request->get('job_id') != null){
