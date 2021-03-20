@@ -36,7 +36,7 @@
                                         placeholder="Job Title, Keywords, or Company" type="text">
                                 </li>
                                 <li>
-                                    <input name="locations[]" value="{{ empty($locations) ? '' : $locations[0] }}"
+                                    <input name="location[]" value="{{ empty($locations) ? '' : $locations[0] }}"
                                         placeholder="City, State or ZIP" type="text">
                                     <i class="careerfy-icon careerfy-location"></i>
                                 </li>
