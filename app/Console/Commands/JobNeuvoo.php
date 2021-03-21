@@ -218,6 +218,11 @@ class JobNeuvoo extends Command
                     "meta_key" => "jobsearch_field_location_location1",
                     "meta_value" => $country[$countryCode],
                 ];
+
+                $metaData[] = [
+                    "meta_key" => "job_provider",
+                    "meta_value" => "Neuvoo",
+                ];
     
                 $metaData[] = [
                     "meta_key" => "_wp_old_slug",
