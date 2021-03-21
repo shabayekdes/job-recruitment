@@ -428,7 +428,7 @@
                                 {{-- {{ dd($job) }} --}}
                                 <li class="careerfy-column-12">
                                     <div class="careerfy-joblisting-classic-wrap">
-                                        <figure><a href="#"><img src="extra-images/job-listing-logo-1.png" alt=""></a>
+                                        <figure><a href="#"><img src="/images/company-logo.png" alt=""></a>
                                         </figure>
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">

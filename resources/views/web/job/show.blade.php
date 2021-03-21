@@ -26,7 +26,7 @@
                 <div class="careerfy-column-12">
                     <div class="careerfy-typo-wrap">
                         <figure class="careerfy-jobdetail-list">
-                            <span class="careerfy-jobdetail-listthumb"><img src="extra-images/job-detail-logo-1.png"
+                            <span class="careerfy-jobdetail-listthumb"><img src="/images/company-logo.png"
                                     alt=""></span>
                             <figcaption>
                                 <h2>{{ $job->post_title }}</h2>
@@ -101,7 +101,7 @@
 
                                 <li class="careerfy-column-12">
                                     <div class="careerfy-joblisting-classic-wrap">
-                                        <figure><a href="#"><img src="extra-images/job-listing-logo-1.png" alt=""></a>
+                                        <figure><a href="#"><img src="/images/company-logo.png" alt=""></a>
                                         </figure>
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
