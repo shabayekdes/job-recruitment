@@ -21,6 +21,7 @@ class JobResource extends JsonResource
             "excerpt" => $this->post_excerpt,
             "content" => $this->post_content,
             "meta" => JobMetaResource::collection($this->meta),
+            "category" => $this->term
         ];
     }
 }

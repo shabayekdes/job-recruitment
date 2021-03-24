@@ -52,7 +52,16 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        $job = Job::with(['term','meta'])->find($id);
+        $job = Job::with(['term','meta' => function ($query) {
+            $query->where('meta_key' , 'jobsearch_field_location_location1')
+            ->orWhere('meta_key' , 'jobsearch_field_company_name')
+            ->orWhere('meta_key' , 'career-level')
+            ->orWhere('meta_key' , 'experience')
+            ->orWhere('meta_key' , 'career-level')
+            ->orWhere('meta_key' , 'career-level')
+            ->orWhere('meta_key' , 'career-level')
+            ;
+        }])->find($id);
 
         return response()->json([
             'success' => true,

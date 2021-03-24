@@ -15,7 +15,8 @@ class JobMetaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->meta_key => $this->meta_value
+            "meta_key" => $this->meta_key,
+            "meta_value" => $this->meta_value,
         ];
     }
 }
