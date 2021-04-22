@@ -25,95 +25,107 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // $jobs = Job::with(['meta' => function ($query) {
+        //     $query->where('meta_key', 'job_type');
+        // }])
+        // ->whereHas('meta' , function ($query) {
+        //     $query->where('meta_key', 'job_type');
+        // })
+        // ->where('post_type', 'job_listing')
+        // ->get();
+        // foreach ($jobs as $key => $job) {
+        //     dd($job->meta->first()->meta_value);
+
+        // }
     //     dd(env('PREFIX_TABLE'));
     //     $relatedJobs = Job::find(1);
     //     Mail::to('esmail.shabayek@gmail.com')->send(new TermCreated("full", $relatedJobs));
 
         
 
-    //     $type = collect([
-    //         //Freelance
-    //         ["key" => "freelance", "term_id" => 23],
-    //         ["key" => "Freelance / Project", "term_id" => 23],
-    //         ["key" => "Freelance / Project Work From Home", "term_id" => 23],
-    //         ["key" => "Part Time Freelance / Project Shift Based", "term_id" => 23],
-    //         ["key" => "Freelancer", "term_id" => 23],
-    //         ["key" => "Freelance / Project Shift Based", "term_id" => 23],
+        $type = collect([
+            //Freelance
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "Freelance / Project", "term_id" => 23],
+            ["key" => "Freelance / Project Work From Home", "term_id" => 23],
+            ["key" => "Part Time Freelance / Project Shift Based", "term_id" => 23],
+            ["key" => "Freelancer", "term_id" => 23],
+            ["key" => "Freelance / Project Shift Based", "term_id" => 23],
 
 
-    //         ["key" => "freelance", "term_id" => 23],
-    //         ["key" => "freelance", "term_id" => 23],
-    //         ["key" => "freelance", "term_id" => 23],
-    //         ["key" => "freelance", "term_id" => 23],
-    //         ["key" => "freelance", "term_id" => 23],
-    //         ["key" => "freelance", "term_id" => 23],
-    //         ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
 
-    //         ["key" => "part-time", "term_id" => 35],
+            ["key" => "part-time", "term_id" => 35],
 
-    //         //Full Time
-    //         ["key" => "full-time", "term_id" => 38],
-    //         ["key" => "Full Time", "term_id" => 38],
-    //         ["key" => "Regular/Permanent - Full-Time", "term_id" => 38],
-    //         ["key" => "In the field / Off-site", "term_id" => 38],
-    //         ["key" => "Full Time Employee", "term_id" => 38],
-    //         ["key" => "Full Time, Fixed Term", "term_id" => 38],
-    //         ["key" => "Contrat permanent", "term_id" => 38],
-    //         ["key" => "Permanent", "term_id" => 38],
-    //         ["key" => "Permanent contract", "term_id" => 38],
-    //         ["key" => "Full Time Work From Home", "term_id" => 38],
-    //         ["key" => "Full Time Part Time Shift Based", "term_id" => 38],
-    //         ["key" => "Regular, Full Time", "term_id" => 38],
-    //         ["key" => "Regular", "term_id" => 38],
-    //         ["key" => "Full Time Shift Based", "term_id" => 38],
-    //         ["key" => "Fulltime", "term_id" => 38],
-    //         ["key" => "Full Time, Permanent", "term_id" => 38],
-    //         ["key" => "Full - Time", "term_id" => 38],
-    //         ["key" => "Full Time, Regular", "term_id" => 38],
-    //         ["key" => "Full time On-site", "term_id" => 38],
-    //         ["key" => "full", "term_id" => 38],
-    //         ["key" => "Permanent / Full Time", "term_id" => 38],
-    //         ["key" => "FULL_TIME", "term_id" => 38],
-    //         ["key" => "Long term opportunities", "term_id" => 38],
-    //         ["key" => "Full-time Regular", "term_id" => 38],
-    //         ["key" => "Full Time Shift Based Work From Home", "term_id" => 38],
-    //         ["key" => "Full-time", "term_id" => 38],
-    //         ["key" => "Full Time Job", "term_id" => 38],
-    //         ["key" => "Regular Employee Hire", "term_id" => 38],
-    //         ["key" => "Full time role", "term_id" => 38],
-    //         ["key" => "Regular Full-Time", "term_id" => 38],
-    //         ["key" => "Permanent, Full Time", "term_id" => 38],
-    //         ["key" => "Type: Permanent", "term_id" => 38],
-    //         ["key" => "Full-time, Contract", "term_id" => 38],
-    //         ["key" => "permanentfull time", "term_id" => 38],
-    //         ["key" => "Employee", "term_id" => 38],
-    //         ["key" => "Full-Time/Regular", "term_id" => 38],
-    //         ["key" => "Permanent Job", "term_id" => 38],
-    //         ["key" => "Staff / Permanent", "term_id" => 38],
-    //         ["key" => "Permanent Full-time", "term_id" => 38],
+            //Full Time
+            ["key" => "full-time", "term_id" => 38],
+            ["key" => "Full Time", "term_id" => 38],
+            ["key" => "Regular/Permanent - Full-Time", "term_id" => 38],
+            ["key" => "In the field / Off-site", "term_id" => 38],
+            ["key" => "Full Time Employee", "term_id" => 38],
+            ["key" => "Full Time, Fixed Term", "term_id" => 38],
+            ["key" => "Contrat permanent", "term_id" => 38],
+            ["key" => "Permanent", "term_id" => 38],
+            ["key" => "Permanent contract", "term_id" => 38],
+            ["key" => "Full Time Work From Home", "term_id" => 38],
+            ["key" => "Full Time Part Time Shift Based", "term_id" => 38],
+            ["key" => "Regular, Full Time", "term_id" => 38],
+            ["key" => "Regular", "term_id" => 38],
+            ["key" => "Full Time Shift Based", "term_id" => 38],
+            ["key" => "Fulltime", "term_id" => 38],
+            ["key" => "Full Time, Permanent", "term_id" => 38],
+            ["key" => "Full - Time", "term_id" => 38],
+            ["key" => "Full Time, Regular", "term_id" => 38],
+            ["key" => "Full time On-site", "term_id" => 38],
+            ["key" => "full", "term_id" => 38],
+            ["key" => "Permanent / Full Time", "term_id" => 38],
+            ["key" => "FULL_TIME", "term_id" => 38],
+            ["key" => "Long term opportunities", "term_id" => 38],
+            ["key" => "Full-time Regular", "term_id" => 38],
+            ["key" => "Full Time Shift Based Work From Home", "term_id" => 38],
+            ["key" => "Full-time", "term_id" => 38],
+            ["key" => "Full Time Job", "term_id" => 38],
+            ["key" => "Regular Employee Hire", "term_id" => 38],
+            ["key" => "Full time role", "term_id" => 38],
+            ["key" => "Regular Full-Time", "term_id" => 38],
+            ["key" => "Permanent, Full Time", "term_id" => 38],
+            ["key" => "Type: Permanent", "term_id" => 38],
+            ["key" => "Full-time, Contract", "term_id" => 38],
+            ["key" => "permanentfull time", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Full-Time/Regular", "term_id" => 38],
+            ["key" => "Permanent Job", "term_id" => 38],
+            ["key" => "Staff / Permanent", "term_id" => 38],
+            ["key" => "Permanent Full-time", "term_id" => 38],
 
-    //         ["key" => "Employee", "term_id" => 38],
-    //         ["key" => "Employee", "term_id" => 38],
-    //         ["key" => "Employee", "term_id" => 38],
-    //         ["key" => "Employee", "term_id" => 38],
-    //         ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
 
-    //         ["key" => "work-from-home", "term_id" => 38],
-    //         ["key" => "temporary", "term_id" => 38],
+            ["key" => "work-from-home", "term_id" => 38],
+            ["key" => "temporary", "term_id" => 38],
             
 
 
-    //     ]);
+        ]);
 
-    //     $search = "Employee";
+        $search = "Full time";
 
-    //     $collection = collect($type)->filter(function ($item) use ($search) {
+        $collection = collect($type)->filter(function ($item) use ($search) {
             
-    //         // return false !== stripos($item["key"], $search);
-    //         return $item["key"] == $search;
-    //     });
+            // return false !== stripos($item["key"], $search);
+            return $item["key"] == $search;
+        });
 
-    //     dd($collection->first()['term_id']);
+        dd($collection->first()['term_id']);
 
     //     $n = 4;
     //         // Take a generator string which consist of 
