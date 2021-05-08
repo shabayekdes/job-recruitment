@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\JobNeuvoo;
+use App\Console\Commands\JobCantalop;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        JobNeuvoo::class,
+        JobCantalop::class,
     ];
 
     /**
@@ -25,6 +28,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('job:wuzzuf')->dailyAt('13:00');
+        $schedule->command('job:cantalop')->dailyAt('14:00');
+
     }
 
     /**
