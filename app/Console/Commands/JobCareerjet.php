@@ -64,9 +64,9 @@ class JobCareerjet extends Command
         $results = $response->json();
         $jobs = $results['jobs'];
 
-        // if($results['pages'] < $page){
-        //     return 0;
-        // }
+        if($results['pages'] < $page){
+            return 0;
+        }
 
         $data = [
             'provider' => 'CareerJet',
