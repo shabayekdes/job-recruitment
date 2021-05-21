@@ -100,39 +100,32 @@ class JobCantalop extends Command
 
                 Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
 
-                $metaData = $meta;
-
-                $metaData[] = [
-                    "meta_key" => "job_provider",
-                    "meta_value" => "Cantalop",
+                $metaData = [
+                    [
+                        "meta_key" => "job_provider",
+                        "meta_value" => "Cantalop",
+                    ],
+                    [
+                        "meta_key" => "jobsearch_field_location_location1",
+                        "meta_value" => "Egypt",
+                    ],
+                    [
+                        "meta_key" => "_wp_old_slug",
+                        "meta_value" =>  $slug,
+                    ],
+                    [
+                        "meta_key" => "_application",
+                        "meta_value" => "/login/" . $jobCreated->ID
+                    ],
+                    [
+                        "meta_key" => "app_joburl",
+                        "meta_value" => $job['link'],
+                    ],
+                    [
+                        "meta_key" => "unique_jobkey",
+                        "meta_value" =>$job_id,
+                    ]
                 ];
-
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_location1",
-                    "meta_value" => "Egypt",
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_wp_old_slug",
-                    "meta_value" =>  $slug,
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_application",
-                    "meta_value" => "/login/" . $jobCreated->ID
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "app_joburl",
-                    "meta_value" => $job['link'],
-                ];
-
-
-                $metaData[] = [
-                    "meta_key" => "unique_jobkey",
-                    "meta_value" =>$job_id,
-                ];
-
 
                 $jobCreated->meta()->createMany($metaData);
 

@@ -128,31 +128,28 @@ class JobNeuvoo extends Command
 
                 Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
 
-                $metaData = $meta;
 
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_location1",
-                    "meta_value" => $country[$countryCode],
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_wp_old_slug",
-                    "meta_value" =>  $slug,
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_wp_http_referer",
-                    "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_application",
-                    "meta_value" => "/login/" . $jobCreated->ID
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "app_joburl",
-                    "meta_value" => $job['url'],
+                $metaData = [
+                    [
+                        "meta_key" => "jobsearch_field_location_location1",
+                        "meta_value" => $country[$countryCode],
+                    ],
+                    [
+                        "meta_key" => "_wp_old_slug",
+                        "meta_value" =>  $slug,
+                    ],
+                    [
+                        "meta_key" => "_wp_http_referer",
+                        "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
+                    ],
+                    [
+                        "meta_key" => "_application",
+                        "meta_value" => "/login/" . $jobCreated->ID
+                    ],
+                    [
+                        "meta_key" => "app_joburl",
+                        "meta_value" => $job['url'],
+                    ]
                 ];
 
                 if($job['company'] != ""){
