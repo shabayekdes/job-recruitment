@@ -51,90 +51,6 @@ class JobWuzzuf extends Command
 
         $response = Http::get($url);
 
-        $meta = [
-            [
-                "meta_key" => "_filled",
-                "meta_value" => "0",
-            ],
-            [
-                "meta_key" => "_featured",
-                "meta_value" => "0",
-            ],
-            [ 
-                "meta_key" => "_edit_lock",
-                "meta_value" => "1608244810:1",
-            ],
-            [  
-                "meta_key" => "_tracked_submitted",
-                "meta_value" => "1607169413",
-            ],
-            [
-                "meta_key" => "user_ID",
-                "meta_value" => "1",
-            ],
-            [
-                "meta_key" => "action",
-                "meta_value" => "editpost",
-            ],
-            [
-                "meta_key" => "post_type",
-                "meta_value" => "job_listing",
-            ],
-            [
-                "meta_key" => "original_post_status",
-                "meta_value" => "publish",
-            ],
-            [
-                "meta_key" => "auto_draft",
-                "meta_value" => "1",
-            ],
- 
-            [
-                "meta_key" => "meta-box-order-nonce",
-                "meta_value" => "facb9b8f5f",
-            ],
-            [
-                "meta_key" => "closedpostboxesnonce",
-                "meta_value" => "06cd9359b9",
-            ],
-            [
-                "meta_key" => "samplepermalinknonce",
-                "meta_value" => "c13bcc9b4c",
-            ],
-            [
-                "meta_key" => "job_manager_nonce",
-                "meta_value" => "1e98fa4d7a",
-            ],
-            [
-                "meta_key" => "_job_author",
-                "meta_value" => "1",
-            ],
-            [
-                "meta_key" => "post_author",
-                "meta_value" => "1",
-            ],
-            [
-                "meta_key" => "post_status",
-                "meta_value" => "publish",
-            ],
-            [
-                "meta_key" => "comment_status",
-                "meta_value" => "closed",
-            ],
-            [
-                "meta_key" => "ping_status",
-                "meta_value" => "closed",
-            ],
-            [
-                "meta_key" => "careerfy_post_views_count",
-                "meta_value" => "0",
-            ],
-            [
-                "meta_key" => "tax_input",
-                "meta_value" => 'a:1:{s:16:"job_listing_type";s:4:"0";}',
-            ]
-        ];
-
         $xml_string = (string) $response->body();
 
         $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
@@ -187,7 +103,7 @@ class JobWuzzuf extends Command
                     "meta_key" => "job_provider",
                     "meta_value" => "Wuzzuf",
                 ];
-    
+
                 // $metaData[] = [
                 //     "meta_key" => "_job_location",
                 //     "meta_value" => "Egypt",
@@ -197,12 +113,12 @@ class JobWuzzuf extends Command
                     "meta_key" => "jobsearch_field_location_location1",
                     "meta_value" => "Egypt",
                 ];
-    
+
                 $metaData[] = [
                     "meta_key" => "_wp_old_slug",
                     "meta_value" =>  $slug,
                 ];
-    
+
                 $metaData[] = [
                     "meta_key" => "_wp_http_referer",
                     "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
@@ -227,17 +143,17 @@ class JobWuzzuf extends Command
                     "meta_key" => "jobsearch_field_company_name",
                     "meta_value" => $job['source'],
                 ];
-    
+
                 $metaData[] = [
                     "meta_key" => "_wpnonce",
                     "meta_value" => "78e67f11a6",
                 ];
-    
+
                 $metaData[] = [
                     "meta_key" => "unique_jobkey",
                     "meta_value" => $job['job_id'],
                 ];
-    
+
                 $metaData[] = [
                     "meta_key" => "career-level",
                     "meta_value" => $job['career_level'],
@@ -247,7 +163,7 @@ class JobWuzzuf extends Command
                     "meta_key" => "jobsearch_field_job_salary_type",
                     "meta_value" => Str::after($job['salary'], 'Salary: '),
                 ];
-                
+
                 $metaData[] = [
                     "meta_key" => "experience",
                     "meta_value" => $job['experience'],
@@ -269,7 +185,7 @@ class JobWuzzuf extends Command
                 $term->jobs()->attach([$jobCreated->ID => ['term_order' => 0]]);
 
                 $jobCreated->meta()->createMany($metaData);
-                
+
                 \DB::commit();
                 // $queries = \DB::getQueryLog();
 

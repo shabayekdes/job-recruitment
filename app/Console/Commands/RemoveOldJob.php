@@ -43,14 +43,8 @@ class RemoveOldJob extends Command
     {
         $jobs = Job::where('post_type', 'job_listing')->where('post_date','<=',Carbon::now()->subdays(110))->get();
 
-        dump('1');
-
         Job::whereIn('ID', $jobs->pluck('ID'))->delete();
-        dump('2');
 
         JobMeta::whereIn('post_id', $jobs->pluck('ID'))->delete();
-
-        dump('3');
-
     }
 }
