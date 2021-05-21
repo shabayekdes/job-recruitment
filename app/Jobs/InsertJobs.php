@@ -56,34 +56,33 @@ class InsertJobs implements ShouldQueue
                 continue;
             }
 
-            $slug = Str::slug($job[$this->data["title"]], '-');
-            \DB::beginTransaction();
-            $jobCreated = Job::create([
-                "post_author" => 1,
-                "post_date" => Carbon::parse($job[$this->data['date']]),
-                "post_date_gmt" => now(),
-                "post_content" => $job[$this->data["description"]],
-                "post_title" => $job[$this->data["title"]],
-                "post_excerpt" => "",
-                "post_status" => "publish",
-                "comment_status" => "closed",
-                "ping_status" => "closed",
-                "post_password" => "",
-                "post_name" => $slug,
-                "to_ping" => "",
-                "pinged" => "",
-                "post_modified" => now(),
-                "post_modified_gmt" => now(),
-                "post_content_filtered" => "",
-                "post_parent" => 0,
-                "guid" => "https://search-engine.talentsmine.net/job/{$slug}",
-                "menu_order" => 0,
-                "post_type" => "job_listing",
-                "post_mime_type" => "",
-                "comment_count" => 0,
-            ]);
+            // \DB::beginTransaction();
+            // $jobCreated = Job::create([
+            //     "post_author" => 1,
+            //     "post_date" => Carbon::parse($job[$this->data['date']]),
+            //     "post_date_gmt" => now(),
+            //     "post_content" => $job[$this->data["description"]],
+            //     "post_title" => $job[$this->data["title"]],
+            //     "post_excerpt" => "",
+            //     "post_status" => "publish",
+            //     "comment_status" => "closed",
+            //     "ping_status" => "closed",
+            //     "post_password" => "",
+            //     "post_name" => $slug,
+            //     "to_ping" => "",
+            //     "pinged" => "",
+            //     "post_modified" => now(),
+            //     "post_modified_gmt" => now(),
+            //     "post_content_filtered" => "",
+            //     "post_parent" => 0,
+            //     "guid" => "https://search-engine.talentsmine.net/job/{$slug}",
+            //     "menu_order" => 0,
+            //     "post_type" => "job_listing",
+            //     "post_mime_type" => "",
+            //     "comment_count" => 0,
+            // ]);
 
-            Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
+            Log::info('Jobs Key: ' . $job_id);
 
             $metaData = [
                 [
@@ -94,10 +93,10 @@ class InsertJobs implements ShouldQueue
                     "meta_key" => "job_provider",
                     "meta_value" => $this->data['provider'],
                 ],
-                [
-                    "meta_key" => "_application",
-                    "meta_value" => "/login/" . $jobCreated->ID
-                ],
+                // [
+                //     "meta_key" => "_application",
+                //     "meta_value" => "/login/" . $jobCreated->ID
+                // ],
                 [
                     "meta_key" => "app_joburl",
                     "meta_value" => $job[$this->data['url']],
@@ -129,9 +128,12 @@ class InsertJobs implements ShouldQueue
                 ];
             }
 
-            $jobCreated->meta()->createMany($metaData);
+            CreateJob::dispatch($job, $metaData, $job[$this->data["title"]], $job[$this->data["description"]], $job[$this->data['date']]);
 
-            \DB::commit();
+
+            // $jobCreated->meta()->createMany($metaData);
+
+            // \DB::commit();
         }
 
     }
