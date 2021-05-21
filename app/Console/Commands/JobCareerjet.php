@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Carbon\Carbon;
 use App\Models\Job;
 use App\Models\Term;
+use App\Jobs\CreateJob;
 use App\Models\JobMeta;
 use App\Jobs\InsertJobs;
 use Illuminate\Support\Str;
@@ -80,8 +81,66 @@ class JobCareerjet extends Command
             'country' => ucfirst($country),
         ];
 
-        InsertJobs::dispatch($jobs, $data);
+        // InsertJobs::dispatch($jobs, $data);
 
+        foreach ($jobs as $job) {
+
+
+            $encryption = openssl_encrypt($job['title'], "AES-128-CTR", "CareerJet", 0, "1234567891011121");
+            // $decryption = openssl_decrypt($encryption, "AES-128-CTR", "GulfTalent", 0, "1234567891011121");
+            $job_id = date("Y-m-d", strtotime($job['date'])) . '-' . $encryption;
+
+
+            $jobExists = JobMeta::where('meta_value', $job_id)->exists();
+
+            if($jobExists){
+                continue;
+            }
+
+            Log::info('Jobs Key: ' . $job_id);
+            $metaData = [
+                [
+                    "meta_key" => "jobsearch_field_location_location1",
+                    "meta_value" => $data['country'],
+                ],
+                [
+                    "meta_key" => "job_provider",
+                    "meta_value" => $data['provider'],
+                ],
+                [
+                    "meta_key" => "app_joburl",
+                    "meta_value" => $job[$data['url']],
+                ],
+                [
+                    "meta_key" => "unique_jobkey",
+                    "meta_value" => $job_id,
+                ]
+            ];
+
+            if(isset($data['company'])){
+                $metaData[] = [
+                    "meta_key" => "jobsearch_field_company_name",
+                    "meta_value" => $job[$data['company']],
+                ];
+            }
+
+            if(isset($data['salary'])){
+                $metaData[] = [
+                    "meta_key" => "jobsearch_field_job_salary_type",
+                    "meta_value" => $job[$data['salary']],
+                ];
+            }
+
+            if(isset($data['locations'])){
+                $metaData[] = [
+                    "meta_key" => "jobsearch_field_location_address",
+                    "meta_value" => $job[$data['locations']],
+                ];
+            }
+
+            CreateJob::dispatch($job, $metaData, $job[$data["title"]], $job[$data["description"]], $job[$data['date']]);
+
+        }
         // foreach ($jobs as $job) {
 
 
