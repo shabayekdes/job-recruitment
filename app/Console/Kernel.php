@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('job:wuzzuf')->dailyAt('13:00');
         $schedule->command('job:cantalop')->dailyAt('14:00');
+        $schedule->command('remove:job')->dailyAt('15:00');
         $schedule->command('job:careerjet egypt --hour=15  --minute=4')->everyFiveMinutes();
         $schedule->command('job:careerjet uae --hour=15  --minute=4')->everyFiveMinutes();
         $schedule->command('job:careerjet kuwait --hour=15  --minute=4')->everyFiveMinutes();
@@ -40,6 +41,17 @@ class Kernel extends ConsoleKernel
         $schedule->command('job:careerjet libya --hour=15  --minute=4')->everyTenMinutes();
         $schedule->command('job:careerjet tunisia --hour=15  --minute=4')->everyTenMinutes();
 
+        $schedule->command('job:neuvoo eg --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo sa --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo ae --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo qa --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo kw --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo om --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo lb --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo bh --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo dz --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo tn --hour=15  --minute=4')->everyFiveMinutes();
+        $schedule->command('job:neuvoo ma --hour=15  --minute=4')->everyFiveMinutes();
 
     }
 
