@@ -33,7 +33,7 @@ class JobController extends Controller
         $filter[] = request()->query('location');
         $filter[] = request()->query('industry');
         $filter[] = request()->query('qualifications');
- 
+
         $terms = Term::withCount(['jobs' => function($query){
                             $query->where('post_type', 'job_listing');
                         }])
@@ -44,7 +44,7 @@ class JobController extends Controller
                         // ->having('jobs_count', '>', 0)
                         ->get();
         // dd($terms);
-       
+
         $jobs = Job::with([
                     'meta',
                     'term' => function($query) use($term){
@@ -102,13 +102,13 @@ class JobController extends Controller
      * @param  Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Job $job)
+    public function show($id, $job)
     {
-        $job->load('term', 'meta');
+        $job = Job::with('term', 'meta')->findOrFail($id);
 
         // dd(auth()->user());
         $relatedJobs = Job::with([
-                'term', 
+                'term',
                 'meta'
             ])
             ->where('post_type', 'job_listing')
@@ -120,7 +120,7 @@ class JobController extends Controller
 
         // if($job->term->first()){
         //     $termJobs = $job->term->first()->jobs()->limit(5)->get();
-        // }    
+        // }
 
 
         return view('web.job.show', compact('job', 'relatedJobs'));
