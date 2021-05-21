@@ -40,7 +40,6 @@ class InsertJobs implements ShouldQueue
      */
     public function handle()
     {
-        dd($this->jobs, $this->data, $this->jobID);
         foreach ($this->jobs as $job) {
 
             if($this->jobID == null){
