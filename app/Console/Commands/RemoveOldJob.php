@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use App\Models\Job;
+use App\Models\JobMeta;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -40,6 +41,10 @@ class RemoveOldJob extends Command
      */
     public function handle()
     {
-        Job::where('post_type', 'job_listing')->where('post_date','<=',Carbon::now()->subdays(30))->delete();
+        $jobs = Job::where('post_type', 'job_listing')->where('post_date','<=',Carbon::now()->subdays(110))->get();
+
+        Job::whereIn('ID', $jobs->pluck('ID'))->delete();
+
+        JobMeta::whereIn('post_id', $jobs->pluck('ID'))->delete();
     }
 }

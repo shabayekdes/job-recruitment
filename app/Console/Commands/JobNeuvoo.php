@@ -75,90 +75,6 @@ class JobNeuvoo extends Command
 
         $response = Http::get($url);
 
-        $meta = [
-            [
-                "meta_key" => "_filled",
-                "meta_value" => "0",
-            ],
-            [
-                "meta_key" => "_featured",
-                "meta_value" => "0",
-            ],
-            [ 
-                "meta_key" => "_edit_lock",
-                "meta_value" => "1608244810:1",
-            ],
-            [  
-                "meta_key" => "_tracked_submitted",
-                "meta_value" => "1607169413",
-            ],
-            [
-                "meta_key" => "user_ID",
-                "meta_value" => "1",
-            ],
-            [
-                "meta_key" => "action",
-                "meta_value" => "editpost",
-            ],
-            [
-                "meta_key" => "post_type",
-                "meta_value" => "job_listing",
-            ],
-            [
-                "meta_key" => "original_post_status",
-                "meta_value" => "publish",
-            ],
-            [
-                "meta_key" => "auto_draft",
-                "meta_value" => "1",
-            ],
- 
-            [
-                "meta_key" => "meta-box-order-nonce",
-                "meta_value" => "facb9b8f5f",
-            ],
-            [
-                "meta_key" => "closedpostboxesnonce",
-                "meta_value" => "06cd9359b9",
-            ],
-            [
-                "meta_key" => "samplepermalinknonce",
-                "meta_value" => "c13bcc9b4c",
-            ],
-            [
-                "meta_key" => "job_manager_nonce",
-                "meta_value" => "1e98fa4d7a",
-            ],
-            [
-                "meta_key" => "_job_author",
-                "meta_value" => "1",
-            ],
-            [
-                "meta_key" => "post_author",
-                "meta_value" => "1",
-            ],
-            [
-                "meta_key" => "post_status",
-                "meta_value" => "publish",
-            ],
-            [
-                "meta_key" => "comment_status",
-                "meta_value" => "closed",
-            ],
-            [
-                "meta_key" => "ping_status",
-                "meta_value" => "closed",
-            ],
-            [
-                "meta_key" => "careerfy_post_views_count",
-                "meta_value" => "0",
-            ],
-            [
-                "meta_key" => "tax_input",
-                "meta_value" => 'a:1:{s:16:"job_listing_type";s:4:"0";}',
-            ]
-        ];
-
         $xml_string = (string) $response->body();
 
         // $arr = json_decode($xml_string, true);
@@ -214,36 +130,31 @@ class JobNeuvoo extends Command
 
                 Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
 
-                $metaData = $meta;
-    
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_location1",
-                    "meta_value" => $country[$countryCode],
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "job_provider",
-                    "meta_value" => "Neuvoo",
-                ];
-    
-                $metaData[] = [
-                    "meta_key" => "_wp_old_slug",
-                    "meta_value" =>  $slug,
-                ];
-    
-                $metaData[] = [
-                    "meta_key" => "_wp_http_referer",
-                    "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_application",
-                    "meta_value" => "/login/" . $jobCreated->ID
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "app_joburl",
-                    "meta_value" => $job['url'],
+                $metaData = [
+                    [
+                        "meta_key" => "job_provider",
+                        "meta_value" => "Neuvoo",
+                    ],
+                    [
+                        "meta_key" => "jobsearch_field_location_location1",
+                        "meta_value" => $country[$countryCode],
+                    ],
+                    [
+                        "meta_key" => "_wp_old_slug",
+                        "meta_value" =>  $slug,
+                    ],
+                    [
+                        "meta_key" => "_wp_http_referer",
+                        "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
+                    ],
+                    [
+                        "meta_key" => "_application",
+                        "meta_value" => "/login/" . $jobCreated->ID
+                    ],
+                    [
+                        "meta_key" => "app_joburl",
+                        "meta_value" => $job['url'],
+                    ]
                 ];
 
                 if($job['company'] != ""){
@@ -288,7 +199,7 @@ class JobNeuvoo extends Command
                     "meta_key" => "_wpnonce",
                     "meta_value" => "78e67f11a6",
                 ];
-                
+
                 $metaData[] = [
                     "meta_key" => "unique_jobkey",
                     "meta_value" => $job_id,
@@ -298,7 +209,7 @@ class JobNeuvoo extends Command
                     "meta_key" => "job_provider",
                     "meta_value" => "Neuvoo",
                 ];
-    
+
                 // $metaData[] = [
                 //     "meta_key" => "career-level",
                 //     "meta_value" => $job['career_level'],
@@ -308,7 +219,7 @@ class JobNeuvoo extends Command
                 //     "meta_key" => "jobsearch_field_job_salary_type",
                 //     "meta_value" => Str::after($job['salary'], 'Salary: '),
                 // ];
-                
+
                 // $metaData[] = [
                 //     "meta_key" => "experience",
                 //     "meta_value" => $job['experience'],
@@ -322,7 +233,7 @@ class JobNeuvoo extends Command
                 }
 
                 $jobCreated->meta()->createMany($metaData);
-                
+
                 \DB::commit();
                 // $queries = \DB::getQueryLog();
 
