@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('job:wuzzuf')->dailyAt('13:00');
         $schedule->command('job:cantalop')->dailyAt('14:00');
         $schedule->command('remove:job')->dailyAt('15:00');
+        $schedule->command('backup:run')->dailyAt('16:00');
         $schedule->command('job:careerjet egypt --hour=15  --minute=4')->everyFiveMinutes();
         $schedule->command('job:careerjet uae --hour=15  --minute=4')->everyFiveMinutes();
         $schedule->command('job:careerjet kuwait --hour=15  --minute=4')->everyFiveMinutes();
