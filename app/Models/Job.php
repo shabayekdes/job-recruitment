@@ -53,4 +53,12 @@ class Job extends Model
     {
         return $this->belongsToMany(Term::class, 'wpqs_term_relationships', 'object_id', 'term_taxonomy_id');
     }
+
+    public function delete()
+    {
+        JobMeta::where("post_id", $this->id)->delete();
+
+        // delete the user
+        return parent::delete();
+    }
 }

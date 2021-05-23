@@ -7,11 +7,13 @@ use App\Models\Job;
 use App\Models\Term;
 use GuzzleHttp\Client;
 use App\Models\JobMeta;
+use App\Mail\TermCreated;
 use App\Models\Candidate;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class TestController extends Controller
 {
@@ -23,108 +25,210 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $n = 4;
-            // Take a generator string which consist of 
-    // all numeric digits 
-    $generator = "1357902468"; 
-  
-    // Iterate for n-times and pick a single character 
-    // from generator and append it to $result 
-      
-    // Login for generating a random character from generator 
-    //     ---generate a random number 
-    //     ---take modulus of same with length of generator (say i) 
-    //     ---append the character at place (i) from generator to result 
-  
-    $result = ""; 
-  
-    for ($i = 1; $i <= $n; $i++) { 
-        $result .= substr($generator, (rand()%(strlen($generator))), 1); 
-    } 
-  
-    // Return result 
-    dd($result); 
+        // $jobs = Job::with(['meta' => function ($query) {
+        //     $query->where('meta_key', 'job_type');
+        // }])
+        // ->whereHas('meta' , function ($query) {
+        //     $query->where('meta_key', 'job_type');
+        // })
+        // ->where('post_type', 'job_listing')
+        // ->get();
+        // foreach ($jobs as $key => $job) {
+        //     dd($job->meta->first()->meta_value);
 
-        $collection = collect([
-            ['product' => 'Desk', 'price' => 200],
-            ['product' => 'Chair', 'price' => 100],
-            ['product' => 'Bookcase', 'price' => 150],
-            ['product' => 'Door', 'price' => 100],
+        // }
+    //     dd(env('PREFIX_TABLE'));
+    //     $relatedJobs = Job::find(1);
+    //     Mail::to('esmail.shabayek@gmail.com')->send(new TermCreated("full", $relatedJobs));
+
+        
+
+        $type = collect([
+            //Freelance
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "Freelance / Project", "term_id" => 23],
+            ["key" => "Freelance / Project Work From Home", "term_id" => 23],
+            ["key" => "Part Time Freelance / Project Shift Based", "term_id" => 23],
+            ["key" => "Freelancer", "term_id" => 23],
+            ["key" => "Freelance / Project Shift Based", "term_id" => 23],
+
+
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+            ["key" => "freelance", "term_id" => 23],
+
+            ["key" => "part-time", "term_id" => 35],
+
+            //Full Time
+            ["key" => "full-time", "term_id" => 38],
+            ["key" => "Full Time", "term_id" => 38],
+            ["key" => "Regular/Permanent - Full-Time", "term_id" => 38],
+            ["key" => "In the field / Off-site", "term_id" => 38],
+            ["key" => "Full Time Employee", "term_id" => 38],
+            ["key" => "Full Time, Fixed Term", "term_id" => 38],
+            ["key" => "Contrat permanent", "term_id" => 38],
+            ["key" => "Permanent", "term_id" => 38],
+            ["key" => "Permanent contract", "term_id" => 38],
+            ["key" => "Full Time Work From Home", "term_id" => 38],
+            ["key" => "Full Time Part Time Shift Based", "term_id" => 38],
+            ["key" => "Regular, Full Time", "term_id" => 38],
+            ["key" => "Regular", "term_id" => 38],
+            ["key" => "Full Time Shift Based", "term_id" => 38],
+            ["key" => "Fulltime", "term_id" => 38],
+            ["key" => "Full Time, Permanent", "term_id" => 38],
+            ["key" => "Full - Time", "term_id" => 38],
+            ["key" => "Full Time, Regular", "term_id" => 38],
+            ["key" => "Full time On-site", "term_id" => 38],
+            ["key" => "full", "term_id" => 38],
+            ["key" => "Permanent / Full Time", "term_id" => 38],
+            ["key" => "FULL_TIME", "term_id" => 38],
+            ["key" => "Long term opportunities", "term_id" => 38],
+            ["key" => "Full-time Regular", "term_id" => 38],
+            ["key" => "Full Time Shift Based Work From Home", "term_id" => 38],
+            ["key" => "Full-time", "term_id" => 38],
+            ["key" => "Full Time Job", "term_id" => 38],
+            ["key" => "Regular Employee Hire", "term_id" => 38],
+            ["key" => "Full time role", "term_id" => 38],
+            ["key" => "Regular Full-Time", "term_id" => 38],
+            ["key" => "Permanent, Full Time", "term_id" => 38],
+            ["key" => "Type: Permanent", "term_id" => 38],
+            ["key" => "Full-time, Contract", "term_id" => 38],
+            ["key" => "permanentfull time", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Full-Time/Regular", "term_id" => 38],
+            ["key" => "Permanent Job", "term_id" => 38],
+            ["key" => "Staff / Permanent", "term_id" => 38],
+            ["key" => "Permanent Full-time", "term_id" => 38],
+
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+            ["key" => "Employee", "term_id" => 38],
+
+            ["key" => "work-from-home", "term_id" => 38],
+            ["key" => "temporary", "term_id" => 38],
+            
+
+
         ]);
+
+        $search = "Full time";
+
+        $collection = collect($type)->filter(function ($item) use ($search) {
+            
+            // return false !== stripos($item["key"], $search);
+            return $item["key"] == $search;
+        });
+
+        dd($collection->first()['term_id']);
+
+    //     $n = 4;
+    //         // Take a generator string which consist of 
+    // // all numeric digits 
+    // $generator = "1357902468"; 
+  
+    // // Iterate for n-times and pick a single character 
+    // // from generator and append it to $result 
+      
+    // // Login for generating a random character from generator 
+    // //     ---generate a random number 
+    // //     ---take modulus of same with length of generator (say i) 
+    // //     ---append the character at place (i) from generator to result 
+  
+    // $result = ""; 
+  
+    // for ($i = 1; $i <= $n; $i++) { 
+    //     $result .= substr($generator, (rand()%(strlen($generator))), 1); 
+    // } 
+  
+    // // Return result 
+    // dd($result); 
+
+    //     $collection = collect([
+    //         ['product' => 'Desk', 'price' => 200],
+    //         ['product' => 'Chair', 'price' => 100],
+    //         ['product' => 'Bookcase', 'price' => 150],
+    //         ['product' => 'Door', 'price' => 100],
+    //     ]);
         
-        $filtered = $collection->where('price', 251);
+    //     $filtered = $collection->where('price', 251);
         
 
-        dd($filtered->all());
-        $test3 = [
-            5002 => "hello",
-            5497 => "Hello World"
-        ];
-        // $test3[5002] = "dfdf";
-        dd(!array_search("hellos" , $test3));
-        dd(array_search(auth()->user()->ID , explode(",", $job->meta->where('meta_key' , 'jobsearch_job_applicants_list')->first()->meta_value)));
-        // jobId
-        // 4569
-        // postId Esmail 
-        // 5497 
-        // job Esmail 
-        // 1594
+    //     dd($filtered->all());
+    //     $test3 = [
+    //         5002 => "hello",
+    //         5497 => "Hello World"
+    //     ];
+    //     // $test3[5002] = "dfdf";
+    //     dd(!array_search("hellos" , $test3));
+    //     dd(array_search(auth()->user()->ID , explode(",", $job->meta->where('meta_key' , 'jobsearch_job_applicants_list')->first()->meta_value)));
+    //     // jobId
+    //     // 4569
+    //     // postId Esmail 
+    //     // 5497 
+    //     // job Esmail 
+    //     // 1594
 
-        //rehab
-        //postId => 808
-        //userId => 63
+    //     //rehab
+    //     //postId => 808
+    //     //userId => 63
 
-        // jobsearch_instamatch_job_ids
-        // a:13:{i:0;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591036114;}i:1;a:2:{s:7:"post_id";s:4:"1805";s:9:"date_time";i:1591104421;}i:2;a:2:{s:7:"post_id";s:4:"1998";s:9:"date_time";i:1591860603;}i:3;a:2:{s:7:"post_id";s:4:"2229";s:9:"date_time";i:1593297495;}i:4;a:2:{s:7:"post_id";i:2371;s:9:"date_time";i:1593540649;}i:5;a:2:{s:7:"post_id";s:4:"2961";s:9:"date_time";i:1594289001;}i:6;a:2:{s:7:"post_id";s:4:"3350";s:9:"date_time";i:1595164240;}i:7;a:2:{s:7:"post_id";s:4:"3697";s:9:"date_time";i:1595767283;}i:8;a:2:{s:7:"post_id";i:4019;s:9:"date_time";i:1597170462;}i:9;a:2:{s:7:"post_id";s:4:"4237";s:9:"date_time";i:1597320101;}i:10;a:2:{s:7:"post_id";s:4:"4426";s:9:"date_time";i:1597591765;}i:11;a:2:{s:7:"post_id";s:4:"4496";s:9:"date_time";i:1597592360;}i:12;a:2:{s:7:"post_id";s:4:"4569";s:9:"date_time";i:1597592719;}}
-        // jobsearch-user-jobs-applied-list
-        // a:3:{i:0;a:2:{s:7:"post_id";s:3:"596";s:9:"date_time";i:1585494294;}i:1;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591178531;}i:2;a:2:{s:7:"post_id";s:4:"5095";s:9:"date_time";i:1608937504;}}
+    //     // jobsearch_instamatch_job_ids
+    //     // a:13:{i:0;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591036114;}i:1;a:2:{s:7:"post_id";s:4:"1805";s:9:"date_time";i:1591104421;}i:2;a:2:{s:7:"post_id";s:4:"1998";s:9:"date_time";i:1591860603;}i:3;a:2:{s:7:"post_id";s:4:"2229";s:9:"date_time";i:1593297495;}i:4;a:2:{s:7:"post_id";i:2371;s:9:"date_time";i:1593540649;}i:5;a:2:{s:7:"post_id";s:4:"2961";s:9:"date_time";i:1594289001;}i:6;a:2:{s:7:"post_id";s:4:"3350";s:9:"date_time";i:1595164240;}i:7;a:2:{s:7:"post_id";s:4:"3697";s:9:"date_time";i:1595767283;}i:8;a:2:{s:7:"post_id";i:4019;s:9:"date_time";i:1597170462;}i:9;a:2:{s:7:"post_id";s:4:"4237";s:9:"date_time";i:1597320101;}i:10;a:2:{s:7:"post_id";s:4:"4426";s:9:"date_time";i:1597591765;}i:11;a:2:{s:7:"post_id";s:4:"4496";s:9:"date_time";i:1597592360;}i:12;a:2:{s:7:"post_id";s:4:"4569";s:9:"date_time";i:1597592719;}}
+    //     // jobsearch-user-jobs-applied-list
+    //     // a:3:{i:0;a:2:{s:7:"post_id";s:3:"596";s:9:"date_time";i:1585494294;}i:1;a:2:{s:7:"post_id";s:4:"1660";s:9:"date_time";i:1591178531;}i:2;a:2:{s:7:"post_id";s:4:"5095";s:9:"date_time";i:1608937504;}}
 
 
-        $jobs = unserialize('a:1:{i:5497;s:11:"Hello World";}');
-        $test = [
-            "file_name" => "HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
-            "mime_type" => [
-              "ext" => "pdf",
-              "type" => "application/pdf"
-            ],
-            "file_url" => "http://recruitment.talentsmine.net/wp-content/uploads/jobsearch-resumes/HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
+    //     $jobs = unserialize('a:1:{i:5497;s:11:"Hello World";}');
+    //     $test = [
+    //         "file_name" => "HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
+    //         "mime_type" => [
+    //           "ext" => "pdf",
+    //           "type" => "application/pdf"
+    //         ],
+    //         "file_url" => "http://recruitment.talentsmine.net/wp-content/uploads/jobsearch-resumes/HossamSabry2020_cv_8019109473_Hossam-Sabry-.-CV.pdf",
 
-        ];
-        $usermeta = [[
-                "post_id" => "3566",
-                "date_time" => 1598121076
-            ], [
-                "post_id" => "1998",
-                "date_time" => 1598121161
-            ], [
-                "post_id" => "4932",
-                "date_time" => 1598121161
-            ]
-        ];
+    //     ];
+    //     $usermeta = [[
+    //             "post_id" => "3566",
+    //             "date_time" => 1598121076
+    //         ], [
+    //             "post_id" => "1998",
+    //             "date_time" => 1598121161
+    //         ], [
+    //             "post_id" => "4932",
+    //             "date_time" => 1598121161
+    //         ]
+    //     ];
 
-        $test3 = [
-            5002 => "hello",
-            5497 => "Hello World"
-        ];
+    //     $test3 = [
+    //         5002 => "hello",
+    //         5497 => "Hello World"
+    //     ];
 
-        $test4 = [
-            1359,
-            5497 
-        ];
+    //     $test4 = [
+    //         1359,
+    //         5497 
+    //     ];
 
-        dd($jobs);
-        dd(serialize($test4));
-        $terms = Term::withCount(['jobs' => function($query){
-                        $query->where('post_type', 'job_listing');
-                    }])
-                    ->whereHas('jobs', function($query){
-                        $query->where('post_type', 'job_listing');
-                    })
-                    // ->limit(20)
-                    // ->having('jobs_count', '>', 0)
-                    ->get();
+    //     dd($jobs);
+    //     dd(serialize($test4));
+    //     $terms = Term::withCount(['jobs' => function($query){
+    //                     $query->where('post_type', 'job_listing');
+    //                 }])
+    //                 ->whereHas('jobs', function($query){
+    //                     $query->where('post_type', 'job_listing');
+    //                 })
+    //                 // ->limit(20)
+    //                 // ->having('jobs_count', '>', 0)
+    //                 ->get();
 
-                    dd($terms);
+    //                 dd($terms);
         // $candidates = Job::where('post_type', 'candidate')->get();
         // dd($candidates);
         // $json = '{"error":"invalid ranges"}';
@@ -249,7 +353,7 @@ class TestController extends Controller
         // dd(Carbon::parse('2021-01-18T15:01:00Z'));
 
         // dd(Str::slug('Engineering | Civil & Construction', '-'));
-        $url = "https://wazaefalyoum.com/?feed=job_feed&sh_atts=job_ad_banners:yes%7Cjob_ad_after_list:3%7Cjob_ads_group:143433890%7Cjob_per_page:15%7Cjob_view:view-default%7Cjob_excerpt:20%7Cjob_order:DESC%7Cjob_orderby:date%7Cjob_pagination:yes%7Cjob_filters:yes%7Cjob_filters_loc:yes%7Cjob_filters_date:yes%7Cjob_filters_type:yes%7Cjob_filters_sector:yes%7Cjob_custom_fields_switch:no%7Cjob_deadline_switch:no%7Cjob_loc_listing:country,city";
+        $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=eg&of=256&page=232";
 
         $response = Http::get($url);
 
@@ -262,8 +366,8 @@ class TestController extends Controller
 
         // dd($arr);
 
-        // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
-        $xml = simplexml_load_string($xml_string);
+        $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
+        // $xml = simplexml_load_string($xml_string);
 
         $json = json_encode($xml);
 

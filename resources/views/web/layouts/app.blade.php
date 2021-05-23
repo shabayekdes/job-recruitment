@@ -70,6 +70,46 @@
                                         class="jobsearch-color active">Home</a>
 
                                     <ul class="nav-item-children sub-menu">
+                                        <li class="active">
+                                            <a href="https://recruitment.talentsmine.net/user-dashboard/">
+                                                <i class="jobsearch-icon jobsearch-group"></i>
+                                                Dashboard </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://recruitment.talentsmine.net/user-dashboard/?tab=dashboard-settings">
+                                                <i class="jobsearch-icon jobsearch-user"></i>
+                                                My Profile </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://recruitment.talentsmine.net/user-dashboard/?tab=my-resume">
+                                                <i class="jobsearch-icon jobsearch-resume"></i>
+                                                My Resume </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://recruitment.talentsmine.net/user-dashboard/?tab=cv-manager">
+                                                <i class="jobsearch-icon jobsearch-id-card"></i>
+                                                CV Manager </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://recruitment.talentsmine.net/user-dashboard/?tab=applied-jobs">
+                                                <i class="jobsearch-icon jobsearch-briefcase-1"></i>
+                                                Applied Jobs </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://recruitment.talentsmine.net/user-dashboard/?tab=favourite-jobs">
+                                                <i class="jobsearch-icon jobsearch-heart"></i>
+                                                Favorite Jobs </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://recruitment.talentsmine.net/user-dashboard/?tab=change-password">
+                                                <i class="jobsearch-icon jobsearch-multimedia"></i>
+                                                Change Password </a>
+                                        </li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -179,7 +219,7 @@
         <!-- Header -->
 
         <!-- Main Content -->
-        
+
         @yield('content')
         <!-- Main Content -->
 

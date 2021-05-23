@@ -36,7 +36,7 @@
                                         placeholder="Job Title, Keywords, or Company" type="text">
                                 </li>
                                 <li>
-                                    <input name="locations[]" value="{{ empty($locations) ? '' : $locations[0] }}"
+                                    <input name="location[]" value="{{ empty($locations) ? '' : $locations[0] }}"
                                         placeholder="City, State or ZIP" type="text">
                                     <i class="careerfy-icon careerfy-location"></i>
                                 </li>
@@ -207,42 +207,6 @@
                                         </li>
                                     </ul>
 
-                                </div>
-                            </div>
-                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
-                                <div class="careerfy-checkbox-toggle">
-                                    <ul class="careerfy-checkbox">
-                                        <li>
-                                            <input type="radio" id="job_type_1" name="job_type"
-                                                {{ request()->query('job_type') == now()->format('Y-m-d') ? 'checked' : '' }}
-                                                value="{{ now()->format('Y-m-d') }}" />
-                                            <label for="job_type_1"><span></span>Freelance</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="job_type_2" name="job_type"
-                                                {{ request()->query('job_type') == now()->format('Y-m-d') ? 'checked' : '' }}
-                                                value="{{ now()->format('Y-m-d') }}" />
-                                            <label for="job_type_2"><span></span>Part time</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="job_type_3" name="job_type"
-                                                {{ request()->query('job_type') == now()->format('Y-m-d') ? 'checked' : '' }}
-                                                value="{{ now()->format('Y-m-d') }}" />
-                                            <label for="job_type_3"><span></span>Full time</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="job_type_4" name="job_type"
-                                                {{ request()->query('job_type') == now()->format('Y-m-d') ? 'checked' : '' }}
-                                                value="{{ now()->format('Y-m-d') }}" />
-                                            <label for="job_type_4"><span></span>Temporary</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="job_type_5" name="job_type"
-                                                {{ request()->query('job_type') == now()->format('Y-m-d') ? 'checked' : '' }}
-                                                value="{{ now()->format('Y-m-d') }}" />
-                                            <label for="job_type_5"><span></span>Work From Home</label>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                             {{-- Career Level --}}
@@ -464,7 +428,7 @@
                                 {{-- {{ dd($job) }} --}}
                                 <li class="careerfy-column-12">
                                     <div class="careerfy-joblisting-classic-wrap">
-                                        <figure><a href="#"><img src="extra-images/job-listing-logo-1.png" alt=""></a>
+                                        <figure><a href="#"><img src="/images/company-logo.png" alt=""></a>
                                         </figure>
                                         <div class="careerfy-joblisting-text">
                                             <div class="careerfy-list-option">
