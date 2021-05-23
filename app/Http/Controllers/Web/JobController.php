@@ -79,8 +79,7 @@ class JobController extends Controller
 
             $jobs->where(function ($query) use ($search){
                     // subqueries goes here
-                    $query->where('post_title', 'LIKE', "%{$search}%")
-                        ->orWhere('post_content', 'LIKE', "%{$search}%");
+                    $query->where('post_title', 'LIKE', "%{$search}%");
                 });
         }
 
