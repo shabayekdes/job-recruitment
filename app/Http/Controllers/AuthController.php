@@ -27,7 +27,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesUsers;
-    
+
     /**
      * Display the specified resource.
      *
@@ -98,13 +98,14 @@ class AuthController extends Controller
             'user_email' => 'required|email|unique:wpqs_users,user_email',
             'user_pass' => 'required|string|min:5|confirmed',
             'sector' => 'required',
+            'resume' => 'required',
             'mobile' => 'required|string',
         ],[
             'meta.0.meta_value.required' => 'The first name field is required.',
             'meta.1.meta_value.required' => 'The last name field is required.',
 
         ]);
-        
+
         $fullName = $request->input('meta.0.meta_value') . " " . $request->input('meta.1.meta_value');
         $hash = Hash::driver('wp')->make($request->get('password'));
 
