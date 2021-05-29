@@ -22,7 +22,7 @@
 <div class="careerfy-main-content">
 
     <!-- Main Section -->
-    <div class="careerfy-main-section careerfy-subheader-form-full">
+    {{-- <div class="careerfy-main-section careerfy-subheader-form-full">
         <div class="container">
             <div class="row">
 
@@ -62,7 +62,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Main Section -->
 
     <!-- Main Section -->
@@ -76,6 +76,20 @@
 
                             <a href="{{ route('job.index') }}" class="careerfy-seemore">Reset filter</a>
 
+                            {{-- Search --}}
+                            <li class="careerfy-search-filter-wrap careerfy-without-toggle">
+                                <h2><a href="#">Search</a></h2>
+                                <div class="careerfy-checkbox-toggle">
+
+                                    <ul class="careerfy-checkbox">
+                                        <li>
+                                            <input name="search" value="{{ old('search') ?? request()->query('search') }}"
+                                                placeholder="Job Title" type="text">
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </li>
                             {{-- Locations --}}
                             <div class="careerfy-search-filter-wrap careerfy-without-toggle">
                                 <h2><a href="#">Locations</a></h2>
@@ -181,7 +195,7 @@
                                 </div>
                             </div>
                             {{-- Job Type --}}
-                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                            {{-- <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Job Type</a></h2>
                                 <div class="careerfy-checkbox-toggle" style="display: block;">
                                     <ul class="careerfy-checkbox">
@@ -208,7 +222,7 @@
                                     </ul>
 
                                 </div>
-                            </div>
+                            </div> --}}
                             {{-- Career Level --}}
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Career Level</a></h2>
@@ -425,7 +439,6 @@
                         <div class="careerfy-job careerfy-joblisting-classic">
                             <ul class="careerfy-row">
                                 @foreach ($jobs as $job)
-                                {{-- {{ dd($job) }} --}}
                                 <li class="careerfy-column-12">
                                     <div class="careerfy-joblisting-classic-wrap">
                                         <figure><a href="#"><img src="/images/company-logo.png" alt=""></a>
@@ -498,15 +511,15 @@
                 // Remove empty fields from GET forms
         // Author: Bill Erickson
         // URL: http://www.billerickson.net/code/hide-empty-fields-get-form/
-        
+
             // Change 'form' to class or ID of your specific form
             $("form").submit(function() {
                 $(this).find(":input").filter(function(){ return !this.value; }).attr("disabled", "disabled");
                 return true; // ensure form still submits
             });
-            
+
             // Un-disable form fields when page loads, in case they click back after submission
             $( "form" ).find( ":input" ).prop( "disabled", false );
-    });  
+    });
 </script>
 @endsection
