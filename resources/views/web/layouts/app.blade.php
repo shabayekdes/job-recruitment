@@ -152,7 +152,7 @@
                                             <li id="menu-item-420"
                                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu-addicon">
                                                 <a href="{{ route('job.index') }}">Jobs</a>
-                                                <ul class="sub-menu">
+                                                {{-- <ul class="sub-menu">
                                                     <li id="menu-item-615"
                                                         class="menu-item  menu-item-type-post_type  menu-item-object-page">
                                                         <a href="{{ route('job.index') }}">Job search engine</a></li>
@@ -168,7 +168,7 @@
                                                         class="menu-item  menu-item-type-post_type  menu-item-object-page">
                                                         <a href="https://recruitment.talentsmine.net/jobs-by-type/">Jobs
                                                             By Type</a></li>
-                                                </ul>
+                                                </ul> --}}
 
                                             </li>
                                             <li id="menu-item-419"

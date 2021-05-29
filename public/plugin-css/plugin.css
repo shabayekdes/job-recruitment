@@ -79,7 +79,10 @@
     clear: inherit;
     font-weight: 600;
 }
-.careerfy-typo-wrap li { line-height: 28px; }
+.careerfy-typo-wrap li {
+    line-height: 28px;
+    list-style-type: none;
+}
 .widget a,.widget a:hover,.widget ul li a:hover { box-shadow: inherit; }
 /* Select Style */
 .careerfy-select-style select {
@@ -3523,7 +3526,7 @@ body.careerfy-modal-active{
 .careerfy-user-form .careerfy-profile-select:after { top: 14px; }
 /* Login Or Register */
 .careerfy-login-box,.careerfy-login-box h2,.careerfy-login-box span,.careerfy-login-box form,.careerfy-login-with,
-.careerfy-login-box form ul,.careerfy-login-box form ul li,.careerfy-login-with a,.careerfy-login-with span,.careerfy-register-box { 
+.careerfy-login-box form ul,.careerfy-login-box form ul li,.careerfy-login-with a,.careerfy-login-with span,.careerfy-register-box {
     float: left;
     width: 100%;
 }
@@ -3563,7 +3566,7 @@ body.careerfy-modal-active{
     height: 155px;
     font-size: 14px;
     padding: 10px 10px 0px 23px;
-    color: #7c7c7c; 
+    color: #7c7c7c;
     background-color: #ffffff;
     width: 100%;
 }

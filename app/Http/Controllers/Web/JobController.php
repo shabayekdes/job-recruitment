@@ -101,11 +101,14 @@ class JobController extends Controller
      * @param  Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $job)
+    public function show($id, $jobSlug = null)
     {
         $job = Job::with('term', 'meta')->findOrFail($id);
 
-        // dd(auth()->user());
+        if($jobSlug == null){
+            return redirect()->route('job.show', ['id' => $id, 'job' => $job->post_name]);
+        }
+
         $relatedJobs = Job::with([
                 'term',
                 'meta'

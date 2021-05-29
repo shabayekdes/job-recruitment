@@ -333,7 +333,7 @@ class JobNeuvoo extends Command
             return $typeFiltered->first()['term_id'];
         }
 
-        Mail::to('esmail.shabayek@gmail.com')->send(new TermCreated($search, $jobCreated));
+        // Mail::to('esmail.shabayek@gmail.com')->send(new TermCreated($search, $jobCreated));
         return null;
     }
 }
