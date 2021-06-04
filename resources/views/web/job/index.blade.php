@@ -195,34 +195,34 @@
                                 </div>
                             </div>
                             {{-- Job Type --}}
-                            {{-- <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
+                            <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Job Type</a></h2>
                                 <div class="careerfy-checkbox-toggle" style="display: block;">
                                     <ul class="careerfy-checkbox">
                                         <li>
-                                            <input type="radio" id="job_type_1" name="job_type" value="freelance">
+                                            <input type="radio" id="job_type_1" {{ in_array(23, request()->query('term', []) ) ? 'checked' : '' }} name="term[]" value="23">
                                             <label for="job_type_1"><span></span>Freelance </label>
                                         </li>
                                         <li>
-                                            <input type="radio" id="job_type_2" name="job_type" value="full-time">
+                                            <input type="radio" id="job_type_2" {{ in_array(38, request()->query('term', []) ) ? 'checked' : '' }} name="term[]" value="38">
                                             <label for="job_type_2"><span></span>Full time </label>
                                         </li>
                                         <li>
-                                            <input type="radio" id="job_type_3" name="job_type" value="part-time">
+                                            <input type="radio" id="job_type_3" {{ in_array(35, request()->query('term', []) ) ? 'checked' : '' }} name="term[]" value="35">
                                             <label for="job_type_3"><span></span>Part time </label>
                                         </li>
                                         <li>
-                                            <input type="radio" id="job_type_4" name="job_type" value="temporary">
+                                            <input type="radio" id="job_type_4" {{ in_array(42, request()->query('term', []) ) ? 'checked' : '' }} name="term[]" value="42">
                                             <label for="job_type_4"><span></span>Temporary </label>
                                         </li>
                                         <li>
-                                            <input type="radio" id="job_type_5" name="job_type" value="work-from-home">
+                                            <input type="radio" id="job_type_5" {{ in_array(471, request()->query('term', []) ) ? 'checked' : '' }} name="term[]" value="471">
                                             <label for="job_type_5"><span></span>Work From Home </label>
                                         </li>
                                     </ul>
 
                                 </div>
-                            </div> --}}
+                            </div>
                             {{-- Career Level --}}
                             <div class="careerfy-search-filter-wrap careerfy-search-filter-toggle">
                                 <h2><a href="#" class="careerfy-click-btn">Career Level</a></h2>

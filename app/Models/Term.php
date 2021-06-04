@@ -36,4 +36,13 @@ class Term extends Model
     {
         return $this->belongsToMany(Job::class, 'wpqs_term_relationships', 'term_taxonomy_id', 'object_id')->withPivot('term_order');
     }
+
+    /**
+     * Get all of the tags for the post.
+     */
+    public function taxonomy()
+    {
+        return $this->hasMany(Taxonomy::class, 'term_id');
+        // return $this->hasManyThrough(Relationship::class, Taxonomy::class, 'term_id', 'term_taxonomy_id', 'term_id', 'term_taxonomy_id');
+    }
 }

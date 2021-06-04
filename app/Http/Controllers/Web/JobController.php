@@ -43,6 +43,11 @@ class JobController extends Controller
                         // ->limit(20)
                         // ->having('jobs_count', '>', 0)
                         ->get();
+
+        // $types = Term::whereHas('taxonomy', function ($query) {
+        //                     $query->where('taxonomy', 'jobtype');
+        //                 })
+        //                 ->get();
         // dd($terms);
 
         $jobs = Job::with([
@@ -72,7 +77,6 @@ class JobController extends Controller
         if(request()->has('date')){
             $jobs->whereBetween('post_date', [Carbon::parse($date), now()]);
             // dd(Carbon::parse($date));
-
         }
 
         if(request()->has('search')){

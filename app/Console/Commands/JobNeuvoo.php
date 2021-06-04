@@ -181,13 +181,13 @@ class JobNeuvoo extends Command
                 if(is_string($job['jobtype'])){
                     $termId = $this->getType($job['jobtype'], $jobCreated);
 
-                    if($termId){
+                    if ($termId) {
                         $jobCreated->term()->attach([
                             $termId => ['term_order' => 0],
                             1114 => ['term_order' => 0]
                         ]);
                         DB::table(env('PREFIX_TABLE', 'wpqs') . 'term_taxonomy')->whereIn('term_taxonomy_id', [$termId, 1114])->increment('count');
-                    }else{
+                    } else {
                         $metaData[] = [
                             "meta_key" => "job_type",
                             "meta_value" => $job['jobtype'],
