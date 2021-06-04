@@ -324,16 +324,15 @@ class JobNeuvoo extends Command
         ]);
 
         $typeFiltered = collect($type)->filter(function ($item) use ($search) {
-            // return false !== stripos($item["key"], $search);
-            return $item["key"] == $search;
+            return false !== stripos($item["key"], $search);
+            // return $item["key"] == $search;
         })->values();
-
 
         if($typeFiltered->isNotEmpty()){
             return $typeFiltered->first()['term_id'];
         }
 
-        // Mail::to('esmail.shabayek@gmail.com')->send(new TermCreated($search, $jobCreated));
+        Mail::to('talentsmine2021@gmail.com')->send(new TermCreated($search, $jobCreated));
         return null;
     }
 }
