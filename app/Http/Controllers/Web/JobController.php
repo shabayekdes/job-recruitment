@@ -40,7 +40,10 @@ class JobController extends Controller
                         ->whereHas('jobs', function($query){
                             $query->where('post_type', 'job_listing');
                         })
-                        // ->limit(20)
+                        ->whereHas('taxonomy', function($query){
+                            $query->where('taxonomy', 'sector');
+                        })
+                        ->limit(20)
                         // ->having('jobs_count', '>', 0)
                         ->get();
 
