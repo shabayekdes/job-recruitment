@@ -30,15 +30,24 @@
                                 <img src="{{ $thumbUrl != null ? $thumbUrl : '/images/company-logo.png' }}" alt=""></span>
                             <figcaption>
                                 <h2>{{ $job->post_title }}</h2>
-                                <span>{{ $author->post_title }} {{ $job->term ? implode(', ', $job->term->pluck('name')->all()) : '' }}</span>
+                                <h3>{{ $author->post_title ?? '' }}</h3>
+                                <span> {{ $job->term ? implode(', ', $job->term->pluck('name')->all()) : '' }}</span>
                                 <ul class="careerfy-jobdetail-options">
                                     <li><i class="fa fa-map-marker"></i>
                                         {{ $job->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? "" }}
                                     </li>
-                                    <li><i class="careerfy-icon careerfy-calendar"></i> Post Date:
+                                    <li>
+                                        <i class="careerfy-icon careerfy-calendar"></i> Post Date:
                                         {{ $job->post_date->diffForHumans() }}</li>
-                                    {{-- <li><i class="careerfy-icon careerfy-summary"></i> Applications 4</li> --}}
-                                    {{-- <li><a href="#"><i class="careerfy-icon careerfy-view"></i> Views 3806</a></li> --}}
+                                        @if ($job->meta->where('meta_key', 'job_salary')->first())
+                                        <li><i class="fa fa-money"></i> Salary {{ $job->meta->where('meta_key', 'job_salary')->first()->meta_value ?? "" }} {{ $job->meta->where('meta_key', 'job_max_salary')->first()->meta_value ?? "" }} / Monthly</li>
+                                        @endif
+                                        @if ($job->meta->where('meta_key', 'jobsearch_job_applicants_list')->first() && count(explode(',' ,$job->meta->where('meta_key', 'jobsearch_job_applicants_list')->first())) > 0)
+                                        <li><i class="careerfy-icon jobsearch-summary"></i> Applications {{ count(explode(',' ,$job->meta->where('meta_key', 'jobsearch_job_applicants_list')->first())) }}</li>
+                                        @endif
+                                        @if ($job->meta->where('meta_key', 'jobsearch_job_views_count')->first())
+                                        <li><i class="careerfy-icon jobsearch-view"></i> View(s) {{ $job->meta->where('meta_key', 'jobsearch_job_views_count')->first()->meta_value ?? "" }}</li>
+                                        @endif
                                 </ul>
                             </figcaption>
                         </figure>
