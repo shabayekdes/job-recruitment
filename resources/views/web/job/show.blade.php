@@ -42,7 +42,7 @@
                                         @if ($job->meta->where('meta_key', 'job_salary')->first())
                                         <li><i class="fa fa-money"></i> Salary {{ $job->meta->where('meta_key', 'job_salary')->first()->meta_value ?? "" }} {{ $job->meta->where('meta_key', 'job_max_salary')->first()->meta_value ?? "" }} / Monthly</li>
                                         @endif
-                                        @if ($job->meta->where('meta_key', 'jobsearch_job_applicants_list')->first() && count(explode(',' ,$job->meta->where('meta_key', 'jobsearch_job_applicants_list')->first())) > 0)
+                                        @if ($job->meta->where('meta_key', 'jobsearch_job_applicants_list')->first())
                                         <li><i class="careerfy-icon careerfy-summary"></i> Applications {{ count(explode(',' ,$job->meta->where('meta_key', 'jobsearch_job_applicants_list')->first())) }}</li>
                                         @endif
                                         @if ($job->meta->where('meta_key', 'jobsearch_job_views_count')->first())
