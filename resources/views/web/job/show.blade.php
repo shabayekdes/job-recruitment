@@ -31,7 +31,7 @@
                             <figcaption>
                                 <h2>{{ $job->post_title }}</h2>
                                 @if ($job->term->first())
-                                <span>{{ $job->term->first()->name ?? '' }}</span>
+                                <span>{{ $job->term ? implode(', ', $job->term->pluck('name')->all()) : '' }}</span>
                                 @endif
                                 <ul class="careerfy-jobdetail-options">
                                     <li><i class="fa fa-map-marker"></i>
