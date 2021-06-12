@@ -118,12 +118,13 @@ class JobController extends Controller
         }
 
         $author = Job::with(['meta' => function ($query) {
-                $query->where('meta_key', '_thumbnail_id');
-            }])
-            ->whereHas('meta', function ($query) {
-                $query->where('meta_key', '_thumbnail_id');
-            })
-            ->find($job->post_author);
+            $query->where('meta_key', '_thumbnail_id');
+        }])
+        ->whereHas('meta', function ($query) {
+            $query->where('meta_key', '_thumbnail_id');
+        })
+        ->where('post_author', $job->post_author)->where('post_type', 'employer')->first();
+
 
         $thumbUrl = null;
         if ($author){
