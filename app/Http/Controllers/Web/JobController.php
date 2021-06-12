@@ -117,6 +117,14 @@ class JobController extends Controller
             return redirect()->route('job.show', ['id' => $id, 'job' => $job->post_name]);
         }
 
+        $thumb = Job::find($job->post_author);
+
+        $thumbUrl = null;
+
+        if ($thumb){
+            $thumbUrl = $thumb->guid;
+        }
+
         $candidate = auth()->user();
         $relatedJobs = Job::with([
                 'term',
@@ -147,7 +155,7 @@ class JobController extends Controller
         // }
 
 
-        return view('web.job.show', compact('job', 'relatedJobs', 'candidateApplied'));
+        return view('web.job.show', compact('job', 'relatedJobs', 'candidateApplied', 'thumbUrl'));
     }
 
     /**
