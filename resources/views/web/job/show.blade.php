@@ -26,8 +26,8 @@
                 <div class="careerfy-column-12">
                     <div class="careerfy-typo-wrap">
                         <figure class="careerfy-jobdetail-list">
-                            <span class="careerfy-jobdetail-listthumb"><img src="/images/company-logo.png"
-                                    alt=""></span>
+                            <span class="careerfy-jobdetail-listthumb">
+                                <img src="{{ $thumbUrl != null ? $thumbUrl : '/images/company-logo.png' }}" alt=""></span>
                             <figcaption>
                                 <h2>{{ $job->post_title }}</h2>
                                 @if ($job->term->first())
