@@ -117,11 +117,18 @@ class JobController extends Controller
             return redirect()->route('job.show', ['id' => $id, 'job' => $job->post_name]);
         }
 
-        $thumb = Job::find($job->post_author);
+        $author = Job::with(['meta' => function ($query) {
+                $query->where('meta_key', '_thumbnail_id');
+            }])
+            ->whereHas('meta', function ($query) {
+                $query->where('meta_key', '_thumbnail_id');
+            })
+            ->find($job->post_author);
 
         $thumbUrl = null;
+        if ($author){
 
-        if ($thumb){
+            $thumb = Job::find($author->meta->first()->meta_value);
             $thumbUrl = $thumb->guid;
         }
 
