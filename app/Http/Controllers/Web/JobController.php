@@ -141,7 +141,7 @@ class JobController extends Controller
 
         $candidateApplied = false;
 
-        if ($jobApplicants) {
+        if ($jobApplicants && $candidate) {
             $applicants = explode(",", $jobApplicants->meta_value);
             if (!array_search($candidate->ID, $applicants)) {
                 $candidateApplied = true;
