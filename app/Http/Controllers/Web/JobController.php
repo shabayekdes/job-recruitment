@@ -117,14 +117,28 @@ class JobController extends Controller
             return redirect()->route('job.show', ['id' => $id, 'job' => $job->post_name]);
         }
 
+        $candidate = auth()->user();
         $relatedJobs = Job::with([
-            'term',
-            'meta'
-        ])
+                'term',
+                'meta'
+            ])
             ->where('post_type', 'job_listing')
             ->limit(5)
             ->inRandomOrder()
             ->get();
+
+        $jobApplicants = JobMeta::where('post_id', $id)
+            ->where('meta_key', 'jobsearch_job_applicants_list')
+            ->first();
+
+        $candidateApplied = false;
+
+        if ($jobApplicants) {
+            $applicants = explode(",", $jobApplicants->meta_value);
+            if (!array_search($candidate->ID, $applicants)) {
+                $candidateApplied = true;
+            }
+        }
 
         // $termJobs = collect([]);
 
@@ -133,7 +147,7 @@ class JobController extends Controller
         // }
 
 
-        return view('web.job.show', compact('job', 'relatedJobs'));
+        return view('web.job.show', compact('job', 'relatedJobs', 'candidateApplied'));
     }
 
     /**

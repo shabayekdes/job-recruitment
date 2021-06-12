@@ -151,9 +151,9 @@
                                 @else
                                 @if ($job->post_type == 'job')
                                 <!-- Button trigger modal -->
-                                <button type="button" class="careerfy-applyjob-btn" data-toggle="modal"
+                                <button type="button" class="careerfy-applyjob-btn" {{ $candidateApplied ? 'disabled' : ''}} data-toggle="modal"
                                     data-target="#applyJobModal">
-                                    Apply for the job
+                                    {{ $candidateApplied ? 'Already applied!!' : 'Apply for the job'}}
                                 </button>
                                 @else
                                 <a href="{{ $job->meta->where('meta_key', 'app_joburl')->first()->meta_value }}"
@@ -226,6 +226,6 @@
 <script type="text/javascript">
     $( document ).ready(function() {
 
-    });   
+    });
 </script>
 @endsection
