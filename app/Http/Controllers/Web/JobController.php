@@ -163,7 +163,7 @@ class JobController extends Controller
         // }
 
 
-        return view('web.job.show', compact('job', 'relatedJobs', 'candidateApplied', 'thumbUrl'));
+        return view('web.job.show', compact('job', 'relatedJobs', 'candidateApplied', 'thumbUrl', 'author'));
     }
 
     /**

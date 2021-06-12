@@ -30,9 +30,7 @@
                                 <img src="{{ $thumbUrl != null ? $thumbUrl : '/images/company-logo.png' }}" alt=""></span>
                             <figcaption>
                                 <h2>{{ $job->post_title }}</h2>
-                                @if ($job->term->first())
-                                <span>{{ $job->term ? implode(', ', $job->term->pluck('name')->all()) : '' }}</span>
-                                @endif
+                                <span>{{ $author->post_title }} {{ $job->term ? implode(', ', $job->term->pluck('name')->all()) : '' }}</span>
                                 <ul class="careerfy-jobdetail-options">
                                     <li><i class="fa fa-map-marker"></i>
                                         {{ $job->meta->where('meta_key', 'jobsearch_field_location_location1')->first()->meta_value ?? "" }}
