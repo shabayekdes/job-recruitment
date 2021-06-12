@@ -130,7 +130,9 @@ class JobController extends Controller
         if ($author){
 
             $thumb = Job::find($author->meta->first()->meta_value);
-            $thumbUrl = $thumb->guid;
+            if($thumb){
+                $thumbUrl = $thumb->guid;
+            }
         }
 
         $candidate = auth()->user();
