@@ -19,7 +19,7 @@ class JobGulf extends Command
      *
      * @var string
      */
-    protected $signature = 'job:gulf';
+    protected $signature = 'job:gulf {type}';
 
     /**
      * The console command description.
@@ -46,15 +46,15 @@ class JobGulf extends Command
     public function handle()
     {
         // \DB::connection()->enableQueryLog();
+        $type = $this->argument('type');
 
-        $data = $this->getUrl();
+        $data = $this->getUrl($type);
 
         if($data == null){
-
             return 0;
         }
 
-        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&frmPositionCountry=" . $data[0];
+        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&" . $data;
 
         Log::info('Website: Gulf Talent Country: ' . $data[1] . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
@@ -165,11 +165,10 @@ class JobGulf extends Command
         }
     }
 
-    private function getUrl()
+    private function getUrl($type)
     {
-
-        $index = (int) floor(now()->format('H') / 2);
-        // $index = (int) floor(Carbon::parse('16:00')->format('H') / 2);
+        // $index = (int) floor(now()->format('H') / 2);
+        $index = (int) floor(Carbon::parse('16:00')->format('H') / 2);
 
         $country = [
             ['10111111000000', 'UAE'],
@@ -184,9 +183,18 @@ class JobGulf extends Command
             ['10229120000000', 'Iraq'],
         ];
 
-        if(count($country) > $index){
-            return $country[$index];
+        if(count($country) > $index && $type == 'frmPositionCountry'){
+            return "frmPositionCountry=" . $country[$index][0];
         }
+
+        if($index <= 8 && $type == 'jobcat_group'){
+            return "jobcat_group=" . $index;
+        }
+
+        if($index <= 8 && $type == 'industry_group'){
+            return "industry_group=" . $index;
+        }
+
         return null;
     }
 }

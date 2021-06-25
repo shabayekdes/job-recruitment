@@ -25,6 +25,25 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $index = (int) floor(Carbon::parse('20:00')->format('H') / 2);
+
+        dd($index);
+
+        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&jobcat_group=8&t=2";
+
+
+        $response = Http::get($url);
+
+
+        $xml_string = (string) $response->body();
+        // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
+        $xml = simplexml_load_string($xml_string);
+
+
+        $json = json_encode($xml);
+
+        $results = json_decode($json,TRUE);
+        dd($results);
         // $jobs = Job::with(['meta' => function ($query) {
         //     $query->where('meta_key', 'job_type');
         // }])
@@ -41,7 +60,7 @@ class TestController extends Controller
     //     $relatedJobs = Job::find(1);
     //     Mail::to('esmail.shabayek@gmail.com')->send(new TermCreated("full", $relatedJobs));
 
-        
+
 
         $type = collect([
             //Freelance
@@ -112,7 +131,7 @@ class TestController extends Controller
 
             ["key" => "work-from-home", "term_id" => 38],
             ["key" => "temporary", "term_id" => 38],
-            
+
 
 
         ]);
@@ -120,7 +139,7 @@ class TestController extends Controller
         $search = "Full time";
 
         $collection = collect($type)->filter(function ($item) use ($search) {
-            
+
             // return false !== stripos($item["key"], $search);
             return $item["key"] == $search;
         });
@@ -128,26 +147,26 @@ class TestController extends Controller
         dd($collection->first()['term_id']);
 
     //     $n = 4;
-    //         // Take a generator string which consist of 
-    // // all numeric digits 
-    // $generator = "1357902468"; 
-  
-    // // Iterate for n-times and pick a single character 
-    // // from generator and append it to $result 
-      
-    // // Login for generating a random character from generator 
-    // //     ---generate a random number 
-    // //     ---take modulus of same with length of generator (say i) 
-    // //     ---append the character at place (i) from generator to result 
-  
-    // $result = ""; 
-  
-    // for ($i = 1; $i <= $n; $i++) { 
-    //     $result .= substr($generator, (rand()%(strlen($generator))), 1); 
-    // } 
-  
-    // // Return result 
-    // dd($result); 
+    //         // Take a generator string which consist of
+    // // all numeric digits
+    // $generator = "1357902468";
+
+    // // Iterate for n-times and pick a single character
+    // // from generator and append it to $result
+
+    // // Login for generating a random character from generator
+    // //     ---generate a random number
+    // //     ---take modulus of same with length of generator (say i)
+    // //     ---append the character at place (i) from generator to result
+
+    // $result = "";
+
+    // for ($i = 1; $i <= $n; $i++) {
+    //     $result .= substr($generator, (rand()%(strlen($generator))), 1);
+    // }
+
+    // // Return result
+    // dd($result);
 
     //     $collection = collect([
     //         ['product' => 'Desk', 'price' => 200],
@@ -155,9 +174,9 @@ class TestController extends Controller
     //         ['product' => 'Bookcase', 'price' => 150],
     //         ['product' => 'Door', 'price' => 100],
     //     ]);
-        
+
     //     $filtered = $collection->where('price', 251);
-        
+
 
     //     dd($filtered->all());
     //     $test3 = [
@@ -169,9 +188,9 @@ class TestController extends Controller
     //     dd(array_search(auth()->user()->ID , explode(",", $job->meta->where('meta_key' , 'jobsearch_job_applicants_list')->first()->meta_value)));
     //     // jobId
     //     // 4569
-    //     // postId Esmail 
-    //     // 5497 
-    //     // job Esmail 
+    //     // postId Esmail
+    //     // 5497
+    //     // job Esmail
     //     // 1594
 
     //     //rehab
@@ -213,7 +232,7 @@ class TestController extends Controller
 
     //     $test4 = [
     //         1359,
-    //         5497 
+    //         5497
     //     ];
 
     //     dd($jobs);
@@ -284,38 +303,38 @@ class TestController extends Controller
 
         // // dd(strtotime("Thu, 14 January 2021"));
         // dd(date("Y-m-d", strtotime("Thu, 14 January 2021")));
-        // // Store a string into the variable which 
-        // // need to be Encrypted 
-        // $simple_string = "Welcome to GeeksforGeeks"; 
+        // // Store a string into the variable which
+        // // need to be Encrypted
+        // $simple_string = "Welcome to GeeksforGeeks";
 
-        // // Store the cipher method 
-        $ciphering = "AES-128-CTR"; 
-        
-        // // Use OpenSSl Encryption method 
-        $options = 0; 
-        
-        // // Non-NULL Initialization Vector for encryption 
-        // $encryption_iv = '1234567891011121'; 
-        
-        // // Store the encryption key 
-        // $encryption_key = "GeeksforGeeks"; 
-        
-        // // Use openssl_encrypt() function to encrypt the data 
-        // $encryption = openssl_encrypt($simple_string, $ciphering, 
-        //             $encryption_key, $options, $encryption_iv); 
-        
+        // // Store the cipher method
+        $ciphering = "AES-128-CTR";
+
+        // // Use OpenSSl Encryption method
+        $options = 0;
+
+        // // Non-NULL Initialization Vector for encryption
+        // $encryption_iv = '1234567891011121';
+
+        // // Store the encryption key
+        // $encryption_key = "GeeksforGeeks";
+
+        // // Use openssl_encrypt() function to encrypt the data
+        // $encryption = openssl_encrypt($simple_string, $ciphering,
+        //             $encryption_key, $options, $encryption_iv);
+
         // dump($encryption . '-' .time());
 
-        // // Non-NULL Initialization Vector for decryption 
-        $decryption_iv = '1234567891011121'; 
-        
-        // // Store the decryption key 
-        $decryption_key = "GulfTalent"; 
-        
-        // // Use openssl_decrypt() function to decrypt the data 
-        // $decryption=openssl_decrypt ("sEsXWgNkaOCclBn+OHrB03mj3p1yMazMsYqB8drmToMIgXAAuPHZXygXqQjBwCs===", $ciphering,  
-        //         $decryption_key, $options, $decryption_iv); 
-        
+        // // Non-NULL Initialization Vector for decryption
+        $decryption_iv = '1234567891011121';
+
+        // // Store the decryption key
+        $decryption_key = "GulfTalent";
+
+        // // Use openssl_decrypt() function to decrypt the data
+        // $decryption=openssl_decrypt ("sEsXWgNkaOCclBn+OHrB03mj3p1yMazMsYqB8drmToMIgXAAuPHZXygXqQjBwCs===", $ciphering,
+        //         $decryption_key, $options, $decryption_iv);
+
 
         // dd($decryption);
 
@@ -344,7 +363,7 @@ class TestController extends Controller
         //             $name = $job->post_name . ($key == 0 ? '' : '-' . $key);
 
         //             $job->update([
-        //                 'post_name' => $name 
+        //                 'post_name' => $name
         //             ]);
 
         //         }
@@ -417,19 +436,19 @@ class TestController extends Controller
                 "meta_key" => "_featured",
                 "meta_value" => "0",
             ],
-            [ 
+            [
                 "meta_key" => "_edit_lock",
                 "meta_value" => "1608244810:1",
             ],
-            [  
+            [
                 "meta_key" => "_tracked_submitted",
                 "meta_value" => "1607169413",
             ],
-            [    
+            [
                 "meta_key" => "_job_expires",
                 "meta_value" => "",
             ],
-            [ 
+            [
                 "meta_key" => "_edit_last",
                 "meta_value" => "1",
             ],
@@ -461,7 +480,7 @@ class TestController extends Controller
                 "meta_key" => "auto_draft",
                 "meta_value" => "1",
             ],
- 
+
             [
                 "meta_key" => "meta-box-order-nonce",
                 "meta_value" => "facb9b8f5f",
@@ -576,31 +595,31 @@ class TestController extends Controller
             //         "post_mime_type" => "",
             //         "comment_count" => 0,
             //     ]);
-    
-    
+
+
             //     $metaData = $meta;
-    
+
             //     $metaData[] = [
             //         "meta_key" => "_job_location",
             //         "meta_value" => $city,
             //     ];
-    
-    
+
+
             //     $metaData[] = [
             //         "meta_key" => "_wp_old_slug",
             //         "meta_value" =>  $slug,
             //     ];
-    
+
             //     $metaData[] = [
             //         "meta_key" => "ID",
             //         "meta_value" => $jobCreated->id,
             //     ];
-    
+
             //     $metaData[] = [
             //         "meta_key" => "post_ID",
             //         "meta_value" => $jobCreated->id,
             //     ];
-    
+
             //     $metaData[] = [
             //         "meta_key" => "_wp_http_referer",
             //         "meta_value" => "/wp-admin/post.php?post={$jobCreated->id}&action=edit",
@@ -610,31 +629,31 @@ class TestController extends Controller
             //     $puid = Str::replaceFirst('puid=', '', $arr[9]);
 
             //     $url = "https://eg.neuvoo.com/view/?id={$job['jobkey']}&source=api&publisher=d42894fa&utm_source=api&utm_medium=d42894fa&subid=default&chnl1=default&chnl2=default&chnl3=default&puid={$puid}&testid=champion&eligible=yes&context=api&initiator=&send_group=challenger";
-        
+
             //     $metaData[] = [
             //         "meta_key" => "_application",
             //         "meta_value" => $url,
             //     ];
-    
+
             //     $metaData[] = [
             //         "meta_key" => "_company_name",
             //         "meta_value" => $job['company'],
             //     ];
-    
+
             //     $metaData[] = [
             //         "meta_key" => "_wpnonce",
             //         "meta_value" => "78e67f11a6",
             //     ];
-    
+
             //     $metaData[] = [
             //         "meta_key" => "unique_jobkey",
             //         "meta_value" => $job['jobkey'],
             //     ];
-    
-                
-    
+
+
+
             //     $job = Job::find($jobCreated->id);
-    
+
             //     $job->meta()->createMany($metaData);
             // }
         }
