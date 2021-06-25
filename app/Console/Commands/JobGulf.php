@@ -167,8 +167,8 @@ class JobGulf extends Command
 
     private function getUrl($type)
     {
-        // $index = (int) floor(now()->format('H') / 2);
-        $index = (int) floor(Carbon::parse('16:00')->format('H') / 2);
+        $index = (int) floor(now()->format('H') / 2);
+        // $index = (int) floor(Carbon::parse('16:00')->format('H') / 2);
 
         $country = [
             ['10111111000000', 'UAE'],
