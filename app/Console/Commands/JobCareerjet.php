@@ -69,202 +69,202 @@ class JobCareerjet extends Command
             return 0;
         }
 
-        $data = [
-            'provider' => 'CareerJet',
-            'title' => 'title',
-            'description' => 'description',
-            'date' => 'date',
-            'url' => 'url',
-            'company' => 'company',
-            'salary' => 'salary',
-            'locations' => 'locations',
-            'country' => ucfirst($country),
-        ];
+        // $data = [
+        //     'provider' => 'CareerJet',
+        //     'title' => 'title',
+        //     'description' => 'description',
+        //     'date' => 'date',
+        //     'url' => 'url',
+        //     'company' => 'company',
+        //     'salary' => 'salary',
+        //     'locations' => 'locations',
+        //     'country' => ucfirst($country),
+        // ];
 
         // InsertJobs::dispatch($jobs, $data);
 
-        foreach ($jobs as $job) {
-            $encryption = openssl_encrypt($job['title'], "AES-128-CTR", "CareerJet", 0, "1234567891011121");
-            // $decryption = openssl_decrypt($encryption, "AES-128-CTR", "GulfTalent", 0, "1234567891011121");
-            $job_id = date("Y-m-d", strtotime($job['date'])) . '-' . $encryption;
-
-            $jobExists = JobMeta::where('meta_value', $job_id)->exists();
-
-            if($jobExists){
-                continue;
-            }
-
-            Log::info('Jobs Key: ' . $job_id);
-            $metaData = [
-                [
-                    "meta_key" => "jobsearch_field_location_location1",
-                    "meta_value" => $data['country'],
-                ],
-                [
-                    "meta_key" => "job_provider",
-                    "meta_value" => $data['provider'],
-                ],
-                [
-                    "meta_key" => "app_joburl",
-                    "meta_value" => $job[$data['url']],
-                ],
-                [
-                    "meta_key" => "unique_jobkey",
-                    "meta_value" => $job_id,
-                ]
-            ];
-
-            if(isset($data['company'])){
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_company_name",
-                    "meta_value" => $job[$data['company']],
-                ];
-            }
-
-            if(isset($data['salary'])){
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_job_salary_type",
-                    "meta_value" => $job[$data['salary']],
-                ];
-            }
-
-            if(isset($data['locations'])){
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_address",
-                    "meta_value" => $job[$data['locations']],
-                ];
-            }
-
-            CreateJob::dispatch($job, $metaData, $job[$data["title"]], $job[$data["description"]], $job[$data['date']]);
-
-        }
         // foreach ($jobs as $job) {
-
-
         //     $encryption = openssl_encrypt($job['title'], "AES-128-CTR", "CareerJet", 0, "1234567891011121");
         //     // $decryption = openssl_decrypt($encryption, "AES-128-CTR", "GulfTalent", 0, "1234567891011121");
         //     $job_id = date("Y-m-d", strtotime($job['date'])) . '-' . $encryption;
 
         //     $jobExists = JobMeta::where('meta_value', $job_id)->exists();
 
-        //     if(!$jobExists){
-
-        //         $slug = Str::slug($job["title"], '-');
-        //         \DB::beginTransaction();
-        //         $jobCreated = Job::create([
-        //             "post_author" => 1,
-        //             "post_date" => Carbon::parse($job['date']),
-        //             "post_date_gmt" => now(),
-        //             "post_content" => $job["description"],
-        //             "post_title" => $job["title"],
-        //             "post_excerpt" => "",
-        //             "post_status" => "publish",
-        //             "comment_status" => "closed",
-        //             "ping_status" => "closed",
-        //             "post_password" => "",
-        //             "post_name" => $slug,
-        //             "to_ping" => "",
-        //             "pinged" => "",
-        //             "post_modified" => now(),
-        //             "post_modified_gmt" => now(),
-        //             "post_content_filtered" => "",
-        //             "post_parent" => 0,
-        //             "guid" => "https://recruitment.talentsmine.net/job/{$slug}",
-        //             "menu_order" => 0,
-        //             "post_type" => "job_listing",
-        //             "post_mime_type" => "",
-        //             "comment_count" => 0,
-        //         ]);
-
-        //         Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
-
-        //         $metaData = $meta;
-
-        //         $metaData[] = [
-        //             "meta_key" => "jobsearch_field_location_location1",
-        //             "meta_value" => ucfirst($country),
-        //         ];
-
-        //         $metaData[] = [
-        //             "meta_key" => "job_provider",
-        //             "meta_value" => "CareerJet",
-        //         ];
-
-        //         $metaData[] = [
-        //             "meta_key" => "_wp_old_slug",
-        //             "meta_value" =>  $slug,
-        //         ];
-
-        //         $metaData[] = [
-        //             "meta_key" => "_wp_http_referer",
-        //             "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
-        //         ];
-
-        //         $metaData[] = [
-        //             "meta_key" => "_application",
-        //             "meta_value" => "/login/" . $jobCreated->ID
-        //         ];
-
-        //         $metaData[] = [
-        //             "meta_key" => "app_joburl",
-        //             "meta_value" => $job['url'],
-        //         ];
-
-        //         if($job['company'] != ""){
-        //             $metaData[] = [
-        //                 "meta_key" => "jobsearch_field_company_name",
-        //                 "meta_value" => $job['company'],
-        //             ];
-        //         }
-
-        //         if($job['salary'] != ""){
-        //             $salary = $job['salary_currency_code'] . ' ' . $job['salary'];
-
-        //             $metaData[] = [
-        //                 "meta_key" => "jobsearch_field_job_salary_type",
-        //                 "meta_value" => $salary,
-        //             ];
-        //         }
-
-        //         $metaData[] = [
-        //             "meta_key" => "_wpnonce",
-        //             "meta_value" => "78e67f11a6",
-        //         ];
-
-        //         $metaData[] = [
-        //             "meta_key" => "unique_jobkey",
-        //             "meta_value" => $job_id,
-        //         ];
-
-        //         // $metaData[] = [
-        //         //     "meta_key" => "career-level",
-        //         //     "meta_value" => $job['career_level'],
-        //         // ];
-
-        //         // $metaData[] = [
-        //         //     "meta_key" => "jobsearch_field_job_salary_type",
-        //         //     "meta_value" => Str::after($job['salary'], 'Salary: '),
-        //         // ];
-
-        //         // $metaData[] = [
-        //         //     "meta_key" => "experience",
-        //         //     "meta_value" => $job['experience'],
-        //         // ];
-
-        //         $metaData[] = [
-        //             "meta_key" => "jobsearch_field_location_address",
-        //             "meta_value" => $job['locations'],
-        //         ];
-
-        //         $jobCreated->meta()->createMany($metaData);
-
-        //         \DB::commit();
-        //         // $queries = \DB::getQueryLog();
-
-        //         // dd($queries);
+        //     if($jobExists){
+        //         continue;
         //     }
 
-        //     // sleep(3);
+        //     Log::info('Jobs Key: ' . $job_id);
+        //     $metaData = [
+        //         [
+        //             "meta_key" => "jobsearch_field_location_location1",
+        //             "meta_value" => $data['country'],
+        //         ],
+        //         [
+        //             "meta_key" => "job_provider",
+        //             "meta_value" => $data['provider'],
+        //         ],
+        //         [
+        //             "meta_key" => "app_joburl",
+        //             "meta_value" => $job[$data['url']],
+        //         ],
+        //         [
+        //             "meta_key" => "unique_jobkey",
+        //             "meta_value" => $job_id,
+        //         ]
+        //     ];
+
+        //     if(isset($data['company'])){
+        //         $metaData[] = [
+        //             "meta_key" => "jobsearch_field_company_name",
+        //             "meta_value" => $job[$data['company']],
+        //         ];
+        //     }
+
+        //     if(isset($data['salary'])){
+        //         $metaData[] = [
+        //             "meta_key" => "jobsearch_field_job_salary_type",
+        //             "meta_value" => $job[$data['salary']],
+        //         ];
+        //     }
+
+        //     if(isset($data['locations'])){
+        //         $metaData[] = [
+        //             "meta_key" => "jobsearch_field_location_address",
+        //             "meta_value" => $job[$data['locations']],
+        //         ];
+        //     }
+
+        //     CreateJob::dispatch($job, $metaData, $job[$data["title"]], $job[$data["description"]], $job[$data['date']]);
+
         // }
+        foreach ($jobs as $job) {
+
+
+            $encryption = openssl_encrypt($job['title'], "AES-128-CTR", "CareerJet", 0, "1234567891011121");
+            // $decryption = openssl_decrypt($encryption, "AES-128-CTR", "GulfTalent", 0, "1234567891011121");
+            $job_id = date("Y-m-d", strtotime($job['date'])) . '-' . $encryption;
+
+            $jobExists = JobMeta::where('meta_value', $job_id)->exists();
+
+            if(!$jobExists){
+
+                $slug = Str::slug($job["title"], '-');
+                \DB::beginTransaction();
+                $jobCreated = Job::create([
+                    "post_author" => 1,
+                    "post_date" => Carbon::parse($job['date']),
+                    "post_date_gmt" => now(),
+                    "post_content" => $job["description"],
+                    "post_title" => $job["title"],
+                    "post_excerpt" => "",
+                    "post_status" => "publish",
+                    "comment_status" => "closed",
+                    "ping_status" => "closed",
+                    "post_password" => "",
+                    "post_name" => $slug,
+                    "to_ping" => "",
+                    "pinged" => "",
+                    "post_modified" => now(),
+                    "post_modified_gmt" => now(),
+                    "post_content_filtered" => "",
+                    "post_parent" => 0,
+                    "guid" => "https://recruitment.talentsmine.net/job/{$slug}",
+                    "menu_order" => 0,
+                    "post_type" => "job_listing",
+                    "post_mime_type" => "",
+                    "comment_count" => 0,
+                ]);
+
+                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
+
+                $metaData = $meta;
+
+                $metaData[] = [
+                    "meta_key" => "jobsearch_field_location_location1",
+                    "meta_value" => ucfirst($country),
+                ];
+
+                $metaData[] = [
+                    "meta_key" => "job_provider",
+                    "meta_value" => "CareerJet",
+                ];
+
+                $metaData[] = [
+                    "meta_key" => "_wp_old_slug",
+                    "meta_value" =>  $slug,
+                ];
+
+                $metaData[] = [
+                    "meta_key" => "_wp_http_referer",
+                    "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
+                ];
+
+                $metaData[] = [
+                    "meta_key" => "_application",
+                    "meta_value" => "/login/" . $jobCreated->ID
+                ];
+
+                $metaData[] = [
+                    "meta_key" => "app_joburl",
+                    "meta_value" => $job['url'],
+                ];
+
+                if($job['company'] != ""){
+                    $metaData[] = [
+                        "meta_key" => "jobsearch_field_company_name",
+                        "meta_value" => $job['company'],
+                    ];
+                }
+
+                if($job['salary'] != ""){
+                    $salary = $job['salary_currency_code'] . ' ' . $job['salary'];
+
+                    $metaData[] = [
+                        "meta_key" => "jobsearch_field_job_salary_type",
+                        "meta_value" => $salary,
+                    ];
+                }
+
+                $metaData[] = [
+                    "meta_key" => "_wpnonce",
+                    "meta_value" => "78e67f11a6",
+                ];
+
+                $metaData[] = [
+                    "meta_key" => "unique_jobkey",
+                    "meta_value" => $job_id,
+                ];
+
+                // $metaData[] = [
+                //     "meta_key" => "career-level",
+                //     "meta_value" => $job['career_level'],
+                // ];
+
+                // $metaData[] = [
+                //     "meta_key" => "jobsearch_field_job_salary_type",
+                //     "meta_value" => Str::after($job['salary'], 'Salary: '),
+                // ];
+
+                // $metaData[] = [
+                //     "meta_key" => "experience",
+                //     "meta_value" => $job['experience'],
+                // ];
+
+                $metaData[] = [
+                    "meta_key" => "jobsearch_field_location_address",
+                    "meta_value" => $job['locations'],
+                ];
+
+                $jobCreated->meta()->createMany($metaData);
+
+                \DB::commit();
+                // $queries = \DB::getQueryLog();
+
+                // dd($queries);
+            }
+
+            // sleep(3);
+        }
     }
 }
