@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('job:cantalop')->dailyAt('14:00');
         $schedule->command('remove:job')->dailyAt('15:00');
         $schedule->command('backup:run')->dailyAt('16:00');
+        $schedule->command('job:jooble Egypt')->dailyAt('17:00');
 
         $schedule->command('job:gulf frmPositionCountry')->everyTwoHours();
         $schedule->command('job:gulf jobcat_group')->everyTwoHours();
