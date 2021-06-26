@@ -58,14 +58,14 @@ class JobCareerjet extends Command
 
         $url = "http://public.api.careerjet.net/search?affid=7bd38e0476bfc2ea5ba865d62515d396&user_ip=REMOTE_ADDR&user_agent=HTTP_USER_AGENT&location=$country&pagesize=99&page=$page";
 
-        Log::info('Website: CareerJet Country: ' . $country .' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
+        Log::info('Website: CareerJet Country: ' . $country . ' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $response = Http::get($url);
 
         $results = $response->json();
         $jobs = $results['jobs'];
 
-        if($results['pages'] < $page){
+        if ($results['pages'] < $page) {
             return 0;
         }
 
@@ -147,7 +147,7 @@ class JobCareerjet extends Command
 
             $jobExists = JobMeta::where('meta_value', $job_id)->exists();
 
-            if(!$jobExists){
+            if (!$jobExists) {
 
                 $slug = Str::slug($job["title"], '-');
                 \DB::beginTransaction();
@@ -178,46 +178,37 @@ class JobCareerjet extends Command
 
                 Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
 
-                $metaData = $meta;
-
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_location1",
-                    "meta_value" => ucfirst($country),
+                $metaData = [
+                    [
+                        "meta_key" => "jobsearch_field_location_location1",
+                        "meta_value" => ucfirst($country),
+                    ],
+                    [
+                        "meta_key" => "job_provider",
+                        "meta_value" => "CareerJet",
+                    ],
+                    [
+                        "meta_key" => "app_joburl",
+                        "meta_value" => $job['url'],
+                    ],
+                    [
+                        "meta_key" => "unique_jobkey",
+                        "meta_value" => $job_id,
+                    ],
+                    [
+                        "meta_key" => "_application",
+                        "meta_value" => "/login/" . $jobCreated->ID
+                    ]
                 ];
 
-                $metaData[] = [
-                    "meta_key" => "job_provider",
-                    "meta_value" => "CareerJet",
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_wp_old_slug",
-                    "meta_value" =>  $slug,
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_wp_http_referer",
-                    "meta_value" => "/wp-admin/post.php?post={$jobCreated->ID}&action=edit",
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "_application",
-                    "meta_value" => "/login/" . $jobCreated->ID
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "app_joburl",
-                    "meta_value" => $job['url'],
-                ];
-
-                if($job['company'] != ""){
+                if ($job['company'] != "") {
                     $metaData[] = [
                         "meta_key" => "jobsearch_field_company_name",
                         "meta_value" => $job['company'],
                     ];
                 }
 
-                if($job['salary'] != ""){
+                if ($job['salary'] != "") {
                     $salary = $job['salary_currency_code'] . ' ' . $job['salary'];
 
                     $metaData[] = [
@@ -226,35 +217,12 @@ class JobCareerjet extends Command
                     ];
                 }
 
-                $metaData[] = [
-                    "meta_key" => "_wpnonce",
-                    "meta_value" => "78e67f11a6",
-                ];
-
-                $metaData[] = [
-                    "meta_key" => "unique_jobkey",
-                    "meta_value" => $job_id,
-                ];
-
-                // $metaData[] = [
-                //     "meta_key" => "career-level",
-                //     "meta_value" => $job['career_level'],
-                // ];
-
-                // $metaData[] = [
-                //     "meta_key" => "jobsearch_field_job_salary_type",
-                //     "meta_value" => Str::after($job['salary'], 'Salary: '),
-                // ];
-
-                // $metaData[] = [
-                //     "meta_key" => "experience",
-                //     "meta_value" => $job['experience'],
-                // ];
-
-                $metaData[] = [
-                    "meta_key" => "jobsearch_field_location_address",
-                    "meta_value" => $job['locations'],
-                ];
+                if (isset($job['locations'])) {
+                    $metaData[] = [
+                        "meta_key" => "jobsearch_field_location_address",
+                        "meta_value" => $job['locations'],
+                    ];
+                }
 
                 $jobCreated->meta()->createMany($metaData);
 
