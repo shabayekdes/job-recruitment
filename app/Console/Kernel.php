@@ -33,6 +33,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('backup:run')->dailyAt('16:00');
         $schedule->command('job:jooble Egypt')->dailyAt('17:00');
 
+        $schedule->command('job:monster')->cron('*/22 * * * *');
+
         $schedule->command('job:gulf frmPositionCountry')->everyTwoHours();
         $schedule->command('job:gulf jobcat_group')->everyTwoHours();
         $schedule->command('job:gulf industry_group')->everyTwoHours();
