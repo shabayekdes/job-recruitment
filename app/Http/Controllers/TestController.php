@@ -25,11 +25,33 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $index = (int) floor(Carbon::parse('20:00')->format('H') / 2);
+        $index = session()->get('index', 2);
 
-        dd($index);
+        ++$index;
+        session()->put('index', $index);
 
-        $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&jobcat_group=8&t=2";
+        dd(session()->get('index'));
+        // $url = "https://eg.jooble.org/api/";
+        // $key = "048acc6b-2b1c-4c10-afc4-974121097328";
+
+        // //create request object
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $url."".$key);
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, '{"location": "egypt"}');
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+        // // receive server response ...
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // $server_output = curl_exec ($ch);
+        // curl_close ($ch);
+
+        // //print response
+        // dd(json_decode($server_output));
+
+
+        $url = "https://www.monstergulf.com/jobsearch/rss_jobs.html?cat=22";
 
 
         $response = Http::get($url);
@@ -38,7 +60,7 @@ class TestController extends Controller
         $xml_string = (string) $response->body();
         // $xml = simplexml_load_string($xml_string, null, LIBXML_NOCDATA);
         $xml = simplexml_load_string($xml_string);
-
+        // dd($xml);
 
         $json = json_encode($xml);
 

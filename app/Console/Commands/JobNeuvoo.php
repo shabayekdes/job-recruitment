@@ -186,7 +186,7 @@ class JobNeuvoo extends Command
                             $termId => ['term_order' => 0],
                             1114 => ['term_order' => 0]
                         ]);
-                        DB::table(env('PREFIX_TABLE', 'wpqs') . 'term_taxonomy')->whereIn('term_taxonomy_id', [$termId, 1114])->increment('count');
+                        DB::table(env('PREFIX_TABLE', 'wpqs_') . 'term_taxonomy')->whereIn('term_taxonomy_id', [$termId, 1114])->increment('count');
                     } else {
                         $metaData[] = [
                             "meta_key" => "job_type",
