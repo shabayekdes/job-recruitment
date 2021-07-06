@@ -117,6 +117,18 @@ class JobController extends Controller
             return redirect()->route('job.show', ['id' => $id, 'job' => $job->post_name]);
         }
 
+        $view = JobMeta::where('meta_key', 'jobsearch_job_views_count')->first();
+
+        if($view){
+            $view->update(['meta_value' => ++$view->meta_value]);
+        }else {
+            $view = JobMeta::create([
+                'meta_key' => 'jobsearch_job_views_count',
+                'meta_value' => 1,
+            ]);
+        }
+
+
         $author = Job::with(['meta' => function ($query) {
             $query->where('meta_key', '_thumbnail_id');
         }])

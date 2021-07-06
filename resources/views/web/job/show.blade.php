@@ -48,7 +48,9 @@
                                         <li><i class="careerfy-icon careerfy-summary"></i> Applications 0</li>
                                         @endif
                                         @if ($job->meta->where('meta_key', 'jobsearch_job_views_count')->first())
-                                        <li><i class="careerfy-icon careerfy-view"></i> View(s) {{ $job->meta->where('meta_key', 'jobsearch_job_views_count')->first()->meta_value ?? "" }}</li>
+                                        <li><i class="careerfy-icon careerfy-view"></i> View(s) {{ $job->meta->where('meta_key', 'jobsearch_job_views_count')->first()->meta_value ?? 0 }}</li>
+                                        @else
+                                        <li><i class="careerfy-icon careerfy-view"></i> View(s) 0</li>
                                         @endif
                                 </ul>
                             </figcaption>
