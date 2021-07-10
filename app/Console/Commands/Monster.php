@@ -67,7 +67,7 @@ class Monster extends Command
 
             $encryption = openssl_encrypt($job['title'], "AES-128-CTR", "Monster", 0, "1234567891011121");
             // $decryption = openssl_decrypt($encryption, "AES-128-CTR", "GulfTalent", 0, "1234567891011121");
-            $job_id = date("Y-m-d", strtotime($job['pubDate'])) . '-' . $encryption;
+            $job_id = date("Y-m-d", time()) . '-' . $encryption;
 
             $jobExists = JobMeta::where('meta_value', $job_id)->exists();
 
