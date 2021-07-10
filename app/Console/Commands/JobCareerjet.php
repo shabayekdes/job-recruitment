@@ -58,7 +58,7 @@ class JobCareerjet extends Command
 
         $url = "http://public.api.careerjet.net/search?affid=7bd38e0476bfc2ea5ba865d62515d396&user_ip=REMOTE_ADDR&user_agent=HTTP_USER_AGENT&location=$country&pagesize=99&page=$page";
 
-        Log::info('Website: CareerJet Country: ' . $country . ' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
+        // Log::info('Website: CareerJet Country: ' . $country . ' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $response = Http::get($url);
 
@@ -176,7 +176,7 @@ class JobCareerjet extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
+                Log::info('Website: CareerJet - Country: ' . $country . ' - Jobs ID: ' . $jobCreated->ID . ' - Jobs Key: ' . $job_id . ' - date: ' . now()->format('l jS \of F Y h:i:s A'));
 
                 $metaData = [
                     [

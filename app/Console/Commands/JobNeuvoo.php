@@ -71,7 +71,7 @@ class JobNeuvoo extends Command
 
         $url = "https://neuvoo.com/services/feeds/generatesV3/generate.php?partner=talentsmine_bulk&country=$countryCode&of=256&page=$page";
 
-        Log::info('Website: Neuvoo Country: ' . $country[$countryCode] .' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
+        // Log::info('Website: Neuvoo Country: ' . $country[$countryCode] .' page: ' . $page . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $response = Http::get($url);
 
@@ -128,7 +128,7 @@ class JobNeuvoo extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
+                Log::info('Website: Neuvoo - Country: ' . $country[$countryCode] . ' - Jobs ID: ' . $jobCreated->ID . ' - Jobs Key: ' . $job_id . ' - date: ' . now()->format('l jS \of F Y h:i:s A'));
 
                 $metaData = [
                     [

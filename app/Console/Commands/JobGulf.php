@@ -56,7 +56,7 @@ class JobGulf extends Command
 
         $url = "https://www.gulftalent.com/home/canPositions-ViewList-RSS-s.php?from_search=true&" . $data;
 
-        Log::info('Website: Gulf Talent Country: ' . $data[1] . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
+        // Log::info('Website: Gulf Talent Country: ' . $data[1] . ' date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $response = Http::get($url);
 
@@ -106,7 +106,7 @@ class JobGulf extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
+                Log::info('Website: Gulf Talent - Country: ' . $data[1] . ' - Jobs ID: ' . $jobCreated->ID . ' - Jobs Key: ' . $job_id . ' - date: ' . now()->format('l jS \of F Y h:i:s A'));
 
                 $metaData = [
                     [

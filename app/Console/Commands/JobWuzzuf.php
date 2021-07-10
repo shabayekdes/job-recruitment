@@ -45,7 +45,7 @@ class JobWuzzuf extends Command
     {
         // \DB::connection()->enableQueryLog();
 
-        Log::info('Website: Wuzzuf date: ' . now()->format('l jS \of F Y h:i:s A'));
+        // Log::info('Website: Wuzzuf date: ' . now()->format('l jS \of F Y h:i:s A'));
 
         $url = "https://wuzzuf.net/feeds/all-jobs.xml";
 
@@ -95,7 +95,7 @@ class JobWuzzuf extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job['job_id']);
+                Log::info('Website: Wuzzuf - Country: Egypt - Jobs ID: ' . $jobCreated->ID . ' - Jobs Key: ' . $job['job_id'] . ' - date: ' . now()->format('l jS \of F Y h:i:s A'));
 
 
                 $metaData = [

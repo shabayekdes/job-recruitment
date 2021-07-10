@@ -100,7 +100,7 @@ class Monster extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
+                Log::info('Website: Monster - Country: Egypt - Jobs ID: ' . $jobCreated->ID . ' - Jobs Key: ' . $job_id . ' - date: ' . now()->format('l jS \of F Y h:i:s A'));
 
                 $metaData = [
                     [

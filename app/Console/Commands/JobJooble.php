@@ -51,7 +51,7 @@ class JobJooble extends Command
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url."".$key);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, '{ "keywords": "it", "location": "' . $country. '"}');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, '{"location": "' . $country. '"}');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
         // receive server response ...
@@ -105,7 +105,7 @@ class JobJooble extends Command
                     "comment_count" => 0,
                 ]);
 
-                Log::info('Jobs ID: ' . $jobCreated->ID . ' Jobs Key: ' . $job_id);
+                Log::info('Website: Jooble - Country: ' . $job["location"] . ' - Jobs ID: ' . $jobCreated->ID . ' - Jobs Key: ' . $job_id . ' - date: ' . now()->format('l jS \of F Y h:i:s A'));
 
                 $metaData = [
                     [
